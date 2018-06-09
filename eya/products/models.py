@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from imagekit.models import ProcessedImageField
+from imagekit.processors import SmartResize
 from utils.models import BaseModel, CatalogModel
 
 # Create your models here.
@@ -35,6 +37,10 @@ class ModelProduct(BaseModel):
 
 class Product(BaseModel):
 	code_eyamex = models.CharField(verbose_name=u'Código EYAMEX', max_length=20)
+	image = ProcessedImageField(
+		upload_to='product_image', format='JPEG',
+		processors=[SmartResize(394, 214)], options={'quality': 80},
+        verbose_name=u"Imagen", null=True)
 	type = models.ForeignKey(Type, verbose_name='Tipo', related_name='t_products')
 	clasification = models.ForeignKey(Clasification, verbose_name=u'Clasificación', related_name='c_products')
 	model = models.ForeignKey(ModelProduct, verbose_name='Modelo', related_name='m_products')
