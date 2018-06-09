@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'utils',
     'store',
     'products',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
