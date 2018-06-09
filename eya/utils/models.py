@@ -21,4 +21,4 @@ class CatalogModel(BaseModel):
 		abstract = True
 
 	def __unicode__(self):
-		return u'{}'.format(display_name)
+		return u'{}'.format(self.display_name)
