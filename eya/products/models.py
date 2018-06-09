@@ -11,13 +11,25 @@ from utils.models import BaseModel, CatalogModel
 class Type(CatalogModel):
 	pass
 
+	class Meta:
+		verbose_name = 'Tipo'
+		verbose_name_plural = 'Tipos'
+
 
 class Clasification(CatalogModel):
 	pass
 
+	class Meta:
+		verbose_name = u'Clasificación'
+		verbose_name_plural = u'Clasificaciones'
+
 
 class Color(CatalogModel):
 	pass
+
+	class Meta:
+		verbose_name = 'Color'
+		verbose_name_plural = 'Colores'
 
 	def __unicode__(self):
 		return u'{}-{}'.format(self.name, self.display_name)
@@ -26,6 +38,10 @@ class Color(CatalogModel):
 class Family(BaseModel):
 	code = models.CharField(verbose_name=u'Código', max_length=5)
 
+	class Meta:
+		verbose_name = 'Familia'
+		verbose_name_plural = 'Familias'
+
 	def __unicode__(self):
 		return u'{}'.format(self.code)
 
@@ -33,6 +49,13 @@ class Family(BaseModel):
 class ModelProduct(BaseModel):
 	code = models.CharField(verbose_name=u'Código', max_length=5)
 	family_product = models.ForeignKey(Family, verbose_name='Familia', related_name='models')
+
+	class Meta:
+		verbose_name = 'Modelo'
+		verbose_name_plural = 'Modelos'
+
+	def __unicode__(self):
+		return u'{}'.format(self.code)
 
 
 class Product(BaseModel):
@@ -47,6 +70,10 @@ class Product(BaseModel):
 	code = models.CharField(verbose_name=u'Código', max_length=15)
 	color = models.ForeignKey(Color, verbose_name='Color', related_name='cl_products')
 	description = models.CharField(verbose_name=u'Descripción', max_length=255)
+
+	class Meta:
+		verbose_name = 'Producto'
+		verbose_name_plural = 'Productos'
 
 	def __unicode__(self):
 		return u'{}'.format(self.code_eyamex)
