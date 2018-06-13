@@ -8,7 +8,9 @@ from products.models import (Clasification, Color, Family, ModelProduct, Product
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
 	model = Product
-	exclude = ('image',)
+	fields = (
+		'code_eyamex', 'image', 'type', 'clasification', 'model',
+		'code', 'color', 'description')
 	list_display = ('code_eyamex', 'description')
 	ordering = ('code_eyamex',)
 	search_fields = ('code_eyamex', 'code', 'model__code', 'description')
