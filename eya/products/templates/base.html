@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#5e8420">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#5e8420">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    {% block extra_head %}
+    {% endblock %}
+    <!--<link rel="stylesheet" href="/static/site/css/style.css">-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/site/img/favicon.png"/>
+    <style>
+      body{
+        padding: 0;
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+      }
+    </style>
+  </head>
+
+<!-- body -->
+  <body>
+
+    <main>
+      {% include "header.html" %}
+      {% block content %}{% endblock %}
+      {% include "footer.html" %}
+
+    </main>
+
+    <!-- fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,200i,300,300i,400,500,500i,800,800i" rel="stylesheet">
+    <!-- /fonts -->
+    
+   
+ 	 <!-- Load base scripts (for all pages)      
+ 	 <script type="text/javascript" src="/static/site/js/min/base.min.js"></script>
+    /Load base scripts (for all pages) -->
+
+    {% block extra_scripts %}{% endblock %}
+
+  </body>
+</html>
