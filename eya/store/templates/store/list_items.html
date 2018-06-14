@@ -1,4 +1,23 @@
-{% for product in products %}
-  {{ product.quantity}} - {{ product.code }} {{ product.descr }}
-  <br>
-{% endfor %}
+<form action="{% url 'list-items' %}" method="POST">
+	{% csrf_token %}
+	<div>
+		{{ form.name.errors }}
+		{{ form.name.label_tag }}
+		{{ form.name }}
+	</div>
+	<div>
+		{{ form.address.errors }}
+		{{ form.address.label_tag }}
+		{{ form.address }}
+	</div>
+	<div>
+		{{ form.phone.errors }}
+		{{ form.phone.label_tag }}
+		{{ form.phone }}
+	</div>
+	{% for product in products %}
+	  {{ product.quantity}} - {{ product.code }} {{ product.descr }}
+	  <br>
+	{% endfor %}
+	<button type="submit">Crear orden de pedido</button>
+</form>
