@@ -31,16 +31,14 @@
       	<img src="{{MEDIA_PREFIX}}{{product.image}}" alt="No hay imagen del producto {{ product.code_eyamex }}" title="{{ product.code_eyamex }}" style="width: 100%" />
       	<h4>{{ product.code_eyamex }}</h4>
       	<p>{{ product.description }}</p>
-        <button
-          style="
+        <div style="
             background-color: #1d941d;
             padding: 0.5em;
             border-radius: 0;
             border: none;
             color: white;
             font-weight: 600;
-          "  
-        >Pedir</button>
+          "><a href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a></div>
       </div>
     {% empty %}
       <li>Sin productos</li>
