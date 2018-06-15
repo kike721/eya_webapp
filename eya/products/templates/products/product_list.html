@@ -27,27 +27,36 @@
         background-color: white;
         padding: 1em;
         margin: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
       ">
-      	<img src="{{MEDIA_PREFIX}}{{product.image}}" alt="No hay imagen del producto {{ product.code_eyamex }}" title="{{ product.code_eyamex }}" style="width: 100%" />
+        {% if product.image %}
+          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" style="width: 100%" />
+          {% else %}
+          <div style="
+            width: 100%;
+            background-color: #d9eaeaa8;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          ">No hay imagen</div>
+        {% endif %}
       	<h4>{{ product.code_eyamex }}</h4>
       	<p>{{ product.description }}</p>
-        <div style="
-            background-color: #1d941d;
-            padding: 0.5em;
-            border-radius: 0;
-            border: none;
-            color: white;
-            font-weight: 600;
-          "><a href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a></div>
+        
+        <a style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
       </div>
     {% empty %}
       <li>Sin productos</li>
     {% endfor %}
   </ul>
 
-  <div class="pagination" style="width: 100%; display: flex; justify-content: center;">
-    <span class="step-links">
-      {% if page_obj.has_previous %}
+  <div class="pagination" style="width: 100%; display: flex; justify-content: center; margin: 2em 0;">
+      <div>
+        {% if page_obj.has_previous %}
           <a href="?page=1"
             style="
               background-color: black;
@@ -66,35 +75,38 @@
               color: white;
               text-decoration: none;
             ">Anterior</a>
-      {% endif %}
-
-      <span class="current">
-        {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-      </span>
-
+        {% endif %}
+      </div>
+      
+      <div style="margin: 0 0.5em;">
+        {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+      </div>
+      
+      <div>
       {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}"
-            style="
-              background-color: black;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              text-decoration: none;
-            "
-          >Siguientes</a>
-          <a href="?page={{ page_obj.paginator.num_pages }}"
-            style="
-              background-color: black;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              text-decoration: none;
-            "
-          >Ultimo &raquo;</a>
+        <a href="?page={{ page_obj.next_page_number }}"
+          style="
+            background-color: black;
+            padding: 0.5em;
+            border-radius: 0;
+            border: none;
+            color: white;
+            text-decoration: none;
+          "
+        >Siguiente</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}"
+          style="
+            background-color: black;
+            padding: 0.5em;
+            border-radius: 0;
+            border: none;
+            color: white;
+            text-decoration: none;
+          "
+        >Ultimo &raquo;</a>
       {% endif %}
-    </span>
+      </div>
+    
   </div>
 
 </div>

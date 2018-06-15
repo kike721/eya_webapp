@@ -1,0 +1,7 @@
+.template-page{
+	padding: 30em;
+	&__container{
+		@include container();
+	}
+	
+}

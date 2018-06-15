@@ -42,6 +42,9 @@ def list_items(request):
 	products = dict()
 	if request.session.has_key('products'):
 		products = request.session['products']
+	print products
+	return render(request, 'store/list_items.html', {'products': products, 'seccion': 'list-order'})
+
 	form = OrderForm()
 	if request.method == 'POST':
 		form = OrderForm(request.POST)

@@ -1,23 +1,70 @@
-<form action="{% url 'list-items' %}" method="POST">
-	{% csrf_token %}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Lista de Pedido | Ensambles y Adornos </title>
+{% endblock %}
+
+
+{% block content %}
+
+<div style="
+  background-color: #f3f3f3;
+  padding: 2em;
+  min-height: calc(100vh - 220px);
+">
 	<div>
-		{{ form.name.errors }}
-		{{ form.name.label_tag }}
-		{{ form.name }}
+		<h2>Lista de pedido</h2>
+		<div style="background-color: #d9eaeaa8; padding: 1em; margin: 1em 0;">Los productos estan sujetos a inventario.</div>
 	</div>
-	<div>
-		{{ form.address.errors }}
-		{{ form.address.label_tag }}
-		{{ form.address }}
+
+	<div style="display: flex;">
+		<div>
+			<form action="{% url 'list-items' %}" method="POST">
+        {% csrf_token %}
+			  <div style="margin: 1em 0;">
+			  	<label for="{{ form.name }}" style="font-size: 0.7em;">Nombre ó Razón Social:</label>
+			    <input style="
+                padding: 0.5em;
+                border-radius: 0;
+                border: none;
+              " id="{{ form.name }}" name="{{ form.name }}" type="text" placeholder="Empresa S.A. de C.V." value="{{ form.name.label_tag }}" required>
+          {{ form.name.errors }}
+			  </div>
+			  <div style="margin: 1em 0;">
+			  	<label for="{{ form.phone }}" style="font-size: 0.7em;">Teléfono:</label>
+			    <input style="
+                padding: 0.5em;
+                border-radius: 0;
+                border: none;
+              " id="{{ form.phone }}" name="{{ form.phone }}" type="tel" placeholder="Local ó Celular" value="{{ form.phone.label_tag }}" required>
+          {{ form.phone.errors }}
+			  </div>
+			  <div style="margin: 1em 0;">
+			  	<label for="{{ form.address }}" style="font-size: 0.7em;">Dirección:</label>
+			    <input style="
+                padding: 0.5em;
+                border-radius: 0;
+                border: none;
+              " id="{{ form.address }}" name="{{ form.address }}" type="text" placeholder="Calle No. 10 Col. C.P." value="{{ form.address.label_tag }}" required>
+          {{ form.address.errors }}
+			  </div>
+			  <input style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" type="submit" value="Confirmar pedido">
+			</form> 
+		</div>
+
+		<div>
+			{% for product in products %}
+			  {{ product.quantity}} - {{ product.code }} {{ product.descr }}<br>
+			{% endfor %}
+		</div>
 	</div>
-	<div>
-		{{ form.phone.errors }}
-		{{ form.phone.label_tag }}
-		{{ form.phone }}
-	</div>
-	{% for product in products %}
-	  {{ product.quantity}} - {{ product.code }} {{ product.descr }}
-	  <br>
-	{% endfor %}
-	<button type="submit">Crear orden de pedido</button>
-</form>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
+

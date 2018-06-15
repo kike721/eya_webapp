@@ -8,28 +8,55 @@
       justify-content: space-between;
   ">
     <a href="/" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
-      <img src="" alt="Ensambles y Adornos Logo"/>
+      <img src="./elements/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
     </a>
+    
+    {% if seccion == 'list-order' %}
+      <a href="/product/index/" 
+        style="
+          background-color: #2b9ffb;
+          padding: 0.5em;
+          border-radius: 0;
+          border: none;
+          color: white;
+          font-weight: 500;
+          text-decoration: none;
+        "   
+      >
+        < Productos
+      </a>
+    {% else %}
+      <form action="." method="post">
+        <div class="header__search search">
+          <div class="input search__input">
+            <input 
+              id="searchText"
+              type="text"
+              class="input__text searchText"
+              placeholder="¿Qué estás buscando?"
+              name="search"
+              style="
+                padding: 0.5em;
+                border-radius: 0;
+                border: none;
+              " 
+            >
+            <button type="submit" class="input__lupe btnSearch"
+              style="
+                background-color: #1d941d;
+                padding: 0.5em;
+                border-radius: 0;
+                border: none;
+                color: white;
+                font-weight: 600;
+              "   
+            >
+              Buscar
+            </button>
+          </div>
 
-    <form action="{% url 'home' %}" method="get">
-      {% csrf_token %}
-      <div class="header__search search">
-        <div class="input search__input">
-          <input id="searchText" type="text" class="input__text searchText" placeholder="¿Qué estás buscando?" name="q">
-          <button type="submit" class="input__lupe btnSearch"
-            style="
-              background-color: #1d941d;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              font-weight: 600;
-            "   
-          >
-            Buscar
-          </button>
         </div>
-      </div>
-    </form>
+      </form>
+    {% endif %}
   </header>
 <!-- /header -->
