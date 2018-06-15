@@ -36,9 +36,6 @@ def add_item_cart(request, pk):
 		request.session['products'] = [
 			{'pk': product.pk, 'code': product.code_eyamex, 'descr': product.description, 'quantity': 1}
 		]
-	print request.session['products']
-	print 'session'
-	# del request.session['products']
 	return redirect('list-items')
 
 def list_items(request):
@@ -58,7 +55,7 @@ def list_items(request):
 					quantity=prod['quantity'])
 				email_investor_confirmation(order)
 			del request.session['products']
-			return HttpResponseRedirect(reverse('products-index'))
+			return HttpResponseRedirect(reverse('home'))
 	return render(
 		request,
 		'store/list_items.html',

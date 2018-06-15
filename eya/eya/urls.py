@@ -18,7 +18,10 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from products.views import IndexProducts
+
 urlpatterns = [
+    url(r'^$', IndexProducts.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^product/', include('products.urls')),
     url(r'^store/', include('store.urls')),
