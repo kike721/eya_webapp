@@ -42,4 +42,4 @@ def list_items(request):
 	if request.session.has_key('products'):
 		products = request.session['products']
 	print products
-	return render(request, 'store/list_items.html', {'products': products})
+	return render(request, 'store/list_items.html', {'products': products, 'seccion': 'list-order'})
