@@ -11,10 +11,11 @@
       <img src="" alt="Ensambles y Adornos Logo"/>
     </a>
 
-    <form action="." method="post">
+    <form action="{% url 'home' %}" method="get">
+      {% csrf_token %}
       <div class="header__search search">
         <div class="input search__input">
-          <input id="searchText" type="text" class="input__text searchText" placeholder="¿Qué estás buscando?" name="search">
+          <input id="searchText" type="text" class="input__text searchText" placeholder="¿Qué estás buscando?" name="q">
           <button type="submit" class="input__lupe btnSearch"
             style="
               background-color: #1d941d;

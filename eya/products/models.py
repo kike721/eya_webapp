@@ -70,6 +70,7 @@ class Product(BaseModel):
 	code = models.CharField(verbose_name=u'Código', max_length=15)
 	color = models.ForeignKey(Color, verbose_name='Color', related_name='cl_products')
 	description = models.CharField(verbose_name=u'Descripción', max_length=255)
+	meta_description = models.TextField()
 
 	class Meta:
 		verbose_name = 'Producto'
@@ -77,3 +78,17 @@ class Product(BaseModel):
 
 	def __unicode__(self):
 		return u'{}'.format(self.code_eyamex)
+
+	def fill_meta(self):
+		meta_description = '{} {} {} {} {} {} {}'.format(
+			self.code_eyamex, self.clasification.name, self.model.code,
+			self.model.family_product.code, self.code, self.color.name,
+			self.description)
+		print meta_description
+		return meta_description.lower()
+
+	def save(self, *args, **kwargs):
+		self.meta_description = self.fill_meta()
+		print self.meta_description
+		super(Product, self).save(*args, **kwargs)
+

@@ -13,8 +13,9 @@ class IndexProducts(ListView):
     model = Product
     paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexProducts, self).get_context_data(**kwargs)
-        obj = self.object_list[0]
-        print obj.image
-        return context
+    def get_queryset(self):
+    	queryset = super(IndexProducts, self).get_queryset()
+    	if self.request.GET.has_key('q'):
+    		q = self.request.GET['q']
+    		queryset = queryset.filter(meta_description__icontains=q)
+    	return queryset
