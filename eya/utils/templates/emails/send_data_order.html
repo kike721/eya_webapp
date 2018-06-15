@@ -1,0 +1,15 @@
+<div>
+	<div>Nombre: {{order.name}}</div>
+	<div>Dirección: {{order.address}}</div>
+	<div>Teléfono: {{order.phone}}</div>
+	<table>
+		<thead><th>Cantidad</th><th>Código</th><th>Descripción</th></thead>
+		<tbody>
+			{% for detail in details %}
+				<td>{{detail.quantity}}</td>
+				<td>{{detail.product.code_eyamex}}</td>
+				<td>{{detail.product.description}}</td>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
