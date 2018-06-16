@@ -64,4 +64,3 @@ def list_items(request):
 		request,
 		'store/list_items.html',
 		{'products': products, 'form': form})
-
