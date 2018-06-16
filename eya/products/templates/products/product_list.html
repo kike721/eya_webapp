@@ -11,11 +11,12 @@
 <div style="
   background-color: #f3f3f3;
   padding: 2em;
+  min-height: calc(100vh - 220px);
 ">
 
   <h2 style="margin: 0 0 1em 0">Lista de productos</h2>
   <p style="margin: 0">Por favor seleccione los prodcutos que desea solicitar.</p>
-  <ul style="
+  <div style="
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -50,9 +51,11 @@
         <a style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
       </div>
     {% empty %}
-      <li>Sin productos</li>
+      
+      <h3>No se encontraron resultados</h3>
+      
     {% endfor %}
-  </ul>
+  </div>
 
   <div class="pagination" style="width: 100%; display: flex; justify-content: center; margin: 2em 0;">
       <div>
