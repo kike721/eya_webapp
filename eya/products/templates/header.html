@@ -27,35 +27,47 @@
       </a>
     {% else %}
       <form action="." method="post">
-        <div class="header__search search">
-          <div class="input search__input">
-            <input 
-              id="searchText"
-              type="text"
-              class="input__text searchText"
-              placeholder="¿Qué estás buscando?"
-              name="search"
-              style="
-                padding: 0.5em;
-                border-radius: 0;
-                border: none;
-              " 
-            >
-            <button type="submit" class="input__lupe btnSearch"
-              style="
-                background-color: #1d941d;
-                padding: 0.5em;
-                border-radius: 0;
-                border: none;
-                color: white;
-                font-weight: 600;
-              "   
-            >
-              Buscar
-            </button>
-          </div>
+        <div class="input search__input" style="width: 100%;">
+          <input 
+            id="searchText"
+            type="text"
+            class="input__text searchText"
+            placeholder="¿Qué estás buscando?"
+            name="search"
+            style="
+              padding: 0.5em;
+              border-radius: 0;
+              border: none;
+
+            " 
+          >
+          <button type="submit" class="input__lupe btnSearch"
+            style="
+              background-color: #1d941d;
+              padding: 0.5em;
+              border-radius: 0;
+              border: none;
+              color: white;
+              font-weight: 600;
+            "   
+          >
+            Buscar
+          </button>
         </div>
       </form>
+      <a href="/store/list-items/" 
+        style="
+          background-color: #2b9ffb;
+          padding: 0.5em;
+          border-radius: 0;
+          border: none;
+          color: white;
+          font-weight: 500;
+          text-decoration: none;
+        "   
+      >
+        Ver Pedido
+      </a>
     {% endif %}
   </header>
 <!-- /header -->

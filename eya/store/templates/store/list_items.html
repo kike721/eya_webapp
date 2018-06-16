@@ -45,15 +45,40 @@
                 border: none;
               " id="name" name="name" type="text" placeholder="Calle No. 10 Col. C.P." required>
 			  </div>
-			  <input style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" type="submit" value="Confirmar pedido">
-			</form> 
+			  <input style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #1d941d; padding: 0.8em;" type="submit" value="Confirmar pedido">
+			  <input style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #e02d2d; padding: 0.8em;" type="button" value="Cancelar pedido">
+			</form>
 		</div>
 
-		<div>
+		<div style="background-color: white; padding: 2em;">
+			<div style="display: flex;">
+				<div >
+					<h4>Cantidad</h4>
+				</div>
+				<div >
+					<h4>Codigo</h4>
+				</div>
+				<div >
+					<h4>Descripción</h4>
+				</div>
+				
+			</div>
 			{% for product in products %}
-			  {{ product.quantity}} - {{ product.code }} {{ product.descr }}
+			<div style="display: flex;">
+				<div>
+					<p>{{ product.quantity}}</p>
+				</div>
+				<div>
+					<p>{{ product.code }}</p>
+				</div>
+				<div>
+					<p>{{ product.descr}}</p>
+				</div>
+				
+			</div>
 			{% endfor %}
 		</div>
+
 	</div>
 </div>
 
