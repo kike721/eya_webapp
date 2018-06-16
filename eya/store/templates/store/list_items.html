@@ -1,23 +1,87 @@
-<form action="{% url 'list-items' %}" method="POST">
-	{% csrf_token %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96db5e9af12a82ec3d01bb30c20020569289e34b
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Lista de Pedido | Ensambles y Adornos </title>
+{% endblock %}
+
+
+{% block content %}
+
+<div style="
+  background-color: #f3f3f3;
+  padding: 2em;
+  min-height: calc(100vh - 220px);
+">
 	<div>
-		{{ form.name.errors }}
-		{{ form.name.label_tag }}
-		{{ form.name }}
+		<h2>Lista de pedido</h2>
+		<div style="background-color: #d9eaeaa8; padding: 1em; margin: 1em 0;">Los productos estan sujetos a inventario.</div>
 	</div>
-	<div>
-		{{ form.address.errors }}
-		{{ form.address.label_tag }}
-		{{ form.address }}
+
+	<div >
+		
+		<div style="background-color: white; padding: 2em;">
+			<div style="display: flex;">
+				<div  style="width: 10%;">
+					<h4>Cantidad</h4>
+				</div>
+				<div  style="width: 10%;">
+					<h4>Codigo</h4>
+				</div>
+				<div  style="width: 80%;">
+					<h4>Descripción</h4>
+				</div>
+				
+			</div>
+			{% for product in products %}
+			<div style="display: flex;">
+				<div style="width: 10%;">
+					<p style="padding: 0.5em; font-weight: 600">{{ product.quantity}}</p>
+				</div>
+				<div style="width: 10%;">
+					<p style="padding: 0.5EM;">{{ product.code }}</p>
+				</div>
+				<div style="width: 80%;">
+					<p style="padding: 0.5EM;">{{ product.descr}}</p>
+				</div>
+				
+			</div>
+			{% endfor %}
+		</div>
+
+		<div>
+
+			<form action="{% url 'list-items' %}" method="POST">
+				{% csrf_token %}
+				<div>
+					{{ form.name.errors }}
+					{{ form.name.label_tag }}
+					{{ form.name }}
+				</div>
+				<div>
+					{{ form.address.errors }}
+					{{ form.address.label_tag }}
+					{{ form.address }}
+				</div>
+				<div>
+					{{ form.phone.errors }}
+					{{ form.phone.label_tag }}
+					{{ form.phone }}
+				</div>
+				<button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #1d941d; padding: 0.8em;" type="submit">Crear orden de pedido</button>
+				<button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #e02d2d; padding: 0.8em;" type="">Cancelar pedido</button>
+			</form>
+
 	</div>
-	<div>
-		{{ form.phone.errors }}
-		{{ form.phone.label_tag }}
-		{{ form.phone }}
-	</div>
-	{% for product in products %}
-	  {{ product.quantity}} - {{ product.code }} {{ product.descr }}
-	  <br>
-	{% endfor %}
-	<button type="submit">Crear orden de pedido</button>
-</form>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
+

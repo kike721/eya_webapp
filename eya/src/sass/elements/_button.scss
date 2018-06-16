@@ -1,0 +1,14 @@
+.button{
+	
+}
+
+/* Dispositivos */
+body:not(.desktop){
+}
+
+/* Computadoras */
+body.desktop {
+	.button{
+		
+	}
+}
