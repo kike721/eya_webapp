@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from products.models import Product
+from store.forms import OrderForm
+from store.models import DetailOrder
+from utils.email import email_investor_confirmation
 
 # Create your views here.
 def add_item_cart(request, pk):
@@ -32,14 +36,32 @@ def add_item_cart(request, pk):
 		request.session['products'] = [
 			{'pk': product.pk, 'code': product.code_eyamex, 'descr': product.description, 'quantity': 1}
 		]
-	print request.session['products']
-	print 'session'
-	# del request.session['products']
 	return redirect('list-items')
 
 def list_items(request):
 	products = dict()
 	if request.session.has_key('products'):
 		products = request.session['products']
+
 	print products
 	return render(request, 'store/list_items.html', {'products': products, 'seccion': 'list-order'})
+
+	form = OrderForm()
+	if request.method == 'POST':
+		form = OrderForm(request.POST)
+		if form.is_valid():
+			order = form.save()
+			for prod in products:
+				product = Product.objects.get(pk=prod['pk'])
+				detailOrder = DetailOrder.objects.create(
+					order=order,
+					product=product,
+					quantity=prod['quantity'])
+				email_investor_confirmation(order)
+			del request.session['products']
+			return HttpResponseRedirect(reverse('home'))
+	return render(
+		request,
+		'store/list_items.html',
+		{'products': products, 'form': form})
+

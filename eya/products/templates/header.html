@@ -26,34 +26,21 @@
         < Productos
       </a>
     {% else %}
-      <form action="." method="post">
-        <div class="input search__input" style="width: 100%;">
-          <input 
-            id="searchText"
-            type="text"
-            class="input__text searchText"
-            placeholder="¿Qué estás buscando?"
-            name="search"
-            style="
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-
-            " 
-          >
-          <button type="submit" class="input__lupe btnSearch"
-            style="
-              background-color: #1d941d;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              font-weight: 600;
-            "   
-          >
-            Buscar
-          </button>
-        </div>
+      
+      <form action="{% url 'home' %}" method="get">
+      {% csrf_token %}
+        <input style="padding: 0.5em; border-radius: 0; border: none;" type="text" placeholder="¿Qué estás buscando?" name="q">
+        <button type="submit"
+          style="
+            background-color: #1d941d;
+            padding: 0.5em;
+            border-radius: 0;
+            border: none;
+            color: white;
+            font: font-weight: 600;
+        ">
+          Buscar
+        </button> 
       </form>
       <a href="/store/list-items/" 
         style="

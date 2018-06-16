@@ -23,8 +23,9 @@ class Order(BaseModel):
 
 
 class DetailOrder(BaseModel):
-	order = models.ForeignKey(Order, verbose_name=u'Orden')
+	order = models.ForeignKey(Order, verbose_name=u'Orden', related_name='details')
 	product = models.ForeignKey(Product, verbose_name=u'Producto')
+	quantity = models.PositiveIntegerField(verbose_name='Cantidad')
 
 	class Meta:
 		verbose_name = u'Detalle de orden'
