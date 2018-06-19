@@ -1,14 +1,11 @@
+{% load static %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+{% endblock %}
 <!-- header -->
-  <header id="header" class="header" 
-    style="
-      background-color: black;
-      color: white;
-      padding: 1em 3em;
-      display: flex;
-      justify-content: space-between;
-  ">
+  <header class="header">
     <a href="/" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
-      <img src="./elements/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
+      <img class="logo" src="../static/img/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
     </a>
     
     {% if seccion == 'list-order' %}
@@ -29,7 +26,7 @@
       
       <form action="{% url 'home' %}" method="get">
       {% csrf_token %}
-        <input style="padding: 0.5em; border-radius: 0; border: none;" type="text" placeholder="¿Qué estás buscando?" name="q">
+        <input class="search" type="text" placeholder="¿Qué estás buscando?" name="q">
         <button type="submit"
           style="
             background-color: #1d941d;
