@@ -9,48 +9,20 @@
     </a>
     
     {% if seccion == 'list-order' %}
-      <a href="/product/index/" 
-        style="
-          background-color: #2b9ffb;
-          padding: 0.5em;
-          border-radius: 0;
-          border: none;
-          color: white;
-          font-weight: 500;
-          text-decoration: none;
-        "   
-      >
+      <a href="/product/index/" class="button-blue">
         < Productos
       </a>
     {% else %}
       
-      <form action="{% url 'home' %}" method="get">
+      <form action="{% url 'home' %}" method="get" class="form-search">
       {% csrf_token %}
         <input class="search" type="text" placeholder="¿Qué estás buscando?" name="q">
-        <button type="submit"
-          style="
-            background-color: #1d941d;
-            padding: 0.5em;
-            border-radius: 0;
-            border: none;
-            color: white;
-            font: font-weight: 600;
-        ">
+        <button type="submit" class="button-green">
           Buscar
         </button> 
       </form>
-      <a href="/store/list-items/" 
-        style="
-          background-color: #2b9ffb;
-          padding: 0.5em;
-          border-radius: 0;
-          border: none;
-          color: white;
-          font-weight: 500;
-          text-decoration: none;
-        "   
-      >
-        Ver Pedido
+      <a href="/store/list-items/" class="button-white">
+        <img class="icon-car" src="../static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
       </a>
     {% endif %}
   </header>
