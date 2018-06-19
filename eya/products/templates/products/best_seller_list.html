@@ -2,115 +2,68 @@
 {% load static %}
 
 {% block extra_head %}
-  <title>Productos | Ensambles y Adornos </title>
+  <meta name="description" content="Ensambles Y Adornos Mexico. Nuestros productos más vendidos.">
+  <meta name="keywords" content="Fabricantes adornos, accesorios textiles, bisuteria, joyeria, bolsas, cajas y adornos del hogar.">
+  <title>Lo más vendido | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/product-list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/paged.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
-<div style="
-  background-color: #f3f3f3;
-  padding: 2em;
-  min-height: calc(100vh - 220px);
-">
+{% get_media_prefix as MEDIA_PREFIX %}
 
-  <h2 style="margin: 0 0 1em 0">Productos más vendidos</h2>
-  <p style="margin: 0">Por favor seleccione los productos que desea solicitar.</p>
-  <div style="
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  ">
-  	{% get_media_prefix as MEDIA_PREFIX %}
+<div class="content">
+  
+  <div class="info-results">
+    <h2 class="title-info-results">Productos más vendidos</h2><a class="button-paged" href="/">Volver</a>
+  </div>
+
+  <div class="results">
+  	
     {% for product in object_list %}
-      <div style="
-        max-width: 200px;
-        background-color: white;
-        padding: 1em;
-        margin: 1em;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-      ">
+      <div class="card">
         {% if product.image %}
-          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" style="width: 100%" />
+          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" class="image" />
           {% else %}
-          <div style="
-            width: 100%;
-            background-color: #d9eaeaa8;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          ">No hay imagen</div>
+          <div class="image-no-found">No hay imagen</div>
         {% endif %}
       	<h4>{{ product.code_eyamex }}</h4>
       	<p>{{ product.description }}</p>
         
-        <a style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
+        <a class="order" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
       </div>
     {% empty %}
-      
       <h3>No se encontraron resultados</h3>
-      
     {% endfor %}
+
   </div>
 
-  <div class="pagination" style="width: 100%; display: flex; justify-content: center; margin: 2em 0;">
-      <div>
-        {% if page_obj.has_previous %}
-          <a href="?page=1&q={{q}}"
-            style="
-              background-color: black;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              text-decoration: none;
-            ">&laquo; Pag. 1</a>
-          <a href="?page={{ page_obj.previous_page_number }}&q={{q}}"
-            style="
-              background-color: black;
-              padding: 0.5em;
-              border-radius: 0;
-              border: none;
-              color: white;
-              text-decoration: none;
-            ">Anterior</a>
-        {% endif %}
-      </div>
-      
-      <div style="margin: 0 0.5em;">
-        {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-      </div>
-      
-      <div>
-      {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}&q={{q}}"
-          style="
-            background-color: black;
-            padding: 0.5em;
-            border-radius: 0;
-            border: none;
-            color: white;
-            text-decoration: none;
-          "
-        >Siguiente</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}"
-          style="
-            background-color: black;
-            padding: 0.5em;
-            border-radius: 0;
-            border: none;
-            color: white;
-            text-decoration: none;
-          "
-        >Ultimo &raquo;</a>
+<!-- PAGINADOR -->
+
+  <div class="pagination">
+    <div>
+      {% if page_obj.has_previous %}
+        <a href="?page=1&q={{q}}" class="button-paged">1</a>
+        <a href="?page={{ page_obj.previous_page_number }}&q={{q}}" class="button-paged">&#60;</a>
       {% endif %}
-      </div>
+    </div>
+    
+    <div class="total-pages">
+      {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+    </div>
+    
+    <div>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}&q={{q}}" class="button-paged">&#62;</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}" class="button-paged">{{ page_obj.paginator.num_pages }}</a>
+    {% endif %}
+    </div>
     
   </div>
+
+  <!-- /PGINADORS -->
 
 </div>
 {% endblock %}

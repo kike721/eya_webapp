@@ -1,0 +1,36 @@
+.imagen-banner{
+	min-height: 350px;
+	display: flex;
+	justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  box-sizing: border-box;
+  padding: 2em 0;
+  position: relative;
+}
+
+.content-title{
+	box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.title-banner{
+	color: #fff;
+}
+
+.imagen-banner:before{
+	position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  content: '';
+  background-color: rgba(0,0,0,0.61);
+}

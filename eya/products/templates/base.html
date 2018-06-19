@@ -12,10 +12,29 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Facebook / whatsapp Open Graph meta tags -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Productos | Ensambles y Adornos"/>
+    <meta property="og:image" content="http://{{ request.META.HTTP_HOST }}/static/img/LOGO-EYA.png"/>
+    <meta property="og:url" content="http://{{ request.META.HTTP_HOST }}/"/>
+    <meta property="og:description" content="Ensambles y Adornos, la Casa de México para las Artes y las Manualidades,"/>
+    <meta property="og:site_name" content="Ensambles y Adornos"/>
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Productos | Ensambles y Adornos"/>
+    <meta name="twitter:image" content="http://{{ request.META.HTTP_HOST }}/static/img/LOGO-EYA.png"/>
+    <meta name="twitter:site" content="http://{{ request.META.HTTP_HOST }}/"/>
+    <meta name="twitter:description" content="Ensambles y Adornos, la Casa de México para las Artes y las Manualidades,"/>
+    <meta name="twitter:creator" content="@ensamblesadornos"/>
+
+    <link rel="canonical" href="http://{{ request.META.HTTP_HOST }}/">
+
     {% block extra_head %}
     {% endblock %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/site/img/favicon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/LOGO-EYA.png"/>
   </head>
 
 <!-- body -->
