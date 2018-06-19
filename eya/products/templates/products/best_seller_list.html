@@ -14,79 +14,14 @@
   min-height: calc(100vh - 220px);
 ">
 
-  <h2 style="margin: 0 0 1em 0">Lista de productos</h2>
-  <p style="margin: 0">Por favor seleccione los prodcutos que desea solicitar.</p>
+  <h2 style="margin: 0 0 1em 0">Productos más vendidos</h2>
+  <p style="margin: 0">Por favor seleccione los productos que desea solicitar.</p>
   <div style="
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   ">
   	{% get_media_prefix as MEDIA_PREFIX %}
-    <h2>Nuevos</h2><a href="{% url 'products-index-news' %}">Ver más</a>
-    {% for new in news %}
-      <div style="
-        max-width: 200px;
-        background-color: white;
-        padding: 1em;
-        margin: 1em;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-      ">
-        {% if new.image %}
-          <img src="{{MEDIA_PREFIX}}{{new.image}}" alt="{{ new.code_eyamex }}" title="{{ new.code_eyamex }}" style="width: 100%" />
-          {% else %}
-          <div style="
-            width: 100%;
-            background-color: #d9eaeaa8;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          ">No hay imagen</div>
-        {% endif %}
-        <h4>{{ new.code_eyamex }}</h4>
-        <p>{{ new.description }}</p>
-        <a style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" href="{% url 'add-item-cart' pk=new.pk %}">Pedir</a>
-      </div>
-    {% empty %}
-      <br>
-      <h3>No se encontraron resultados</h3>
-    {% endfor %}
-    <h2>Más vendidos</h2><a href="{% url 'products-index-best-seller' %}">Ver más</a>
-    {% for seller in best_seller %}
-      <div style="
-        max-width: 200px;
-        background-color: white;
-        padding: 1em;
-        margin: 1em;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-      ">
-        {% if seller.image %}
-          <img src="{{MEDIA_PREFIX}}{{seller.image}}" alt="{{ seller.code_eyamex }}" title="{{ seller.code_eyamex }}" style="width: 100%" />
-          {% else %}
-          <div style="
-            width: 100%;
-            background-color: #d9eaeaa8;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          ">No hay imagen</div>
-        {% endif %}
-        <h4>{{ seller.code_eyamex }}</h4>
-        <p>{{ seller.description }}</p>
-        <a style="text-decoration: none; color: white; background-color: #1d941d; padding: 0.5em;" href="{% url 'add-item-cart' pk=seller.pk %}">Pedir</a>
-      </div>
-    {% empty %}
-      <br>
-      <h3>No se encontraron resultados</h3>
-    {% endfor %}
-    <h3>Todos los productos</h3>
     {% for product in object_list %}
       <div style="
         max-width: 200px;

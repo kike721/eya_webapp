@@ -28,7 +28,6 @@
     {% else %}
       
       <form action="{% url 'home' %}" method="get">
-      {% csrf_token %}
         <input style="padding: 0.5em; border-radius: 0; border: none;" type="text" placeholder="¿Qué estás buscando?" name="q">
         <button type="submit"
           style="

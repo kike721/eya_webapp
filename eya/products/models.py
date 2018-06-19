@@ -77,6 +77,9 @@ class Product(BaseModel):
     color = models.ForeignKey(Color, verbose_name='Color', related_name='cl_products')
     description = models.CharField(verbose_name=u'Descripción', max_length=255)
     meta_description = models.TextField()
+    is_new = models.BooleanField(verbose_name='¿Es nuevo?')
+    best_seller = models.BooleanField(verbose_name=u'¿Más vendido?')
+    spent = models.BooleanField(verbose_name='¿Agotado?')
 
     class Meta:
         verbose_name = 'Producto'

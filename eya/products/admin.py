@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
 	model = Product
 	fields = (
 		'code_eyamex', 'image', 'type', 'clasification', 'model',
-		'code', 'color', 'description')
+		'code', 'color', 'description', 'is_new', 'best_seller', 'spent')
 	list_display = ('code_eyamex', 'description')
 	ordering = ('code_eyamex',)
 	search_fields = ('code_eyamex', 'code', 'model__code', 'description')
