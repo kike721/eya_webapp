@@ -1,0 +1,41 @@
+.header{
+	background-color: black;
+	color: white;
+	padding: 1em 3em;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.logo {
+	max-width: 50px;
+	margin: 1em;
+}
+
+.form-search{
+	display: flex;
+}
+
+.search{
+	padding: 1em;
+	border-radius: 0;
+	border: none;
+	width: 100px;
+}
+
+.icon-car{
+	width: 25px;	
+}
+
+@media (min-width: 1200px){
+	.header{
+		justify-content: space-between;
+		align-items: center;
+	}
+	.logo {
+		max-width: 100px;
+	}
+	.search{
+		width: 400px;
+	}
+}
