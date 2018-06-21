@@ -44,7 +44,6 @@ def list_items(request):
 		products = request.session['products']
 
 	print products
-	return render(request, 'store/list_items.html', {'products': products, 'seccion': 'list-order'})
 
 	form = OrderForm()
 	if request.method == 'POST':
@@ -63,4 +62,4 @@ def list_items(request):
 	return render(
 		request,
 		'store/list_items.html',
-		{'products': products, 'form': form})
+		{'products': products, 'seccion': 'list-order', 'form': form})
