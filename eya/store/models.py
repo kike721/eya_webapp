@@ -2,11 +2,24 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 from products.models import Product
 from utils.models import BaseModel
 
+
 # Create your models here.
+class Cart(BaseModel):
+	user = models.OneToOneField(
+		User, verbose_name='Usuario', related_name='cart')
+
+class DetailCart(models.Model):
+	cart = models.ForeignKey(
+		Cart, verbose_name='Detalle de carrito', related_name='details')
+	product = models.ForeignKey(
+		Product, verbose_name='Producto', related_name='cart_products')
+	quantity = models.PositiveIntegerField(verbose_name='Cantidad')
+
 
 class Order(BaseModel):
 	name = models.CharField(verbose_name=u'Nombre/Razón Social', max_length=255)
