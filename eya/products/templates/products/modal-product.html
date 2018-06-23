@@ -1,0 +1,42 @@
+{% load static %}
+{% block extra_head %}
+
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+{% get_media_prefix as MEDIA_PREFIX %}
+
+<div class="content">
+  
+  <!-- TODOS LOS PRODUCTOS -->
+
+  <div class="info-results">
+    <h2 class="title-info-results">Todos los productos</h2>
+  </div>
+  <div class="results">
+  
+   
+      <div class="card">
+        {% if product.image %}
+          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" class="image" />
+          {% else %}
+          <div class="image-no-found">No hay imagen</div>
+        {% endif %}
+      	<h4>{{ product.code_eyamex }}</h4>
+      	<p>{{ product.description }}</p>
+        <a class="order" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
+      </div>
+
+  </div>
+
+  <!-- /TODOS LOS PRODUCTOS -->
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
