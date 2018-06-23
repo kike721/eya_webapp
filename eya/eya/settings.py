@@ -25,7 +25,8 @@ SECRET_KEY = 'u!u5sk%dlb*#z+djo*$epkha82sy3+(6sz2=1h6=n^m@!dyo(g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost']
+
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'utils',
     'store',
     'products',
+    'users',
     'imagekit',
 ]
 
@@ -141,3 +143,6 @@ EMAIL_USE_TLS = True
 EMAIL_ADMIN = 'email'
 EMAIL_REV_COPY = 'email'
 DEFAULT_FROM_EMAIL = 'email'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

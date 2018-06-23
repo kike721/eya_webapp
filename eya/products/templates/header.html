@@ -3,23 +3,27 @@
     <a href="{% url 'products-index' %}" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
       <img class="logo" src="/static/img/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
     </a>
-    
+
     {% if seccion == 'list-order' %}
       <a href="/product/index/" class="button-white">
         < Productos
       </a>
     {% else %}
-      
+
       <form action="{% url 'home' %}" method="get" class="form-search">
-      {% csrf_token %}
         <input class="search" type="text" placeholder="¿Qué estás buscando?" name="q">
         <button type="submit" class="button-green">
           Buscar
-        </button> 
+        </button>
       </form>
       <a href="/store/list-items/" class="button-white" title="Ir a order de compra">
         <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
       </a>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+    {% else %}
+        <a href="{% url 'login' %}">Iniciar Sesión</a>
     {% endif %}
   </header>
 <!-- /header -->
