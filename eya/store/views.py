@@ -43,23 +43,21 @@ def list_items(request):
     if request.session.has_key('products'):
         products = request.session['products']
 
-	print products
-
-	form = OrderForm()
-	if request.method == 'POST':
-		form = OrderForm(request.POST)
-		if form.is_valid():
-			order = form.save()
-			for prod in products:
-				product = Product.objects.get(pk=prod['pk'])
-				detailOrder = DetailOrder.objects.create(
-					order=order,
-					product=product,
-					quantity=prod['quantity'])
-				email_investor_confirmation(order)
-			del request.session['products']
-			return HttpResponseRedirect(reverse('home'))
-	return render(
-		request,
-		'store/list_items.html',
-		{'products': products, 'seccion': 'list-order', 'form': form})
+    form = OrderForm()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            for prod in products:
+                product = Product.objects.get(pk=prod['pk'])
+                detailOrder = DetailOrder.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=prod['quantity'])
+                email_investor_confirmation(order)
+            del request.session['products']
+            return HttpResponseRedirect(reverse('home'))
+    return render(
+        request,
+        'store/list_items.html',
+        {'products': products, 'seccion': 'list-order', 'form': form})

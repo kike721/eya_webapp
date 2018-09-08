@@ -5,6 +5,9 @@ from django.core.management.base import BaseCommand
 
 from products.models import (Clasification, Color, ModelProduct, Product, Type)
 
+def u8_decode(text_input):
+    return text_input.decode('utf-8')
+
 
 class Command(BaseCommand):
     help = "Fill products"
@@ -25,7 +28,7 @@ class Command(BaseCommand):
                     color = Color.objects.get(name=row[6].upper())
                     model = ModelProduct.objects.get(code=row[4])
                     code = row[5]
-                    description = row[8]
+                    description = u8_decode(row[8])
                     product, created = Product.objects.get_or_create(
                         code_eyamex=code_eyamex,
                         type=type_prod,
@@ -33,6 +36,9 @@ class Command(BaseCommand):
                         model=model,
                         code=code,
                         color=color,
-                        description=description)
+                        description=description,
+                        is_new=0,
+                        best_seller=0,
+                        spent=0)
                 i += 1
             print 'End fill products without image'
