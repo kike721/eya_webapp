@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Registrate</h1>
+<form action="{% url 'register-customer' %}" method="POST">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {{ form.as_p }}
+    <button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #1d941d; padding: 0.8em;" type="submit">Guardar</button>
+</form>
+
+{% endblock %}
