@@ -9,7 +9,7 @@ from utils.models import BaseModel, CatalogModel
 
 
 def get_image_path(instance, filename):
-    ext = filename.split('.')[-1]
+    ext = filename.decode('utf-8').split('.')[-1]
     return 'product/{0}/{1}.{2}'.format(instance.code_eyamex, instance.code_eyamex, ext)
 
 
@@ -89,7 +89,7 @@ class Product(BaseModel):
         return u'{}'.format(self.code_eyamex)
 
     def fill_meta(self):
-        meta_description = '{} {} {} {} {} {} {}'.format(
+        meta_description = u'{} {} {} {} {} {} {}'.format(
             self.code_eyamex, self.clasification.name, self.model.code,
             self.model.family_product.code, self.code, self.color.name,
             self.description)
@@ -98,4 +98,3 @@ class Product(BaseModel):
     def save(self, *args, **kwargs):
         self.meta_description = self.fill_meta()
         super(Product, self).save(*args, **kwargs)
-

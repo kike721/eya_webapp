@@ -22,3 +22,29 @@ class CatalogModel(BaseModel):
 
 	def __unicode__(self):
 		return u'{}'.format(self.display_name)
+
+
+class StateMx(models.Model):
+    key_state = models.CharField(max_length=5)
+    name = models.CharField(max_length=255, verbose_name='nombre')
+
+    def __unicode__(self):
+        return '{}'.format(self.name)
+
+
+class MunicipalityMx(models.Model):
+    key_municipality = models.CharField(max_length=5)
+    state = models.ForeignKey(StateMx, verbose_name='estado', related_name='municipalities')
+    name = models.CharField(max_length=255, verbose_name='nombre')
+
+    def __unicode__(self):
+        return '{}'.format(self.name)
+
+
+class LocalityMx(models.Model):
+    key_locality = models.CharField(max_length=5)
+    municipality = models.ForeignKey(MunicipalityMx, verbose_name='municipio', related_name='municipalities')
+    name = models.CharField(max_length=255, verbose_name='nombre')
+
+    def __unicode__(self):
+        return '{}'.format(self.name)

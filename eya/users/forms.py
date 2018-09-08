@@ -19,15 +19,11 @@ class CustomerForm(forms.ModelForm):
     confirm_password = forms.CharField(
         label=u'Confirmar contraseña', max_length=255,
         widget=forms.PasswordInput(), required=False)
-    first_name = forms.CharField(
-        label='Nombre', max_length=255)
-    last_name = forms.CharField(
-        label='Apellido', max_length=255)
 
     class Meta:
         model = Customer
-        fields = ('user',)
-        widgets = {'user': forms.HiddenInput(attrs={'required':False})}
+        fields = ('name', 'rfc', 'address', 'phone')
+        # widgets = {'user': forms.HiddenInput(attrs={'required':False})}
 
     def __init__(self, *args, **kwargs):
         self.update = False
@@ -37,10 +33,7 @@ class CustomerForm(forms.ModelForm):
                 kwargs['initial'] = {}
                 instance = kwargs['instance']
             kwargs['initial'].update(
-                {'email': instance.user.email,
-                 'first_name': instance.user.first_name,
-                 'last_name': instance.user.last_name
-                 }
+                {'email': instance.user.email}
             )
         super(CustomerForm, self).__init__(*args, **kwargs)
 
@@ -61,7 +54,7 @@ class CustomerForm(forms.ModelForm):
         if 'email' in data:
             email = data['email']
             if self.update:
-                user = data['user']
+                user = self.instance.user
                 if User.objects.filter(username=email).exclude(
                         username=user.username).count() > 0:
                     raise forms.ValidationError(
@@ -76,21 +69,23 @@ class CustomerForm(forms.ModelForm):
         data = self.cleaned_data
         if not self.update:
             user = User.objects.create(
-                username=data['email'], email=data['email'],
-                first_name=data['first_name'], last_name=data['last_name'])
+                username=data['email'], email=data['email'])
+            customer = Customer.objects.create(
+                user=user, name = data['name'], rfc = data['rfc'],
+                address = data['address'], phone = data['phone'])
         else:
-            user = data['user']
+            user = self.instance.user
             user.username = data['email']
             user.email = data['email']
-            user.first_name = data['first_name']
-            user.last_name = data['last_name']
-        if 'password' in data:
-            user.set_password(data['password'])
-        user.save()
-        if not self.update:
-            customer = Customer.objects.create(user=user)
-        else:
-            customer = Customer.objects.get(user=user)
+            customer = self.instance
+            customer.name = data['name']
+            customer.rfc = data['rfc']
+            customer.address = data['address']
+            customer.phone = data['phone']
+            customer.save()
+            if 'password' in data:
+                user.set_password(data['password'])
+            user.save()
         return customer
 
     def save_m2m(self):
@@ -107,14 +102,10 @@ class SellerForm(forms.ModelForm):
     confirm_password = forms.CharField(
         label=u'Confirmar contraseña', max_length=255,
         widget=forms.PasswordInput(), required=False)
-    first_name = forms.CharField(
-        label='Nombre', max_length=255)
-    last_name = forms.CharField(
-        label='Apellido', max_length=255)
 
     class Meta:
         model = Seller
-        fields = ('user',)
+        fields = ('user', 'name', 'rfc', 'address', 'phone')
         widgets = {'user': forms.HiddenInput(attrs={'required':False})}
 
     def __init__(self, *args, **kwargs):
