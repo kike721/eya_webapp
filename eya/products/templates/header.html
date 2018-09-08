@@ -16,14 +16,13 @@
           Buscar
         </button>
       </form>
-      <a href="/store/list-items/" class="button-white" title="Ir a order de compra">
-        <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
+      <a href="{% url 'list-items' %}"/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
       </a>
     {% endif %}
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        <a class="button-white" href="{% url 'logout' %}">Cerrar Sesión</a>
     {% else %}
-        <a href="{% url 'login' %}">Iniciar Sesión</a>
+        <a class="button-white" href="{% url 'login' %}">Iniciar Sesión</a>
     {% endif %}
   </header>
 <!-- /header -->

@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="{% static 'css/order-list.css' %}">
 {% endblock %}
 
-
 {% block content %}
 
 <div class="content-store">
@@ -65,8 +64,8 @@
 					{{ form.phone.label_tag }}
 					{{ form.phone }}
 				</div>
-				<button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #1d941d; padding: 0.8em;" type="submit">Crear orden de pedido</button>
-				<button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #e02d2d; padding: 0.8em;" type="">Cancelar pedido</button>
+				<button class="button-submit" type="submit">Crear orden de pedido</button>
+				<button class="button-cancel" type="">Cancelar pedido</button>
 			</form>
 		</div>	
 
