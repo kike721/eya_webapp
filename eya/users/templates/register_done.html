@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+  <title> Registro Exitoso | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="register register-center">
+	{% include "image-banner.html" with title="Registro Exitoso" %}
+	<div class="register__container">
+		<h2 class="register__title">¡Gracias por registrarte! Para poder continuar con tu pedido, no olvides revisar tu mail y validar tu cuenta.</h2>
+		<img class="register__img" src="/static/img/email.png" alt="Revisa tu correo" />
+	</div>
+</div>
+{% endblock %}
