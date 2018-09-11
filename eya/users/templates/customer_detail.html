@@ -1,6 +1,39 @@
 {% extends "base.html" %}
 
+{% load static %}
+{% block extra_head %}
+  <title> Perfil | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 {% block content %}
-	<h1>Perfil</h1>
-	{{ object }}
+	<div class="profile">
+		<div class="profile__container">
+			<div class="profile__flex">
+				<div>
+					<div class="profile__avatar">
+						<img class="profile__img" src="/static/img/avatar.png" alt="{{object.name}}">
+					</div>
+					<hr />
+					<div class="profile__date">
+						<h5>Nombre: <span>{{object.name}}</span></h5>
+						<h5>Dirección: <span>Lorem Ipsum es simplemente </span></h5>
+						<h5>Correo: <span>Lorem Ipsum es simplemente </span></h5>
+						<h5>RFC: <span>Lorem Ipsum es simplemente </span></h5>
+						<h5>Teléfono: <span>Lorem Ipsum es simplemente </span></h5>
+					</div>
+				</div>
+				<div class="profile__history">
+					<h2>Historial</h2>
+					<hr />
+					<div class="profile__history__table">
+						{% if 1 == 2 %}
+							<div>Historial</div>
+						{% else %}
+							<h5>Aún no tienes un historial</h5>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

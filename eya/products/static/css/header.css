@@ -14,13 +14,17 @@
 
 .form-search{
 	display: flex;
+	width: 100%;
+	display: flex;
+    justify-content: center;
 }
 
 .search{
 	padding: 1em;
 	border-radius: 0;
 	border: none;
-	width: 100px;
+	width: 100%;
+    max-width: 400px;
 }
 
 .icon-car{

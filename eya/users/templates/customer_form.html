@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 
+{% load static %}
+{% block extra_head %}
+  <title> Registro | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+{% endblock %}
+
 {% block content %}
-
-<h1>Registrate</h1>
-<form action="{% url 'register-customer' %}" method="POST">
-    {% csrf_token %}
-    {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-    {% endfor %}
-    {{ form.as_p }}
-    <button style="text-decoration: none; color: white; border: none; margin: 0.3em 0; background-color: #1d941d; padding: 0.8em;" type="submit">Guardar</button>
-</form>
-
+<div class="register ">
+	{% include "image-banner.html" with title="Registro" %}
+	<div class="register__container">
+		<div class="register-center">
+			<h2>Complete el siguiente formulario para poder realizar un pedido</h2>
+			<p>Todos los campos son obligatorios.</p>
+		</div>
+		<form action="{% url 'register-customer' %}" method="POST" class="register__form">
+		    {% csrf_token %}
+		    {% for hidden in form.hidden_fields %}
+		        {{ hidden }}
+		    {% endfor %}
+		    {{ form.as_p }}
+		    <button class="button-submit" type="submit">Guardar</button>
+		</form>
+	</div>
+</div>
 {% endblock %}

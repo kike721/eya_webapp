@@ -1,6 +1,6 @@
 <!-- header -->
   <header class="header">
-    <a href="/" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
+    <a href="{% url 'products-index' %}" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
       <img class="logo" src="/static/img/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
     </a>
 
@@ -21,9 +21,9 @@
       </a>
     {% endif %}
     {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        <a class="button-white" href="{% url 'logout' %}">Cerrar Sesión</a>
     {% else %}
-        <a href="{% url 'login' %}">Iniciar Sesión</a>
+        <a class="button-white" href="{% url 'login' %}">Iniciar Sesión</a>
     {% endif %}
   </header>
 <!-- /header -->
