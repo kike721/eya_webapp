@@ -32,19 +32,25 @@
         <form method="post" action="{% url 'login' %}" class="form-login">
         {% csrf_token %}
           <div class="form-input">
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
+            {{ form.username.label_tag }}
+            {{ form.username }}
           </div>
           <div class="form-input">
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
+            {{ form.password.label_tag }}
+            {{ form.password }}
           </div>
           <input class="button-submit" type="submit" value="Iniciar Sesión" />
           <input type="hidden" name="next" value="{{ next }}" />
         </form>
 
         {# Assumes you setup the password_reset view in your URLconf #}
-        <a class="login__link" href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+        <div style="text-align: center;">
+          <p>
+            <a class="login__link" href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+          </p>
+
+          <a class="login__link" href="{% url 'register-customer' %}">¿No tienes cuenta?</a>
+        </div>
 
     </div>
   </div>
