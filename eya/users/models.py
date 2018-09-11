@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 from smart_selects.db_fields import ChainedForeignKey
 
@@ -23,7 +24,7 @@ class Customer(models.Model):
         verbose_name_plural = 'Clientes'
 
     def get_absolute_url(self):
-        return "/users/profile/%i/" % self.id
+        return reverse('customer-request-register')
 
     @property
     def get_name(self):
