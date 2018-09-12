@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from store.views import add_item_cart, list_items
+from store.views import add_detail_cart, update_cart
 
 urlpatterns = [
-    url(r'^agregar/(?P<pk>[0-9]+)/$', add_item_cart, name='add-item-cart' ),
-    url(r'^lista/$', list_items, name='list-items' ),
+    url(r'^(?P<pk>[0-9]+)/$', update_cart, name='cart' ),
+    url(r'^agregar/$', add_detail_cart, name='add-detail-cart'),
 ]

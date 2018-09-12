@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -146,3 +145,6 @@ DEFAULT_FROM_EMAIL = 'email'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+HTTP_PROTOCOL = 'http://'
+CURRENT_DOMAIN = 'eya.cookielabs.com.mx'

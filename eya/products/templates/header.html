@@ -16,9 +16,15 @@
           Buscar
         </button>
       </form>
-      <a href="{% url 'list-items' %}" class="button-white" title="Ir a order de compra">
-        <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
-      </a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'cart' pk=user.customer.cart.pk %}" class="button-white" title="Carrito">
+          <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="button-white" title="Ir a order de compra">
+          <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
+        </a>
+      {% endif%}
     {% endif %}
     {% if user.is_authenticated %}
         <a class="button-white" href="{% url 'logout' %}">Cerrar Sesión</a>

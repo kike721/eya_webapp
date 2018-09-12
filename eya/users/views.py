@@ -8,8 +8,10 @@ from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 
+from store.models import Cart
 from users.models import Customer, UserToken
 from users.forms import CustomerForm
+
 
 # Create your views here.
 class RegisterCustomerForm(CreateView):
@@ -62,7 +64,9 @@ def user_confirm(request, token):
     user.is_active = True
     user.customer.active = True
     user.save()
+    user.customer.save()
     user_token.delete()
+    Cart.objects.create(customer=user.customer)
     login(request, user)
     return render(request, 'registration/confirm_email.html', {
         'message': "La cuenta fue activada."
