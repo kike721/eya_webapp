@@ -26,8 +26,14 @@
 					<h2>Historial</h2>
 					<hr />
 					<div class="profile__history__table">
-						{% if 1 == 2 %}
-							<div>Historial</div>
+						{% if object.orders.all.count > 0 %}
+							{% for order in object.orders.all %}
+								<p>Orden: {{ order.pk }}</p>
+								{% for detail in order.details.all %}
+									<p>{{ detail.product }}</p>
+									<p>{{ detail.quantity }}</p>
+								{% endfor %}
+							{% endfor %}
 						{% else %}
 							<h5>Aún no tienes un historial</h5>
 						{% endif %}

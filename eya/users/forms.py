@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
 
+from store.models import Cart
 from users.email import register_confirm_email
 from users.models import Customer, Seller, UserToken
 
@@ -71,10 +72,10 @@ class CustomerForm(forms.ModelForm):
         data = self.cleaned_data
         if not self.update:
             user = User.objects.create(
-                username=data['email'], email=data['email'])
+                username=data['email'], email=data['email'], is_active=False)
             customer = Customer.objects.create(
-                user=user, name = data['name'], rfc = data['rfc'],
-                street = data['street'], phone = data['phone'], state= data['state'])
+                user=user, name=data['name'], rfc=data['rfc'],
+                street=data['street'], phone=data['phone'], state=data['state'])
             token = get_random_string(length=64)
             user_token = UserToken.objects.create(
                 email=data['email'],
@@ -167,10 +168,12 @@ class CustomerAdminForm(forms.ModelForm):
                 user=user, name = data['name'], rfc = data['rfc'],
                 street = data['street'], phone = data['phone'],
                 state= data['state'], active=data['active'])
+            Cart.objects.create(customer=customer)
         else:
             user = self.instance.user
             user.username = data['email']
             user.email = data['email']
+            user.is_active = data['active']
             customer = self.instance
             customer.name = data['name']
             customer.rfc = data['rfc']

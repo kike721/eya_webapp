@@ -13,6 +13,7 @@ logger = logging.getLogger('eya')
 
 def register_confirm_email(token, customer):
     """Send Order Data Email."""
+    print settings
     domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     template = render_to_string(
     	'mailings/registro_confirmado.html',

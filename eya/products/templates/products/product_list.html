@@ -37,7 +37,15 @@
         {% endif %}
         <h4>{{ new.code_eyamex }}</h4>
         <p>{{ new.description }}</p>
-        <a href="{% url 'add-item-cart' pk=new.pk %}" class="order">Pedir</a>
+        {% if user.pk %}
+          <form action="{% url 'add-detail-cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+            <input type="hidden" name="product" value="{{ new.pk }}">
+            <input type="number" name="quantity" value="1">
+            <input class="order" type="submit" value="Pedir">
+          </form>
+        {% endif %}
       </div>
     {% empty %}
       <h3>No se encontraron resultados</h3>
@@ -62,7 +70,15 @@
         {% endif %}
         <h4>{{ seller.code_eyamex }}</h4>
         <p>{{ seller.description }}</p>
-        <a class="order" href="{% url 'add-item-cart' pk=seller.pk %}">Pedir</a>
+        {% if user.pk %}
+          <form action="{% url 'add-detail-cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+            <input type="hidden" name="product" value="{{ seller.pk }}">
+            <input type="number" name="quantity" value="1">
+            <input class="order" type="submit" value="Pedir">
+          </form>
+        {% endif %}
       </div>
     {% empty %}
       <h3>No se encontraron resultados</h3>
@@ -88,7 +104,15 @@
         {% endif %}
       	<h4>{{ product.code_eyamex }}</h4>
       	<p>{{ product.description }}</p>
-        <a class="order" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
+        {% if user.pk %}
+          <form action="{% url 'add-detail-cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+            <input type="hidden" name="product" value="{{ product.pk }}">
+            <input type="number" name="quantity" value="1">
+            <input class="order" type="submit" value="Pedir">
+          </form>
+        {% endif %}
       </div>
     {% empty %}
       <h3>No se encontraron resultados</h3>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Lista de Pedido | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/order-list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="content-store">
+	<div>
+		<h2>Lista de pedido</h2>
+		<div class="note">Los productos estan sujetos a inventario.</div>
+	</div>
+
+	<div>
+		<div class="content-list">
+			<div class="content-flex">
+				<div class="item-flex">
+					<h4>Cantidad</h4>
+				</div>
+				<div class="item-flex">
+					<h4>Codigo</h4>
+				</div>
+				<div class="item-flex-big">
+					<h4>Descripción</h4>
+				</div>
+				
+			</div>
+			<form action="{% url 'cart' pk=pk %}" method="POST">
+				{% csrf_token %}
+				{% for detail in cart.details.all %}
+					<input type="number" name="{{ detail.pk }}-quantity" value="{{ detail.quantity }}">
+					<div class="item-flex">
+						<p class="item">{{ detail.product }}</p>
+					</div>
+					<div class="item-flex-big">
+						<p class="item">{{ detail.product.description }}</p>
+					</div>
+					<input type="checkbox" name="{{ detail.pk }}-delete">
+				{% endfor %}
+				<input type="hidden" name="total" value="{{ cart.details.all|length }}">
+				<input type="submit" name="actualizar" value="Actualizar">
+				<input type="submit" name="orden" value="Enviar Orden">
+			</form>
+		</div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
