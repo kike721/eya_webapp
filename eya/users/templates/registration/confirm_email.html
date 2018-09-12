@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block extra_head %}
+  <title> Confirmacion de cuenta | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="register register-center">
+	{% include "image-banner.html" with title="Confirmación de cuenta" %}
+	<div class="register__container">
+		<h2 class="register__title">{{ message }}</h2>
+	</div>
+</div>
+{% endblock %}

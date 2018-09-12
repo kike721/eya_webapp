@@ -107,17 +107,17 @@
                               <tbody>
                                 <tr>
                                   <td>
-                                    <h1>Hola, {{ user.username }}</h1>
+                                    <h1>Hola, {{ customer.user.username }}</h1>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td style="padding: 20px 0;">
-                                    <p style="text-align:center;">¿Estás listo para empezar? Primero debes validar tu mail dando clic <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="link">aquí</a> o copia y pega el siguiente enlace a tu navegador:</p>
+                                    <p style="text-align:center;">¿Estás listo para empezar? Primero debes validar tu mail dando clic <a href="{{ domain }}{% url 'customer-confirm' token=token %}" class="link">aquí</a> o copia y pega el siguiente enlace a tu navegador:</p>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td align="center" style="padding: 0 0 10px;">
-                                    <p style="text-align:center;">http://{{ domain }}{% url 'activate' uidb64=uid token=token %}</p>
+                                    <p style="text-align:center;">{{ domain }}{% url 'customer-confirm' token=token %}</p>
                                   </td>
                                 </tr>
                                 <tr>
@@ -147,7 +147,7 @@
                       <tfoot>
                         <tr>
                           <td align="center" style="padding: 25px 0 0;">
-                            <a href="http://eya.cookielabs.com.mx/" title="Ensambles y Adornos" target="_blank" style="display:block; width: 100px; text-decoration: none; color: black; font-weight: 600;">
+                            <a href="{{ domain }}" title="Ensambles y Adornos" target="_blank" style="display:block; width: 100px; text-decoration: none; color: black; font-weight: 600;">
                               Visita nuestro sitio
                             </a>
                           </td>
