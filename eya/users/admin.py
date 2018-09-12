@@ -4,14 +4,14 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from users.forms import CustomerForm, SellerForm
+from users.forms import CustomerAdminForm, SellerForm
 from users.models import Customer, Seller
 
 
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
 
-    form = CustomerForm
+    form = CustomerAdminForm
 
 
 class SellerAdmin(admin.ModelAdmin):

@@ -16,7 +16,8 @@
           Buscar
         </button>
       </form>
-      <a href="{% url 'list-items' %}"/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
+      <a href="{% url 'list-items' %}" class="button-white" title="Ir a order de compra">
+        <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
       </a>
     {% endif %}
     {% if user.is_authenticated %}

@@ -1,0 +1,4 @@
+*.pyc
+products/management/commands/imagenes/
+products/management/commands/imagenes_old2/
+media/
