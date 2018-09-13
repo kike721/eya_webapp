@@ -34,6 +34,7 @@ class Customer(models.Model):
     contact = models.CharField(verbose_name=u'Persona de contacto', max_length=255, null=True, blank=True)
     active = models.BooleanField(verbose_name='¿Es activo?', default=0)
 
+    
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'

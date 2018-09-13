@@ -135,8 +135,8 @@ MEDIA_URL = '/media/'
 #Emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'email'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_HOST_USER = 'valeria.pjaimes@gmail.com'
+EMAIL_HOST_PASSWORD = 'crosh559'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_ADMIN = 'email'
@@ -147,4 +147,4 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 HTTP_PROTOCOL = 'http://'
-CURRENT_DOMAIN = 'eya.cookielabs.com.mx'
+CURRENT_DOMAIN = 'localhost:8000'

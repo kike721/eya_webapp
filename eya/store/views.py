@@ -103,4 +103,4 @@ def update_cart(request, pk):
                     order=order,product=detail.product, quantity=detail.quantity)
                 detail.delete()
     return render(
-        request, 'store/cart.html', {'cart': cart, 'pk': pk})
+        request, 'store/list_items.html', {'cart': cart, 'pk': pk})
