@@ -43,9 +43,10 @@
   <body class="main">
 
     <main>
-      {% include "header.html" %}
-      {% block content %}{% endblock %}
-      {% include "footer.html" %}
+        {% include "header_top.html" %}
+        {% include "header.html" %}
+        {% block content %}{% endblock %}
+        {% include "footer.html" %}
     </main>
 
     <!-- fonts -->
