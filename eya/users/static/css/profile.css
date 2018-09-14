@@ -55,13 +55,22 @@
 }
 
 .profile__acordion{
-	background-color: #000;
-	color: white;
-	width: 100%;
-	padding: 1em;
-	text-align: left;
-	font-size: 1em;
-	cursor: pointer;
+	color: black;
+    width: 100%;
+    padding: 1em;
+    font-size: 1em;
+    cursor: pointer;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #131212;
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile__acordion__arrow{
+	width: 20px;
+	height: 20px;
 }
 
 .profile__acordion__detail{
@@ -71,7 +80,16 @@
 
 .profile__acordion__detail .quantity{
 	font-weight: 700;
-	width: 15%;
+	width: 10%;
+	text-align: center;
+}
+
+.profile__acordion__detail .code{
+	width: 30%;
+}
+
+.profile__acordion__detail .description{
+	width: 60%;
 }
 
 .toggleHide{
