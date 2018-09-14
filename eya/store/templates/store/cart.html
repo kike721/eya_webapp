@@ -43,6 +43,7 @@
 						<p class="item">{{ detail.product.description }}</p>
 					</div>
 					<input type="checkbox" name="{{ detail.pk }}-delete">
+					<img src="/static/img/trash.svg" alt="">
 				{% endfor %}
 
 				<input type="hidden" name="total" value="{{ cart.details.all|length }}">

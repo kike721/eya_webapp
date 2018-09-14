@@ -39,7 +39,7 @@
 							<p>{{ detail.quantity }}</p>
 						</div>
 						<div class="item-flex">
-							<input type="number" name="{{ detail.pk }}-quantity" value="{{ detail.quantity }}">
+							<input class="input-quantity" type="number" name="{{ detail.pk }}-quantity" value="{{ detail.quantity }}">
 						</div>
 						<div class="item-flex">
 							<p class="item">{{ detail.product }}</p>
@@ -48,14 +48,18 @@
 							<p>{{ detail.product.description }}</p>
 						</div>
 						<div class="item-flex">
-							<input type="checkbox" name="{{ detail.pk }}-delete">
+							<img src="/static/img/trash.svg" alt="Eliminar" style="width: 20px;height: 20px;">
+							<input type="checkbox" name="{{ detail.pk }}-delete" style="width: 40px;">
 						</div>
 					</div>
 				{% endfor %}
 			</div>
 
-			<div>
-				<input class="button-act" type="submit" name="actualizar" value="Actualizar">
+			<div class="content-buttons">
+				<button class="button-act" type="submit" name="actualizar">
+					Actualizar
+					<img src="/static/img/refresh.svg" alt="Eliminar" style="color: white;width: 20px;height: 20px;">
+				</button>
 				<input class="button-submit" type="submit" name="orden" value="Enviar Orden">
 			</div>	
 

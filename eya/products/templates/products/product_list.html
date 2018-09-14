@@ -28,25 +28,8 @@
   </div>
   <div class="results">
    
-    {% for new in news %}
-      <div class="card">
-        {% if new.image %}
-          <img src="{{MEDIA_PREFIX}}{{new.image}}" alt="{{ new.code_eyamex }}" title="{{ new.code_eyamex }}" class="image" />
-          {% else %}
-          <div class="image-no-found">No hay imagen</div>
-        {% endif %}
-        <h4>{{ new.code_eyamex }}</h4>
-        <p>{{ new.description }}</p>
-        {% if user.pk %}
-          <form action="{% url 'add-detail-cart' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-            <input type="hidden" name="product" value="{{ new.pk }}">
-            <input type="number" name="quantity" value="1">
-            <input class="order" type="submit" value="Pedir">
-          </form>
-        {% endif %}
-      </div>
+    {% for item in news %}
+      {% include "products/parts/card_product.html"%}
     {% empty %}
       <h3>No se encontraron resultados</h3>
     {% endfor %}
@@ -61,25 +44,8 @@
   </div>
   <div class="results">
 
-    {% for seller in best_seller %}
-      <div class="card">
-        {% if seller.image %}
-          <img src="{{MEDIA_PREFIX}}{{seller.image}}" alt="{{ seller.code_eyamex }}" title="{{ seller.code_eyamex }}" class="image" />
-          {% else %}
-          <div class="image-no-found">No hay imagen</div>
-        {% endif %}
-        <h4>{{ seller.code_eyamex }}</h4>
-        <p>{{ seller.description }}</p>
-        {% if user.pk %}
-          <form action="{% url 'add-detail-cart' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-            <input type="hidden" name="product" value="{{ seller.pk }}">
-            <input type="number" name="quantity" value="1">
-            <input class="order" type="submit" value="Pedir">
-          </form>
-        {% endif %}
-      </div>
+    {% for item in best_seller %}
+      {% include "products/parts/card_product.html"%}
     {% empty %}
       <h3>No se encontraron resultados</h3>
     {% endfor %}
@@ -95,25 +61,8 @@
   </div>
   <div class="results">
   
-    {% for product in object_list %}
-      <div class="card">
-        {% if product.image %}
-          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" class="image" />
-          {% else %}
-          <div class="image-no-found">No hay imagen</div>
-        {% endif %}
-      	<h4>{{ product.code_eyamex }}</h4>
-      	<p>{{ product.description }}</p>
-        {% if user.pk %}
-          <form action="{% url 'add-detail-cart' %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-            <input type="hidden" name="product" value="{{ product.pk }}">
-            <input type="number" name="quantity" value="1">
-            <input class="order" type="submit" value="Pedir">
-          </form>
-        {% endif %}
-      </div>
+    {% for item in object_list %}
+      {% include "products/parts/card_product.html"%}
     {% empty %}
       <h3>No se encontraron resultados</h3>
     {% endfor %}
