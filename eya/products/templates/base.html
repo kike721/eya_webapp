@@ -43,9 +43,10 @@
   <body class="main">
 
     <main>
-      {% include "header.html" %}
-      {% block content %}{% endblock %}
-      {% include "footer.html" %}
+        {% include "header_top.html" %}
+        {% include "header.html" %}
+        {% block content %}{% endblock %}
+        {% include "footer.html" %}
     </main>
 
     <!-- fonts -->
@@ -53,9 +54,9 @@
     <!-- /fonts -->
     
    
- 	 <!-- Load base scripts (for all pages)      
- 	 <script type="text/javascript" src="/static/site/js/min/base.min.js"></script>
-    /Load base scripts (for all pages) -->
+ 	 <!-- Load base scripts (for all pages)-->      
+ 	 <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+    <!-- /Load base scripts (for all pages) -->
 
     {% block extra_scripts %}{% endblock %}
 

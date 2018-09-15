@@ -26,10 +26,5 @@
         </a>
       {% endif%}
     {% endif %}
-    {% if user.is_authenticated %}
-        <a class="button-white" href="{% url 'logout' %}">Cerrar Sesión</a>
-    {% else %}
-        <a class="button-white" href="{% url 'login' %}">Iniciar Sesión</a>
-    {% endif %}
   </header>
 <!-- /header -->

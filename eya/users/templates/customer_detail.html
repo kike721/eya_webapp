@@ -27,13 +27,25 @@
 					<hr />
 					<div class="profile__history__table">
 						{% if object.orders.all.count > 0 %}
+							
 							{% for order in object.orders.all %}
-								<p>Orden: {{ order.pk }}</p>
-								{% for detail in order.details.all %}
-									<p>{{ detail.product }}</p>
-									<p>{{ detail.quantity }}</p>
-								{% endfor %}
+								<div class="toggleRow">
+									<button class="profile__acordion toggleBtn">
+										Orden: {{ order.pk }}
+										<img class="profile__acordion__arrow" src="/static/img/arrow-bottom.svg" alt="Eliminar">
+									</button>
+									<div class="toggleHide">
+									{% for detail in order.details.all %}
+										<div class="profile__acordion__detail">
+											<p class="quantity">{{ detail.quantity }}</p>
+											<p class="code">{{ detail.product }}</p>
+											<p class="description">{{ detail.product.description }}</p>
+										</div>
+									{% endfor %}
+									</div>
+								</div>
 							{% endfor %}
+							
 						{% else %}
 							<h5>Aún no tienes un historial</h5>
 						{% endif %}
@@ -42,4 +54,8 @@
 			</div>
 		</div>
 	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script type="text/javascript" src="/static/js/toggle.js"></script>
 {% endblock %}

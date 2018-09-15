@@ -8,23 +8,27 @@
 
 {% block content %}
 
-<div class="content-store">
-	<div>
+<div>
+	<div class="content-store">
 		<h2>Lista de pedido</h2>
 		<div class="note">Los productos estan sujetos a inventario.</div>
 	</div>
 
-	<div>
+	<div class="content-store">
 		<div class="content-list">
 			<div class="content-flex">
+
 				<div class="item-flex">
 					<h4>Cantidad</h4>
 				</div>
 				<div class="item-flex">
 					<h4>Codigo</h4>
 				</div>
-				<div class="item-flex-big">
+				<div class="item-flex">
 					<h4>Descripción</h4>
+				</div>
+				<div class="item-flex">
+					<h4>Eliminar</h4>
 				</div>
 				
 			</div>
@@ -39,11 +43,14 @@
 						<p class="item">{{ detail.product.description }}</p>
 					</div>
 					<input type="checkbox" name="{{ detail.pk }}-delete">
+					<img src="/static/img/trash.svg" alt="">
 				{% endfor %}
+
 				<input type="hidden" name="total" value="{{ cart.details.all|length }}">
 				<input type="submit" name="actualizar" value="Actualizar">
 				<input type="submit" name="orden" value="Enviar Orden">
 			</form>
+
 		</div>
 </div>
 
