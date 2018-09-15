@@ -9,6 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from products.models import Product
 from store.forms import OrderForm, CartForm, DetailCartFormSet
 from store.models import Cart, DetailCart, DetailOrder, Order
+from store.email import send_order_customer, send_order_eya
 from utils.email import email_investor_confirmation
 
 
@@ -49,5 +50,8 @@ def update_cart(request, pk):
                 detailO = DetailOrder.objects.create(
                     order=order,product=detail.product, quantity=detail.quantity)
                 detail.delete()
+            send_order_eya(order)
+            send_order_customer(order)
+            return HttpResponseRedirect(reverse('customer-profile', kwargs={'pk': cart.customer.pk}))
     return render(
         request, 'store/list_items.html', {'cart': cart, 'pk': pk})

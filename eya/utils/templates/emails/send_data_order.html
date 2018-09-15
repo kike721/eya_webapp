@@ -1,7 +1,8 @@
 <div>
-	<div>Nombre: {{order.name}}</div>
-	<div>Dirección: {{order.address}}</div>
-	<div>Teléfono: {{order.phone}}</div>
+	<div>Nombre: {{order.customer.name}}</div>
+	<div>Dirección: {{order.customer.address}}</div>
+	<div>RFC: {{order.customer.rfc}}</div>
+	<div>Teléfono: {{order.customer.phone}}</div>
 	<table>
 		<thead><th>Cantidad</th><th>Código</th><th>Descripción</th></thead>
 		<tbody>
