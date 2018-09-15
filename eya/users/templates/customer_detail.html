@@ -26,15 +26,20 @@
 					<h2>Historial</h2>
 					<hr />
 					<div class="profile__history__table">
-						{% if object.orders.all.count > 0 %}
+						{% if orders.all.count > 0 %}
 							
-							{% for order in object.orders.all %}
+							{% for order in orders.all %}
 								<div class="toggleRow">
 									<button class="profile__acordion toggleBtn">
-										Orden: {{ order.pk }}
+										Orden: {{ order.pk }} Fecha: {{ order.created|date:"d-m-Y" }}
 										<img class="profile__acordion__arrow" src="/static/img/arrow-bottom.svg" alt="Eliminar">
 									</button>
 									<div class="toggleHide">
+									<div class="profile__acordion__detail">
+										<p class="quantity">Cantidad</p>
+										<p class="code">Código de producto</p>
+										<p class="description">Descripción</p>
+									</div>
 									{% for detail in order.details.all %}
 										<div class="profile__acordion__detail">
 											<p class="quantity">{{ detail.quantity }}</p>

@@ -16,20 +16,27 @@ from users.forms import CustomerForm
 # Create your views here.
 class RegisterCustomerForm(CreateView):
 
-	model = Customer
-	form_class = CustomerForm
-	template_name = 'customer_form.html'
+    model = Customer
+    form_class = CustomerForm
+    template_name = 'customer_form.html'
 
 
 class CustomerDetailView(DetailView):
 
-	model = Customer
-	template_name = 'customer_detail.html'
+    model = Customer
+    template_name = 'customer_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomerDetailView, self).get_context_data(**kwargs)
+        obj = context['object']
+        orders = obj.orders.all().order_by('-created')
+        context['orders'] = orders
+        return context
 
 
 class CustomerRequestRegister(TemplateView):
 
-	template_name = 'register_done.html'
+    template_name = 'register_done.html'
 
 
 def user_confirm(request, token):
