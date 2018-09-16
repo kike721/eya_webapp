@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block extra_head %}
   <meta name="description" content="Ensambles Y Adornos Mexico. Somos una compañía que comprende y entiende bien las necesidades del mundo de la moda.">
   <meta name="keywords" content="Fabricantes adornos, accesorios textiles, bisuteria, joyeria, bolsas, cajas y adornos del hogar.">
@@ -11,6 +10,8 @@
   <link rel="stylesheet" href="{% static 'css/product-list.css' %}">
   <link rel="stylesheet" href="{% static 'css/paged.css' %}">
   <link rel="stylesheet" href="{% static 'css/banner.css' %}">
+  <link rel="stylesheet" href="{% static 'css/popup-detail.css' %}">
+  <link rel="stylesheet" href="{% static 'css/card.css' %}">
 
 {% endblock %}
 
@@ -93,11 +94,12 @@
     </div>
     
   </div>
-
+  {% include "products/parts/popup_detail.html" %}
   <!-- /PGINADORS -->
 
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
+  <script type="text/javascript" src="/static/js/productDetail.js"></script>
 {% endblock %}
