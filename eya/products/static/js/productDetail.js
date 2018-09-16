@@ -10,9 +10,7 @@ var popUpDetail = function(){
 		var btn = $(this);
 		var text = btn.find('#code_eyamex').clone();
 		var desc = btn.find('#description__eyamex').clone();
-
 		var img = btn.find('#image_eyamex').attr('style');
-		console.log(img)
 
 		$('body').css('overflow', 'hidden');
 		$("#popupDetail").css('display', 'flex');
