@@ -7,7 +7,6 @@
 	padding: 1em;
 	margin: 1em 0;
 	text-align: left;
-	cursor: pointer;
 	background-color: white;
 	box-shadow: 0px 7px 41px -1px rgba(173,168,173,1);
 
@@ -16,7 +15,8 @@
 .card__button-image{
 	background: transparent;
 	border: none;
-	border-bottom: 1px solid black; 
+	border-bottom: 1px solid black;
+	cursor: pointer; 
 }
 
 .card__image{

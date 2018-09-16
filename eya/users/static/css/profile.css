@@ -78,14 +78,19 @@
     justify-content: space-around;
 }
 
-.profile__acordion__detail .quantity{
+.title{
 	font-weight: 700;
+}
+
+.profile__acordion__detail .quantity{
+	font-weight: 600;
 	width: 10%;
 	text-align: center;
 }
 
 .profile__acordion__detail .code{
 	width: 30%;
+	text-align: center;
 }
 
 .profile__acordion__detail .description{
