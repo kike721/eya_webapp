@@ -8,9 +8,10 @@ var popUpDetail = function(){
 	function openDetail(e) {
 		e.preventDefault();
 		var btn = $(this);
-		var text = btn.find('#code_eyamex').clone();
-		var desc = btn.find('#description__eyamex').clone();
-		var img = btn.find('#image_eyamex').attr('style');
+		var parent = btn.parent('.card');
+		var text = parent.find('#code_eyamex').clone();
+		var desc = parent.find('#description__eyamex').clone();
+		var img = parent.find('#image_eyamex').attr('style');
 
 		$('body').css('overflow', 'hidden');
 		$("#popupDetail").css('display', 'flex');

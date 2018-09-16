@@ -15,6 +15,7 @@
           <p id="description" class="popup-detail__description"></p>
         </div>
         <div class="popup-detail__button">
+          {% if user.pk %}
             <form action="{% url 'add-detail-cart' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
@@ -22,7 +23,7 @@
               <input class="input-quantity" type="number" name="quantity" value="1">
               <input class="order" type="submit" value="Pedir">
             </form>
-    
+          {% endif %}
         </div>
       </div>
     </div>

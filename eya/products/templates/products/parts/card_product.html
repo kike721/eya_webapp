@@ -1,9 +1,11 @@
-<button class="card btnId">
-  {% if item.image %}
-    <div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
-    {% else %}
-    <div class="card__no-found">No hay imagen</div>
-  {% endif %}
+<div class="card">
+    {% if item.image %}
+      <button class="card__button-image btnId">
+        <div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
+      </button>
+      {% else %}
+      <div class="card__no-found">No hay imagen</div>
+    {% endif %}
   <div>
     <h4 id="code_eyamex">{{ item.code_eyamex }}</h4>
     <p id="description__eyamex">{{ item.description }}</p>
@@ -17,4 +19,4 @@
       </form>
     {% endif %}
   </div>
-</button>
+</div>
