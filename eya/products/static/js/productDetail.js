@@ -5,19 +5,25 @@ var popUpDetail = function(){
 		$("#popupDetail").css('display', 'none');
 	}
 
-	function openDetail() {
-		$(".btnId").click(function(e) {
-			document.getElementById("code").innerText = "{{ item.code_eyamex }}";
-			document.getElementById("description").innerHTML = "{{ item.description }}";
-			document.getElementById("image").innerHTML = "{{ item.image }}";
+	function openDetail(e) {
+		e.preventDefault();
+		var btn = $(this);
+		var text = btn.find('#code_eyamex').clone();
+		var desc = btn.find('#description__eyamex').clone();
 
-			$('body').css('overflow', 'hidden');
-			$("#popupDetail").css('display', 'flex');
-		});
+		var img = btn.find('#image_eyamex').attr('style');
+		console.log(img)
+
+		$('body').css('overflow', 'hidden');
+		$("#popupDetail").css('display', 'flex');
+
+		$("#code").html(text);
+		$("#description").html(desc);
+		$("#image").attr("style", img);
 	}	
 
 	function start(){
-		openDetail();
+		$(".btnId").on('click', openDetail);
 		$(".closeDetail").on('click', closePopup);
 	}
 
@@ -30,3 +36,5 @@ var popUpDetail = function(){
 $(function(){
 	popUpDetail.start();
 });
+
+

@@ -1,12 +1,12 @@
 <button class="card btnId">
   {% if item.image %}
-    <div style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
+    <div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
     {% else %}
     <div class="card__no-found">No hay imagen</div>
   {% endif %}
   <div>
-    <h4>{{ item.code_eyamex }}</h4>
-    <p>{{ item.description }}</p>
+    <h4 id="code_eyamex">{{ item.code_eyamex }}</h4>
+    <p id="description__eyamex">{{ item.description }}</p>
     {% if user.pk %}
       <form action="{% url 'add-detail-cart' %}" method="POST">
         {% csrf_token %}
