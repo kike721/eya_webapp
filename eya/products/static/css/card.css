@@ -9,6 +9,7 @@
 	margin: 1em 0;
 	border: 1px solid #dad4d4;
 	text-align: left;
+	cursor: pointer;
 }
 
 .card__image{

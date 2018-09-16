@@ -2,17 +2,17 @@ var popUpDetail = function(){
 	
 	function closePopup(e){
 		$('body').css('overflow', 'visible');
-		$("#popupDetail").removeClass('active');
+		$("#popupDetail").css('display', 'none');
 	}
 
 	function openDetail() {
-		$(".btnId").click(function (e) {
-			$("#code").text(data.code_eyamex);
-			$("#description").text(data.description);
-			$("#image").attr('src',data.image);
-		
+		$(".btnId").click(function(e) {
+			document.getElementById("code").innerText = "{{ item.code_eyamex }}";
+			document.getElementById("description").innerHTML = "{{ item.description }}";
+			document.getElementById("image").innerHTML = "{{ item.image }}";
+
 			$('body').css('overflow', 'hidden');
-			$("#popupDetail").css('display', 'block');
+			$("#popupDetail").css('display', 'flex');
 		});
 	}	
 

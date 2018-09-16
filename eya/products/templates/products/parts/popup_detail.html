@@ -2,19 +2,19 @@
 <div class="popup-detail" id="popupDetail">
   <div class="popup-detail__block">
 
-    <div class="popup-detail__head"> 
-      <img src="/static/img/close.svg" alt="Cerrar" class="popup-detail__close closeDetail">
+    <div class="popup-detail__head">
+
+      <img id="image" src="/static/img/close.svg" alt="Cerrar" class="popup-detail__close closeDetail">
     </div>
     
     <div class="popup-detail__body">
       <img id="image" src="/static/img/AC-1000-SC.jpg" class="popup-detail__img" alt="Imagen del producto" >
       <div class="popup-detail__date">
         <div class="popup-detail__info">
-          <h2 id="code" class="popup-detail__code">Codigo</h2>
-          <p id="description" class="popup-detail__description">descripcion</p>
+          <h2 id="code" class="popup-detail__code"></h2>
+          <p id="description" class="popup-detail__description"></p>
         </div>
         <div class="popup-detail__button">
-          
             <form action="{% url 'add-detail-cart' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">

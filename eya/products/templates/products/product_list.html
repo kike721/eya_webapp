@@ -64,6 +64,7 @@
   
     {% for item in object_list %}
       {% include "products/parts/card_product.html"%}
+      {% include "products/parts/popup_detail.html" %}
     {% empty %}
       <h3>No se encontraron resultados</h3>
     {% endfor %}
@@ -94,7 +95,7 @@
     </div>
     
   </div>
-  {% include "products/parts/popup_detail.html" %}
+  
   <!-- /PGINADORS -->
 
 </div>
