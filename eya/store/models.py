@@ -37,19 +37,35 @@ class DetailSellerCart(models.Model):
 
 
 class Order(BaseModel):
+
+    PENDING = 'P'
+    FINISHED = 'F'
+
+    STATUS_ORDER = (
+        (PENDING,'PENDIENTE'),
+        (FINISHED,'FINALIZADA'),
+    )
+
     customer = models.ForeignKey(
-        Customer, verbose_name='Usuario', related_name='orders')
+        Customer, verbose_name='Cliente', related_name='orders')
     seller = models.ForeignKey(
         Seller, verbose_name='Vendedor', related_name='s_orders', null=True,
         blank=True)
+    status = models.CharField(verbose_name='Estatus', max_length=3, choices=STATUS_ORDER, default=PENDING)
 
     class Meta:
         verbose_name = u'Orden de compra'
         verbose_name_plural = u'Ordenes de compra'
 
 
-    def __unicode_(self):
+    def __unicode__(self):
         return u'Order-{} {}'.format(self.pk, self.customer)
+
+    def total(self):
+        total = Decimal(0.0)
+        for detail in self.details.all():
+            total += detail.price
+        return total
 
 
 class DetailOrder(BaseModel):
@@ -57,6 +73,7 @@ class DetailOrder(BaseModel):
         Order, verbose_name=u'Orden', related_name='details')
     product = models.ForeignKey(Product, verbose_name=u'Producto')
     quantity = models.PositiveIntegerField(verbose_name='Cantidad')
+    price = models.DecimalField(verbose_name='Precio', max_digits=8, decimal_places=2, default=0)
 
     class Meta:
         verbose_name = u'Detalle de orden'
