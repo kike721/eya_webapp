@@ -1,19 +1,20 @@
-
-<div class="card">
+<button class="card btnId">
   {% if item.image %}
-    <img src="{{MEDIA_PREFIX}}{{item.image}}" alt="{{ item.code_eyamex }}" title="{{ item.code_eyamex }}" class="image" />
+    <div style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
     {% else %}
-    <div class="image-no-found">No hay imagen</div>
+    <div class="card__no-found">No hay imagen</div>
   {% endif %}
-  <h4>{{ item.code_eyamex }}</h4>
-  <p>{{ item.description }}</p>
-  {% if user.pk %}
-    <form action="{% url 'add-detail-cart' %}" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-      <input type="hidden" name="product" value="{{ item.pk }}">
-      <input class="input-quantity" type="number" name="quantity" value="1">
-      <input class="order" type="submit" value="Pedir">
-    </form>
-  {% endif %}
-</div>
+  <div>
+    <h4>{{ item.code_eyamex }}</h4>
+    <p>{{ item.description }}</p>
+    {% if user.pk %}
+      <form action="{% url 'add-detail-cart' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+        <input type="hidden" name="product" value="{{ item.pk }}">
+        <input class="input-quantity" type="number" name="quantity" value="1">
+        <input class="order" type="submit" value="Pedir">
+      </form>
+    {% endif %}
+  </div>
+</button>
