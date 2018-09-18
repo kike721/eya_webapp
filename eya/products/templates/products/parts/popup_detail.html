@@ -19,7 +19,7 @@
             <form action="{% url 'add-detail-cart' %}" method="POST">
               {% csrf_token %}
               <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-              <input type="hidden" name="product" value="{{ item.pk }}">
+              <input id="popup_id_product" type="hidden" name="product" value="{{ item.pk }}">
               <input class="input-quantity" type="number" name="quantity" value="1">
               <input class="order" type="submit" value="Pedir">
             </form>
