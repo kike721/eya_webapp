@@ -126,9 +126,11 @@
                                   		</thead>
                                   		<tbody>
                                   			{% for detail in details %}
+                                          <tr>
 	                                  			<td>{{detail.quantity}}</td>
 	                                  			<td>{{detail.product.code_eyamex}}</td>
 	                                  			<td>{{detail.product.description}}</td>
+                                          </tr>
                                   			{% endfor %}
                                   		</tbody>
                                   	</table>

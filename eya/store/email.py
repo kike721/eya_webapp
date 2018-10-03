@@ -15,8 +15,8 @@ def send_order_eya(order):
     	'emails/send_data_order.html',
     	{'order': order, 'details': order.details.all()})
     email = generate_send_email(
-        # ['cotizaciones@ensamblesyadornos.org'],
-        ['jose.enrique.duran.garcia@gmail.com', 'valeria.pjaimes@gmail.com'],
+        ['cotizaciones@ensamblesyadornos.org', 'ensamblesyadornos2007mexico@gmail.com'],
+        # ['jose.enrique.duran.garcia@gmail.com', 'valeria.pjaimes@gmail.com'],
         "Orden #{}".format(order.pk),
         template)
 

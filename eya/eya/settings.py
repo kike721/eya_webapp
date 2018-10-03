@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'products',
     'users',
     'imagekit',
+    'nested_inline',
 ]
 
 MIDDLEWARE = [

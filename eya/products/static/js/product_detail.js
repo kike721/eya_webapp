@@ -11,6 +11,8 @@ var popUpDetail = function(){
 		var parent = btn.parent('.card');
 		var text = parent.find('#code_eyamex').clone();
 		var desc = parent.find('#description__eyamex').clone();
+		var id_product = parent.find('#id_product').val();
+		console.log(id_product);
 		var img = parent.find('#image_eyamex').attr('style');
 
 		$('body').css('overflow', 'hidden');
@@ -18,6 +20,7 @@ var popUpDetail = function(){
 
 		$("#code").html(text);
 		$("#description").html(desc);
+		$("#popup_id_product").val(id_product);
 		$("#image").attr("style", img);
 	}	
 
