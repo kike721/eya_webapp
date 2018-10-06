@@ -18,51 +18,13 @@
 {% block content %}
 
 {% get_media_prefix as MEDIA_PREFIX %}
-{% include "image-banner.html" with title="Somos una compañía que comprende y entiende bien las necesidades del mundo de la moda." %}
 
 <div class="content">
-  
-  <!-- NUEVOS -->
-  <div class="info-results">
-    <h2 class="title-info-results">Nuevos</h2><a class="button-paged" href="{% url 'products-index-news' %}">Ver todo</a>
-  </div>
-  <div class="results">
-   
-    {% for item in news %}
-      {% include "products/parts/card_product.html"%}
-    {% empty %}
-      <h3>No se encontraron resultados</h3>
-    {% endfor %}
-  
-  </div>
-
-  <!-- /NUEVOS -->
-
-  <!-- MAS VENDIDOS -->
-  <div class="info-results">
-    <h2 class="title-info-results">Más vendidos</h2><a class="button-paged" href="{% url 'products-index-best-seller' %}">Ver todo</a>
-  </div>
-  <div class="results">
-
-   
-      {% if best_seller %}
-        {% for item in best_seller %}
-          
-            {% include "products/parts/card_product.html" %}
-  
-        {% endfor %}
-      {% endif %}
-  
-
-  </div>
-
-  <!-- /MAS VENDIDOS -->
-
 
   <!-- TODOS LOS PRODUCTOS -->
 
   <div class="info-results">
-    <h2 class="title-info-results">Todos los productos</h2>
+    <h2 class="title-info-results">Resultados:</h2>
   </div>
   <div class="results">
     

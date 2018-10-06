@@ -16,19 +16,37 @@ class IndexProducts(ListView):
     def get_queryset(self):
     	queryset = super(IndexProducts, self).get_queryset()
     	queryset = queryset.filter(spent=False, is_new=False, best_seller=False)
-    	q = ''
-    	if self.request.GET.has_key('q'):
-    		q = self.request.GET['q']
-    		queryset = queryset.filter(meta_description__icontains=q)
-    	self.q = q
+    	
+    	
     	return queryset
 
     def get_context_data(self, **kwargs):
     	context = super(IndexProducts, self).get_context_data(**kwargs)
-    	context['q'] = self.q
+    	
     	context['news'] = Product.objects.filter(spent=False, is_new=True)
     	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True)
     	return context
+
+class IndexProductsResults(ListView):
+
+    model = Product
+    paginate_by = 12
+    template_name = 'products/results.html'
+
+    def get_queryset(self):
+        queryset = super(IndexProductsResults, self).get_queryset()
+        queryset = queryset.filter(spent=False, is_new=False, best_seller=False)
+        q = ''
+        if self.request.GET.has_key('q'):
+            q = self.request.GET['q']
+            queryset = queryset.filter(meta_description__icontains=q)
+        self.q = q
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexProductsResults, self).get_context_data(**kwargs)
+        context['q'] = self.q
+        return context
 
 
 class IndexNewProducts(ListView):
