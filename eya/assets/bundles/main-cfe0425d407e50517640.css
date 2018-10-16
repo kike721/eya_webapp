@@ -1,0 +1,5 @@
+body, .main, .header__top {
+  background: red !important;
+  z-index: 1; }
+  body p, .main p, .header__top p {
+    font-size: 40px; }
