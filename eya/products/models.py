@@ -43,6 +43,7 @@ class Color(CatalogModel):
 
 class Family(BaseModel):
     code = models.CharField(verbose_name=u'Código', max_length=5)
+    description = models.TextField(verbose_name=u'Descripción')
 
     class Meta:
         verbose_name = 'Familia'
@@ -68,7 +69,7 @@ class Product(BaseModel):
     code_eyamex = models.CharField(verbose_name=u'Código EYAMEX', max_length=20)
     image = ProcessedImageField(
         upload_to=get_image_path, format='JPEG',
-        processors=[SmartResize(394, 214)], options={'quality': 80},
+        processors=[SmartResize(994, 660)], options={'quality': 100},
         verbose_name=u"Imagen", null=True)
     type = models.ForeignKey(Type, verbose_name='Tipo', related_name='t_products')
     clasification = models.ForeignKey(Clasification, verbose_name=u'Clasificación', related_name='c_products')
@@ -89,10 +90,10 @@ class Product(BaseModel):
         return u'{}'.format(self.code_eyamex)
 
     def fill_meta(self):
-        meta_description = u'{} {} {} {} {} {} {}'.format(
+        meta_description = u'{} {} {} {} {} {} {} {}'.format(
             self.code_eyamex, self.clasification.name, self.model.code,
             self.model.family_product.code, self.code, self.color.name,
-            self.description)
+            self.description, self.model.family_product.description)
         return meta_description.lower()
 
     def save(self, *args, **kwargs):
