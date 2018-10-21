@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "bootstrap": "4.0.0-beta",
+    "compass-loader": "0.0.4",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.5"
   }
