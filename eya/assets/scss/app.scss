@@ -1,2 +1,48 @@
-@import "variables";
-@import "base";
+// Base files
+// ============
+@import "base/base";
+@import "base/header";
+@import "base/footer";
+
+// @import "plugins/magnific";
+@import "plugins/owl/owl.carousel";
+@import "plugins/pageflip";
+@import "plugins/trumbowyg";
+
+// Utils files
+// ============
+@import "utils/colors";
+@import "utils/variables";
+@import "utils/mixins";
+@import "utils/animate";
+
+// Elements files
+// ============
+@import "elements/button";
+@import "elements/paged";
+@import "elements/loader";
+@import "elements/input";
+@import "elements/no-found";
+@import "elements/banner";
+
+@import "elements/pages/error";
+@import "elements/pages/page-login";
+@import "elements/pages/page-register";
+
+@import "elements/pop-up/popup";
+@import "elements/pop-up/popup-search";
+@import "elements/pop-up/popup-login";
+
+// Products files
+// ============
+@import "products/popup-detail";
+@import "products/product-block";
+@import "products/content";
+
+// Store files
+// ============
+@import "store/order-list";
+
+// User files
+// ============
+@import "users/profile";

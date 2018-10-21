@@ -1,0 +1,35 @@
+.popup{
+    background-color: rgba(15,15,15,0.75);
+    justify-content: center;
+    align-items: center;
+    @include absoluteFullContainer;
+    position: fixed;
+    z-index: 11;
+
+    display: none;
+
+    &.active{
+        display: flex;
+    }
+
+    &__content{
+        max-width: 1200px;
+        padding: 2em;
+        position: relative;
+    }
+
+    &__close{
+        @include clearButton;
+        @include fontSize(20px);
+        color: $gray-dark;
+        position: absolute;
+        top: 1.5em;
+        right: 1.5em;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+    &__btn{
+        @include button($black, $black, $black, $white, $green-button);
+        margin: 2em 0 0;
+    }
+}
