@@ -1,0 +1,176 @@
+/* --------------------------------
+	"Mixins" styles
+-------------------------------- */
+
+@mixin fontSize($font){
+	font-size: ($font / $font-size-base) * 1em;
+}
+
+@mixin container(){
+	
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	max-width: $desktop-container;
+}
+
+@mixin clearButton(){
+	cursor: pointer;
+	padding: 0;
+	border: none;
+	outline: none;
+	background: transparent;
+}
+
+@mixin clearLink(){
+	text-decoration: none;
+	color: $black;
+}
+
+@mixin gridRow(){
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+@mixin gridSpan($size){
+	width: percentage($number: ($size / 12));
+}
+@mixin gridOffset($size){
+	margin-left: percentage($number: ($size / 12));
+}
+@mixin gridSpanQueries($p, $t, $d){
+	@include gridSpan($p);
+
+	@media (min-width: $tablet-min){
+		@include gridSpan($t);
+	}
+
+	@media (min-width: $desktop){
+		@include gridSpan($d);
+	}
+}
+@mixin gridOffsetQueries($p, $t, $d){
+	@include gridOffset($p);
+
+	@media (min-width: $tablet-min){
+		@include gridOffset($t);
+	}
+
+	@media (min-width: $desktop){
+		@include gridOffset($d);
+	}
+}
+@mixin aspectRatio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> .content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
+
+@mixin fullContainer(){
+	
+		position: relative;
+		width: 100%;
+		height: 100%;
+	@media (min-width: ($tablet + 1)) {
+		min-height: 610px;
+	}
+}
+
+
+@mixin absoluteFullContainer() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+@mixin centeredImage(){
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+	position: absolute;
+}
+
+@mixin fullBackground(){
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+@mixin setImg(){
+	display: block;
+	width: 100%;
+}
+
+@mixin transformOrigin($prop){
+	-moz-transform-origin: $prop;
+	-ms-transform-origin: $prop;
+	-webkit-transform-origin: $prop;
+	transform-origin: $prop;
+}
+
+@mixin animation ($animate ) {
+	-webkit-animation: $animate;
+	-moz-animation: $animate;
+	-ms-animation: $animate;
+	-o-animation: $animate;
+	animation: $animate;
+}
+
+@mixin videoButton($w, $h, $i, $it, $id){
+	@include clearButton;
+	@include fullBackground;
+	@include aspectRatio($w, $h);
+	position: relative;
+	width: 100%;
+
+	&:after{
+		@include absoluteFullContainer;
+		display: block;
+		content: '';
+		background-color: rgba(32,37,47,0.25);
+		z-index: 0;
+		transition: background-color 0.25s;
+	}
+
+	& i{
+		@include fontSize($i);
+		transform: translate3d(-50%, -50%, 0);
+		color: $white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+
+		@media (min-width: $tablet-min){
+			@include fontSize($it);
+		}
+
+		@media (min-width: $desktop){
+			@include fontSize($id);
+		}
+	}
+
+	&:hover{
+		&:after{
+			background-color: rgba(32,37,47,0.1);
+		}
+	}
+}

@@ -1,0 +1,34 @@
+.content{
+	background-color: #f3f3f3;
+	padding: 2em;
+	min-height: calc(100vh - 220px);
+
+	&__info-results{
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 3px solid black;
+		align-items: center;
+		margin-top: 4em; 
+	}
+
+	&__title{
+		margin-bottom: 0.3em; 
+	}
+
+	&__results{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 1em;
+
+		& .owl-dots{
+			bottom: -3em;
+		}
+
+		& .owl-dot {
+			&.active{
+				background: $black;
+			}
+		}
+	}
+}
