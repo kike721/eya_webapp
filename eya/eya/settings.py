@@ -144,10 +144,10 @@ WEBPACK_LOADER = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-#STATIC_ROOT = BASE_DIR + '/static'
-#STATIC_URL = '/static/'
-#MEDIA_ROOT = BASE_DIR + '/media'
-#MEDIA_URL = '/media/'
+STATIC_ROOT = BASE_DIR + '/static'
+STATIC_URL = '/static/'
+MEDIA_ROOT = BASE_DIR + '/media'
+MEDIA_URL = '/media/'
 
 #Emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
