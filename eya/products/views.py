@@ -23,8 +23,8 @@ class IndexProducts(ListView):
     def get_context_data(self, **kwargs):
     	context = super(IndexProducts, self).get_context_data(**kwargs)
     	
-    	context['news'] = Product.objects.filter(spent=False, is_new=True)
-    	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True)
+    	context['news'] = Product.objects.filter(spent=False, is_new=True)[:20]
+    	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True)[:20]
     	return context
 
 class IndexProductsResults(ListView):
