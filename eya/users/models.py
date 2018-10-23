@@ -4,13 +4,13 @@ from __future__ import unicode_literals
 from datetime import timedelta
 
 from django.db import models
-from django.contrib.auth.models import Group, User, Permission
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 
 from smart_selects.db_fields import ChainedForeignKey
 
-from utils.models import BaseModel, StateMx, MunicipalityMx, LocalityMx
+from utils.models import StateMx, MunicipalityMx, LocalityMx
 
 
 # Create your models here.
@@ -88,51 +88,3 @@ class UserToken(models.Model):
 
     class Meta:
         unique_together = ('token', 'email')
-
-
-class Manager(BaseModel):
-    NONE = ''
-    SUPERADMIN = 'SUPERADMIN'
-    TRADER = 'TRADER'
-    PROVIDER = 'PROVIDER'
-    BILLING = 'BILLING'
-
-    USERS_TYPES_CHOICES = (
-        (NONE, u'-------'),
-        (SUPERADMIN, u'Super usuario'),
-        (TRADER, u'Cotizador'),
-        (PROVIDER, u'Surtidor'),
-        (BILLING, u'Facturador'),
-    )
-
-    user = models.OneToOneField(
-        User, related_name='manager', blank=True,
-        on_delete=models.CASCADE, verbose_name='Usuario')
-
-    type = models.CharField(max_length=10, choices=USERS_TYPES_CHOICES,
-                            default=NONE, verbose_name='Tipo')
-
-    class Meta:
-        verbose_name = "Administrador"
-        verbose_name_plural = 'Administradores'
-
-    def __unicode__(self):
-        return "{} {} ({})".format(
-            self.user.first_name,
-            self.user.last_name,
-            self.user.email,
-        )
-
-    def save(self, *args, **kwargs):
-        if self.type == 'SUPERADMIN':
-            group = Group.objects.get(name='Super Admin')
-        elif self.type == 'TRADER':
-            group = Group.objects.get(name='Trader')
-        elif self.type == 'PROVIDER':
-            group = Group.objects.get(name='Provider')
-        elif self.type == 'BILLING':
-            group = Group.objects.get(name='Billing')
-        self.user.groups.clear()
-        if self.type != Manager.NONE:
-            self.user.groups.add(group)
-        super(Manager, self).save(*args, **kwargs)
