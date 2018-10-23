@@ -60,6 +60,8 @@ class ManagerAdmin(admin.ModelAdmin):
             return qs
         return qs.exclude(type=Manager.SUPERADMIN)
 
+admin.site.unregister(User)
+admin.site.unregister(Group)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Manager, ManagerAdmin)
 # admin.site.register(Seller, SellerAdmin)

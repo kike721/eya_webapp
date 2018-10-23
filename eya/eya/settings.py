@@ -25,7 +25,7 @@ SECRET_KEY = 'u!u5sk%dlb*#z+djo*$epkha82sy3+(6sz2=1h6=n^m@!dyo(g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost', 'dev.ensamblesyadornos.org/']
+ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost', 'dev.ensamblesyadornos.org']
 
 
 # Application definition
