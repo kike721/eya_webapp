@@ -1,0 +1,69 @@
+.error{
+	width: 100%;
+
+    &__fold{
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        @include fullBackground;
+        background-image: url("/static/site/images/bck-404.jpg");
+        width: 100%;
+        height: 320px;
+        padding: $mobile-header 0;
+        text-align: center;
+
+        &--500{
+            background-image: url("/static/site/images/bck-500.jpg");
+        }
+    }
+
+    &__container{
+        @include container;
+        padding: 0 2em;
+    
+        @media (min-width: $desktop){
+            padding: 0;
+        }
+    }
+
+    &__title{
+        @include fontSize(35px);
+        color: #fff;
+        line-height: 1;
+        margin: 0 0 -0.5em;
+
+        @media (min-width: $tablet-min){
+            @include fontSize(55px);
+        }
+    
+        @media (min-width: $desktop){
+            @include fontSize(75px);
+        }
+    }
+
+    &__content{
+    	display: flex;
+    	align-items: center;
+    	justify-content: space-around;
+    	flex-direction:column;
+        position: relative;
+        text-align: center;
+        min-height: calc(100vh - 648px);
+        padding: 2em;
+
+        & p {
+			@include fontSize(16px);
+        }
+
+        & .error__text {
+			margin-bottom: 2em;
+		}
+    }
+    &__margin{
+        margin: 3em 0;
+    }
+    &__button{
+    	@include button($black, $black, $black, $white, $green-button);
+    }
+
+}

@@ -1,3 +1,4 @@
+{% load render_bundle from webpack_loader %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="es">
@@ -33,13 +34,13 @@
 
     {% block extra_head %}
     {% endblock %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/LOGO-EYA.png"/>
   </head>
 
-<!-- body -->
+  {% render_bundle 'main' 'css' %}
+
+  <!-- body -->
   <body class="main">
 
     <main>
@@ -50,15 +51,17 @@
     </main>
 
     <!-- fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,200i,300,300i,400,500,500i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,200i,300,300i,400,500,500i,800,800i" rel="stylesheet">
     <!-- /fonts -->
-    
-   
- 	 <!-- Load base scripts (for all pages)-->      
- 	 <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+
+    <!-- Load base scripts (for all pages)-->      
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- /Load base scripts (for all pages) -->
+
+    {% render_bundle 'main' 'js' %}
 
     {% block extra_scripts %}{% endblock %}
 
   </body>
+  <!-- /body -->
 </html>

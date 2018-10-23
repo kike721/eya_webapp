@@ -1,0 +1,208 @@
+$input: #c9c9c9;
+$input-text: $gray-dark;
+$input-outline: $aqua;
+$placeholder: #313131;
+$error: #dc0000;
+
+.input{
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	position: relative;
+	width: 100%;
+	margin: 0.5em 0 2.5em 0;
+
+	&__hr{
+		margin: 2em 0;
+	}
+
+	&--text-right{
+		text-align: right;
+	}
+
+	& .trumbowyg{
+		margin: 1em 0;
+	}
+
+	&.error .trumbowyg{
+		border: 1px solid $error;
+	}
+
+	&__label{
+		@include fontSize(12px);
+		background-color: $white;
+		color: $gray-dark;
+		padding: 0 0.5em;
+		position: absolute;
+		top: -0.5em;
+		left: 1em;
+		text-transform: uppercase;
+
+		&--wysiwyg{
+			position: relative;
+			top: 0;
+		}
+
+		& .required{
+			@include fontSize(10px);
+			color: $error;
+		}
+	}
+	&__text{
+		box-sizing: border-box;
+		@include fontSize(16px);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 50px;
+		border: 1px solid $input;
+		padding: 0.75em 1em 0.5em;
+		outline-color: $input-outline;
+		outline-width: 1px;
+		resize: none;
+        color: $input-text;
+        display: block;
+		transition: all 0.25s;
+		
+		&--textarea{
+			height: 9em;
+		}
+
+		&.error{
+			border-color: $error;
+		}
+	}
+
+	&__error{
+		color: $error;
+	}
+
+	&__select{
+		box-sizing: border-box;
+		@include fontSize(16px);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 50px;
+		border: 1px solid #c9c9c9;
+		padding: 0.75em 3em 0.5em 1em;
+		outline-color: $input-outline;
+		outline-width: 1px;
+		resize: none;
+        color: $input-text;
+        display: block;
+		/*background: url(../images/img-select.svg) no-repeat calc(98% - 0.2em);*/
+		transition: all 0.25s;
+
+		& option{
+			@include fontSize(14px);
+			padding: 0.75em 1em;
+			color: $gray-dark;
+			background-color: $gray-background;
+			border-bottom: 1px solid $white;
+		}
+
+		&.error{
+			border-color: $error;
+		}
+	}
+
+	&__submit{
+		@include button($black, $black, $black, $white, $green-button);
+        width: 215px;
+        margin: 1.5em auto 0;
+        display: block;
+		@media (min-width: $desktop){
+			width: 350px;
+		}
+    }
+    
+    &__file {
+        position: relative;
+        height: 1px;
+        width: 1px;
+        opacity: 0;
+	}
+
+	&__lupe{
+		transform: translate3d(0,-50%,0);
+		@include clearButton;
+		@include fontSize(21px);
+		position: absolute;
+		line-height: 1;
+		padding: 0.5em;
+		right: 0;
+		top: 50%;
+		padding: 0.5em;
+	}
+	&__box-input{
+		display: flex;
+		justify-content: space-between;
+
+		& .input__select{
+			width: 100%;
+			@media (min-width: $desktop){
+				width: 30%;
+			}
+		}
+		& .input__number{
+			width: 100%;
+			@media (min-width: $desktop){
+				width: 48%;
+			}
+		}
+	}
+	&__title-input{
+		@include fontSize(16px);
+		margin: 0 0 1.5em;
+		padding: 0 1em;
+		text-align: left;
+
+		@media (min-width: $tablet-min){
+			@include fontSize(19px);
+			padding: 0 1em;
+		}
+
+		@media (min-width: $desktop){
+			@include fontSize(22px);
+			padding: 0;
+		}
+	}
+	&__subtitle-input{
+		text-transform: uppercase;
+		text-align: left !important;
+		margin: 0 0 2em 1em;
+	}
+	& .input__cd{
+		width: 100%;
+		@media (min-width: $tablet-min){
+			width: 50%;
+		}
+	}
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none; 
+	margin: 0; 
+}
+
+input[type=number] {-moz-appearance: textfield;}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $placeholder;
+    font-style: italic;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: $placeholder;
+    font-style: italic;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: $placeholder;
+    font-style: italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: $placeholder;
+    font-style: italic;
+}

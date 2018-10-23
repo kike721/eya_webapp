@@ -2,3 +2,5 @@
 .sass-cache
 node_modules
 Documentacion/
+package-lock
+webpack-stats
