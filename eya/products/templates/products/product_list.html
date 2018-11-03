@@ -96,4 +96,27 @@
 {% endblock %}
 
 {% block extra_scripts %}
+  {% if user.seller %}
+    <script type="text/javascript">
+
+      function setDomain(idCustomer) {
+        var linkCarrito = $("#linkCarrito").data("domain");
+        linkCarrito += 'carrito/' + idCustomer;
+        $("#linkCarrito").attr('href', linkCarrito);
+      };
+
+      $(document).ready(function() {
+        var idCustomer = $("#selectCustomer").val();
+        $(".formCart").val(idCustomer);
+        setDomain(idCustomer);
+
+        $("#selectCustomer").change(function() {
+          var idCustomer = $(this).val();
+          $(".formCart").val(idCustomer);
+          setDomain(idCustomer);
+        });
+
+      });
+    </script>
+  {% endif %}
 {% endblock %}

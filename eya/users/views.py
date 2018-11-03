@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 
 from store.models import Cart
-from users.models import Customer, UserToken
+from users.models import Customer, UserToken, Seller
 from users.forms import CustomerForm
 
 
@@ -32,6 +32,12 @@ class CustomerDetailView(DetailView):
         orders = obj.orders.all().order_by('-created')
         context['orders'] = orders
         return context
+
+
+class SellerDetailView(DetailView):
+    
+    model = Seller
+    template_name = 'seller_detail.html'
 
 
 class CustomerRequestRegister(TemplateView):

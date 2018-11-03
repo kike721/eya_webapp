@@ -10,13 +10,24 @@
     <h4 id="code_eyamex">{{ item.code_eyamex }}</h4>
     <p id="description__eyamex">{{ item.description }}</p>
     {% if user.pk %}
-      <form action="{% url 'add-detail-cart' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-        <input id="id_product" type="hidden" name="product" value="{{ item.pk }}">
-        <input class="input-quantity" type="number" name="quantity" value="1">
-        <input class="order" type="submit" value="Pedir">
-      </form>
+      {% if user.customer %}
+        <form action="{% url 'add-detail-cart' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+          <input id="id_product" type="hidden" name="product" value="{{ item.pk }}">
+          <input class="input-quantity" type="number" name="quantity" value="1">
+          <input class="order" type="submit" value="Pedir">
+        </form>
+      {% endif %}
+      {% if user.seller %}
+        <form action="{% url 'add-detail-cart' %}" method="POST">
+          {% csrf_token %}
+          <input class="formCart" type="hidden" name="cart">
+          <input id="id_product" type="hidden" name="product" value="{{ item.pk }}">
+          <input class="input-quantity" type="number" name="quantity" value="1">
+          <input class="order" type="submit" value="Pedir">
+        </form>
+      {% endif %}
     {% endif %}
   </div>
 </div>

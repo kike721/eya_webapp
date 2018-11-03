@@ -8,7 +8,7 @@ from django.db.models import Q
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 from store.models import DetailOrder,Order
-from users.forms import CustomerAdminForm, SellerForm, ManagerForm, ManagerAdminForm
+from users.forms import CustomerAdminForm, SellerAdminForm, ManagerForm, ManagerAdminForm
 from users.models import Customer, Seller, Manager
 
 
@@ -37,7 +37,7 @@ class CustomerAdmin(NestedModelAdmin):
 
 class SellerAdmin(admin.ModelAdmin):
 
-    form = SellerForm
+    form = SellerAdminForm
 
 
 class ManagerAdmin(admin.ModelAdmin):
@@ -60,8 +60,8 @@ class ManagerAdmin(admin.ModelAdmin):
             return qs
         return qs.exclude(type=Manager.SUPERADMIN)
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Manager, ManagerAdmin)
-# admin.site.register(Seller, SellerAdmin)
+admin.site.register(Seller, SellerAdmin)
