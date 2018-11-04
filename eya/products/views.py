@@ -47,7 +47,10 @@ class IndexProductsResults(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexProductsResults, self).get_context_data(**kwargs)
+        domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
         context['q'] = self.q
+        context['customers'] = Customer.objects.filter(active=True)
+        context['domain'] = domain
         return context
 
 
@@ -69,7 +72,10 @@ class IndexNewProducts(ListView):
 
     def get_context_data(self, **kwargs):
     	context = super(IndexNewProducts, self).get_context_data(**kwargs)
+        domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     	context['q'] = self.q
+        context['customers'] = Customer.objects.filter(active=True)
+        context['domain'] = domain
     	return context
 
 
@@ -91,5 +97,8 @@ class IndexBestSellerProducts(ListView):
 
     def get_context_data(self, **kwargs):
     	context = super(IndexBestSellerProducts, self).get_context_data(**kwargs)
+        domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     	context['q'] = self.q
+        context['customers'] = Customer.objects.filter(active=True)
+        context['domain'] = domain
     	return context
