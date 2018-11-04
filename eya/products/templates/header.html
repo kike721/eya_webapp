@@ -25,7 +25,7 @@
             </a>
           {% endif %}
           {% if user.seller %}
-            <select id="selectCustomer">
+            <select id="selectCustomer" class="select">
               {% for customer in customers %}
                 <option value="{{ customer.cart.pk }}">{{ customer.name }}</option>
               {% endfor %}
