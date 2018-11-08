@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
 from django.views.generic.base import TemplateView
 
 from store.models import Cart
-from users.models import Customer, UserToken
+from users.models import Customer, UserToken, Seller
 from users.forms import CustomerForm
 
 
@@ -31,6 +33,19 @@ class CustomerDetailView(DetailView):
         obj = context['object']
         orders = obj.orders.all().order_by('-created')
         context['orders'] = orders
+        return context
+
+
+class SellerDetailView(DetailView):
+    
+    model = Seller
+    template_name = 'seller_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SellerDetailView, self).get_context_data(**kwargs)
+        domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+        context['customers'] = Customer.objects.filter(active=True)
+        context['domain'] = domain
         return context
 
 
@@ -78,3 +93,12 @@ def user_confirm(request, token):
     return render(request, 'registration/confirm_email.html', {
         'message': "La cuenta fue activada."
     })
+
+
+def set_customer(request):
+    cart_id = request.GET.get('cart_id', None)
+    request.session['cart_selected'] = int(cart_id)
+    data = {
+        'cart_id': cart_id
+    }
+    return JsonResponse(data)

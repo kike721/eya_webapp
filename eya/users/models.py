@@ -58,21 +58,16 @@ class Seller(models.Model):
     user = models.OneToOneField(
         User, verbose_name='Usuario', related_name='seller', blank=True)
     name = models.CharField(verbose_name='Nombre completo', max_length=255)
-    rfc = models.CharField(verbose_name='RFC', max_length=15)
-    address = models.CharField(verbose_name='Direccion', max_length=255)
-    phone = models.CharField(verbose_name=u'Teléfono', max_length=255)
+    rfc = models.CharField(verbose_name='RFC', max_length=15, blank=True)
+    address = models.CharField(verbose_name='Direccion', max_length=255, blank=True)
+    phone = models.CharField(verbose_name=u'Teléfono', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Vendedor'
         verbose_name_plural = 'Vendedores'
 
-    @property
-    def get_name(self):
-        return '{} {} {}'.format(
-            self.first_name, self.last_name, self.second_last_name)
-
     def __unicode__(self):
-        return '{}'.format(self.get_name)
+        return '{}'.format(self.name)
 
 
 class UserToken(models.Model):

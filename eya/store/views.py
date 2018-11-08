@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -11,6 +12,7 @@ from store.forms import OrderForm, CartForm, DetailCartFormSet
 from store.models import Cart, DetailCart, DetailOrder, Order
 from store.email import send_order_customer, send_order_eya
 from utils.email import email_investor_confirmation
+from users.models import Customer
 
 
 def add_detail_cart(request):
@@ -32,6 +34,8 @@ def add_detail_cart(request):
 
 def update_cart(request, pk):
     cart = Cart.objects.get(pk=pk)
+    customers = Customer.objects.filter(active=True)
+    domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     if request.POST:
         data = []
         for detail in cart.details.all():
@@ -54,4 +58,4 @@ def update_cart(request, pk):
             send_order_customer(order)
             return HttpResponseRedirect(reverse('customer-profile', kwargs={'pk': cart.customer.pk}))
     return render(
-        request, 'store/list_items.html', {'cart': cart, 'pk': pk})
+        request, 'store/list_items.html', {'cart': cart, 'pk': pk, 'customers': customers, 'domain': domain})

@@ -16,28 +16,17 @@
 
 <div class="content">
   
-  <div class="info-results">
-    <h2 class="title-info-results">Productos nuevos</h2><a class="button-paged" href="/">Volver</a>
+  <div class="content__info-results">
+    <h2 class="content__title">Nuevos</h2><a class="button-paged" href="{% url 'products-index' %}">Volver</a>
   </div>
-
-  <div class="results">
-  	
-    {% for product in object_list %}
-      <div class="card">
-        {% if product.image %}
-          <img src="{{MEDIA_PREFIX}}{{product.image}}" alt="{{ product.code_eyamex }}" title="{{ product.code_eyamex }}" class="image" />
-          {% else %}
-          <div class="image-no-found">No hay imagen</div>
-        {% endif %}
-      	<h4>{{ product.code_eyamex }}</h4>
-      	<p>{{ product.description }}</p>
-        
-        <a class="order" href="{% url 'add-item-cart' pk=product.pk %}">Pedir</a>
-      </div>
-    {% empty %}
+  <div class="content__results">
+    {% if object_list %}
+      {% for item in object_list %}
+        {% include "products/parts/card_product.html"%}
+      {% endfor %}
+    {% else %}
       <h3>No se encontraron resultados</h3>
-    {% endfor %}
-    
+    {% endif %}
   </div>
 
   <!-- PAGINADOR -->

@@ -1,0 +1,60 @@
+.loader-container{
+  display: none;
+}
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.5);
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+
+  &.active{
+    opacity: 1;
+  }
+
+  &.absolute{
+    position: absolute;
+    z-index: 8;
+  }
+
+  &__spinner{
+    width: 70px;
+    text-align: center;
+  }
+
+  &__bounce{
+    width: 18px;
+    height: 18px;
+    background-color: $green;
+
+    border-radius: 100%;
+    display: inline-block;
+
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+
+    &:nth-child(1){
+      animation-delay: -0.32s;
+    }
+    &:nth-child(2){
+      animation-delay:-0.16s;
+    }
+  }
+}
+
+@keyframes (sk-bouncedelay) {
+  0%, 80%, 100% { 
+    transform: scale(0);
+    background-color: $aqua;
+  } 40% { 
+    transform: scale(1.0);
+    background-color: $green;
+  }
+}

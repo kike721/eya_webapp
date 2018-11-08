@@ -1,0 +1,62 @@
+@import 'core';
+@import 'animate';
+@import 'autoheight';
+@import 'lazyload';
+@import 'video';
+
+.owl-carousel{
+	& .owl-nav{
+		font-size: 24px;
+		position: absolute;
+		left: 1em;
+		right: 1em;
+		top: 50%;
+	}
+	& .owl-prev{
+		/*@include translateY(-50%);*/
+		position: absolute;
+		left: -1em;
+		color: #dedede;
+		font-size: 2em;
+		font-family: -webkit-pictograph;
+	}
+	& .owl-next{
+		/*@include translateY(-50%);*/
+		position: absolute;
+		right: -1.2em;
+		color: #dedede;
+		font-size: 2em;
+		font-family: -webkit-pictograph;
+	}
+	& .disabled{
+		display: none;
+	}
+	.owl-carousel {
+		touch-action: none;
+	}
+}
+.owl-dots {
+	position: absolute;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+
+    .owl-dot {
+    	display: inline-block;
+    	padding: 0.65em;
+    	background: #dedede;
+    	border-radius: 50%;
+    	margin: 0.2em;
+
+    	& .active,
+    	&:hover {
+    		span {
+    			background: black;
+    		}
+    	}
+    }
+}

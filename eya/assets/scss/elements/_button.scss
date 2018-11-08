@@ -1,0 +1,57 @@
+@mixin button($border, $text, $borderH, $textH, $backgroundH){
+  @include fontSize(14px);
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text;
+  position: relative;
+  z-index: 1;
+  padding: 1em 3.5em;
+  line-height: 1;
+  text-align: center;
+
+  transition: all 0.2s ease-in-out;
+
+  &:before{
+  	@include absoluteFullContainer;
+    display: block;
+    content: '';
+    z-index: -1;
+
+    border: 1px solid $border;
+  
+    transition: all 0.2s ease-in-out;
+
+  }
+
+  &:after{
+  	@include absoluteFullContainer;
+    display: block;
+    content: '';
+    right: 100%;
+    background-color: $backgroundH;
+    z-index: -1;
+  
+    transition: all 0.2s ease-in-out;
+
+  }
+
+  &:hover{
+    color: $textH;
+    
+    &:before{
+      top: 0.5em;
+      left: 0.5em;
+      right: -0.5em;
+      bottom: -0.5em;
+      border-color: $borderH;
+    }
+
+    &:after{
+      right: 0;
+    }
+  }
+}

@@ -25,7 +25,7 @@ SECRET_KEY = 'u!u5sk%dlb*#z+djo*$epkha82sy3+(6sz2=1h6=n^m@!dyo(g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost']
+ALLOWED_HOSTS = ['eya.cookielabs.com.mx', 'localhost', 'dev.ensamblesyadornos.org']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'imagekit',
     'nested_inline',
+    'webpack_loader.apps.WebpackLoaderConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,21 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'assets'),
+]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)

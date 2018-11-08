@@ -19,9 +19,21 @@
       {% if user.is_authenticated  %}
         {% if user.is_superuser %}
         {% else %}
-          <a href="{% url 'cart' pk=user.customer.cart.pk %}" class="button-white" title="Carrito">
-            <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
-          </a>
+          {% if user.customer %}
+            <a href="{% url 'cart' pk=user.customer.cart.pk %}" class="button-white" title="Carrito">
+              <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+            </a>
+          {% endif %}
+          {% if user.seller %}
+            <select id="selectCustomer" class="select" name="customer">
+              {% for customer in customers %}
+                <option value="{{ customer.cart.pk }}"{% if customer.cart.pk == request.session.cart_selected %} selected="selected"{% endif %}>{{ customer.name }}</option>
+              {% endfor %}
+            </select>
+            <a id="linkCarrito" data-domain="{{ domain }}" class="button-white" title="Carrito">
+              <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+            </a>
+          {% endif %}
         {% endif %}
       {% else %}
         <a href="{% url 'login' %}" class="button-white" title="Ir a order de compra">
