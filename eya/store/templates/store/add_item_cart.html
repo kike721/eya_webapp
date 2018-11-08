@@ -1,0 +1,14 @@
+<div>
+	<p>Hola mundo</p>
+	<p>{{ product }}</p>
+</div>
+
+<script type="text/javascript">
+	if (localStorage.products){
+		console.log('Existe')
+		console.log(sessionStorage.products);
+	}else{
+		console.log('No existe')
+		sessionStorage.setItem("products", {'pk': '{{ product.pk }}' })
+	}
+</script>
