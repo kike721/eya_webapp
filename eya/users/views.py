@@ -102,3 +102,18 @@ def set_customer(request):
         'cart_id': cart_id
     }
     return JsonResponse(data)
+
+
+def get_customers(request):
+    q = request.GET.get('q', None)
+    customers = Customer.objects.filter(name__icontains=q)[:20]
+    customers_data = list()
+    for customer in customers:
+        customer_data = dict()
+        customer_data['id'] = customer.cart.pk
+        customer_data['name'] = customer.name
+        customers_data.append(customer_data)
+    data = {
+        'customers': customers_data
+    }
+    return JsonResponse(data)

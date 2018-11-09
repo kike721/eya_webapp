@@ -93,6 +93,23 @@
 
             });
 
+            $('#search-customer').change(function() {
+                var name = $(this).val()
+               if (name.length > 2) {
+                    console.log(name);
+                    $.ajax({
+                        url: "{% url 'customer-search' %}",
+                        data: {
+                          'q': name
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                          console.log('Resultados ' + data);
+                        }
+                    });
+                }
+            });
+
           });
         </script>
     {% endif %}
