@@ -110,7 +110,7 @@ def get_customers(request):
     customers_data = list()
     for customer in customers:
         customer_data = dict()
-        customer_data['id'] = customer.cart.pk
+        customer_data['id'] = customer.cart.pk if hasattr(customer, 'cart') else 0
         customer_data['name'] = customer.name
         customers_data.append(customer_data)
     data = {

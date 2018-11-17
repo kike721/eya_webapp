@@ -72,8 +72,6 @@
 
           $(document).ready(function() {
             var idCustomer = $("#selectCustomer").val();
-          
-            console.log('result' + results);
             $(".formCart").val(idCustomer);
             setDomain(idCustomer);
 
@@ -95,9 +93,12 @@
 
             });
 
-            $('#search-customer').change(function() {
+            $('#search-customer').keyup(function() {     
               var name = $(this).val()
               var customers = []
+              var customer_element = $('.results');
+              customer_element.html('')
+              htmlResults = ''
 
                if (name.length > 2) {
                     $.ajax({
@@ -113,7 +114,9 @@
 
                           customers.map(function(customer, index) {
                             console.log(customer.name)
+                            htmlResults += '<p class="link_results"data-id="'+customer.id+'">' + customer.name + '</p>' 
                           });
+                          customer_element.html(htmlResults)
                         }
                     });
                 }

@@ -80,7 +80,7 @@
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  max-width: 150px;
+  max-width: 250px;
   height: 40px;
   border: 1px solid #c9c9c9;
   color: black;
@@ -88,7 +88,7 @@
   outline-color: none;
   /*background: url(/static/img/arrow-bottom.svg) no-repeat calc(98% - 0.5em);*/
   background-color: white;
-  background-size: 25px;
+  background-size: 15px;
   margin-bottom: 0; }
 
 @media (min-width: 1200px) {
