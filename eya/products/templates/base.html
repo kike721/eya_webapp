@@ -72,6 +72,8 @@
 
           $(document).ready(function() {
             var idCustomer = $("#selectCustomer").val();
+          
+            console.log('result' + results);
             $(".formCart").val(idCustomer);
             setDomain(idCustomer);
 
@@ -94,9 +96,10 @@
             });
 
             $('#search-customer').change(function() {
-                var name = $(this).val()
+              var name = $(this).val()
+              var customers = []
+
                if (name.length > 2) {
-                    console.log(name);
                     $.ajax({
                         url: "{% url 'customer-search' %}",
                         data: {
@@ -105,6 +108,12 @@
                         dataType: 'json',
                         success: function (data) {
                           console.log('Resultados ' + data);
+                          customers = data.customers
+                          console.log( 'customers' + customers)
+
+                          customers.map(function(customer, index) {
+                            console.log(customer.name)
+                          });
                         }
                     });
                 }
