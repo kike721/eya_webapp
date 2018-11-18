@@ -21,6 +21,7 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ('customer', 'date')
     inlines = [DetailOrderInline]
     search_fields = ('customer__name',)
+    list_filter = ('created', )
 
     def date(self, obj):
         return obj.created.strftime('%d-%m-%Y')
