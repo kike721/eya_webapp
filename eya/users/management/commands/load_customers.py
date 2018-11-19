@@ -8,6 +8,7 @@ from django.core.management.base import BaseCommand
 from django.db.models import Q
 
 from users.models import Customer
+from store.models import Cart
 from utils.models import StateMx
 
 STATES_MX = {
@@ -74,5 +75,6 @@ class Command(BaseCommand):
                         # print data
                         if created:
                             created, customer = Customer.objects.get_or_create(**data)
+                            Cart.objects.create(customer=customer)
                 i += 1
             print 'End fill customers'

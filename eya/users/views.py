@@ -106,7 +106,7 @@ def set_customer(request):
 
 def get_customers(request):
     q = request.GET.get('q', None)
-    customers = Customer.objects.filter(name__icontains=q)[:20]
+    customers = Customer.objects.filter(name__icontains=q)[:5]
     customers_data = list()
     for customer in customers:
         customer_data = dict()

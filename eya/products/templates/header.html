@@ -29,7 +29,7 @@
               <input id="search-customer" placeholder="Buscar cliente" class="select" type="text" name="customer"/>
               <div style="font-size: 12px; color: black; background: white; padding: 0.2em 0.5em; z-index: 1; position: absolute;" class="results"></div>  
             </div>
-            <a id="linkCarrito" data-domain="{{ domain }}" class="button-white" title="Carrito">
+            <a id="linkCarrito" data-domain="{{ domain }}" data-cart="{{ request.session.cart_selected }}" class="button-white" title="Carrito">
               <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
             </a>
           {% endif %}
