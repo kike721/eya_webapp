@@ -73,7 +73,8 @@ class DetailOrder(BaseModel):
         Order, verbose_name=u'Orden', related_name='details')
     product = models.ForeignKey(Product, verbose_name=u'Producto')
     quantity = models.PositiveIntegerField(verbose_name='Cantidad')
-    price = models.DecimalField(verbose_name='Precio', max_digits=8, decimal_places=2, default=0)
+    price = models.DecimalField(verbose_name='Precio', max_digits=10, decimal_places=2, default=0)
+    discount = models.PositiveIntegerField(verbose_name='Descuento', default=0)
 
     class Meta:
         verbose_name = u'Detalle de orden'
