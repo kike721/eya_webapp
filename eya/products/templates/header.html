@@ -25,12 +25,11 @@
             </a>
           {% endif %}
           {% if user.seller %}
-            <select id="selectCustomer" class="select" name="customer">
-              {% for customer in customers %}
-                <option value="{{ customer.cart.pk }}"{% if customer.cart.pk == request.session.cart_selected %} selected="selected"{% endif %}>{{ customer.name }}</option>
-              {% endfor %}
-            </select>
-            <a id="linkCarrito" data-domain="{{ domain }}" class="button-white" title="Carrito">
+            <div style="position: relative;">
+              <input id="search-customer" placeholder="Buscar cliente" class="select" type="text" name="customer"/>
+              <div style="font-size: 12px; color: black; background: white; padding: 0.2em 0.5em; z-index: 1; position: absolute;" class="results"></div>  
+            </div>
+            <a id="linkCarrito" data-domain="{{ domain }}" data-cart="{{ request.session.cart_selected }}" class="button-white" title="Carrito">
               <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
             </a>
           {% endif %}

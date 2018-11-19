@@ -66,31 +66,66 @@
 
           function setDomain(idCustomer) {
             var linkCarrito = $("#linkCarrito").data("domain");
-            linkCarrito += 'carrito/' + idCustomer;
+            linkCarrito += '/carrito/' + idCustomer;
+            $(".formCart").val(idCustomer);
             $("#linkCarrito").attr('href', linkCarrito);
+            $.ajax({
+              url: "{% url 'customer-selected' %}",
+              data: {
+                'cart_id': idCustomer
+              },
+              dataType: 'json',
+              success: function (data) {
+                console.log('Succes');
+              }
+            });
           };
 
           $(document).ready(function() {
-            var idCustomer = $("#selectCustomer").val();
+            $('.results').hide();
+
+            var idCustomer = $("#linkCarrito").data('cart');
             $(".formCart").val(idCustomer);
             setDomain(idCustomer);
 
-            $("#selectCustomer").change(function() {
-              var idCustomer = $(this).val();
-              $(".formCart").val(idCustomer);
-              setDomain(idCustomer);
+            $('#search-customer').keyup(function() {     
+              var name = $(this).val()
+              var customers = []
+              var customer_element = $('.results');
+              customer_element.html('')
+              htmlResults = ''
 
-              $.ajax({
-                url: "{% url 'customer-selected' %}",
-                data: {
-                  'cart_id': idCustomer
-                },
-                dataType: 'json',
-                success: function (data) {
-                  console.log('Seteo el carrito ' + data.cart_id);
-                }
-              });
+              if (name.length > 2) {
+                $.ajax({
+                  url: "{% url 'customer-search' %}",
+                  data: {
+                    'q': name
+                  },
+                  dataType: 'json',
+                  success: function (data) {
+                    customers = data.customers
+                    if (customers.length > 0) {
+                      $('.results').show();
+                      customers.map(function(customer, index) {
+                        htmlResults += '<p class="link_results" data-id="'+customer.id+'">' + customer.name + '</p>' 
+                      });
+                      customer_element.html(htmlResults)
+                    } else {
+                      $('.results').hide();
+                    }
+                  }
+                });
+              }
+              if (name.length <= 2) {
+                $('.results').hide();  
+              }
+            });
 
+            $('.results').on('click', '.link_results', function() {
+              var idCart = $(this).data('id');
+              setDomain(idCart);
+              $('#search-customer').val('');
+              $('.results').hide();
             });
 
           });
