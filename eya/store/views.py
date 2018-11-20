@@ -59,3 +59,17 @@ def update_cart(request, pk):
             return HttpResponseRedirect(reverse('customer-profile', kwargs={'pk': cart.customer.pk}))
     return render(
         request, 'store/list_items.html', {'cart': cart, 'pk': pk, 'customers': customers, 'domain': domain})
+
+
+def history(request):
+    id_cart = request.session['cart_selected']
+    cart = Cart.objects.get(pk=id_cart)
+    customer = cart.customer
+    products = cart.get_products()
+    history_data = []
+    domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+    for product in products:
+        history_product = DetailOrder.objects.filter(product=product, order__customer=customer).order_by('-created')
+        history_data.append({'code': product.code, 'history': history_product})
+    return render(
+        request, 'store/history.html', {'domain': domain, 'history': history_data, 'customer': customer })
