@@ -14,6 +14,12 @@ class Cart(BaseModel):
     customer = models.OneToOneField(
         Customer, verbose_name='Usuario', related_name='cart')
 
+    def get_products(self):
+        products = list()
+        for detail in self.details.all():
+            products.append(detail.product)
+        return products
+
 class DetailCart(models.Model):
     cart = models.ForeignKey(
         Cart, verbose_name='Detalle de carrito', related_name='details')

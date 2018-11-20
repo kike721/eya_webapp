@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Lista de Pedido | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/order-list.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div class="content-store">
+      <h2>Historial de precios por producto</h2>
+      <h2>{{ customer }}</h2>
+    </div>
+    {% for product in history %}
+      <h2>{{ product.code }}</h2>
+      <div class="content-list">
+        <div class="content-flex">
+          <div class="item-flex">
+            <h4>Fecha</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Precio</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Descuento</h4>
+          </div>
+        </div>
+        {% for data in product.history %}
+          <div class="content-flex"">
+            <div class="item-flex">
+              <p>{{ data.created }}</p>
+            </div>
+            <div class="item-flex">
+              <p class="item">{{ data.price }}</p>
+            </div>
+            <div class="item-flex-big">
+              <p>{{ data.discount }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+
+
