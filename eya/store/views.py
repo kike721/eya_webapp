@@ -34,8 +34,8 @@ def add_detail_cart(request):
 
 def update_cart(request, pk):
     cart = Cart.objects.get(pk=pk)
-    customers = Customer.objects.filter(active=True)
     domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+    customer = cart.customer
     if request.POST:
         data = []
         for detail in cart.details.all():
@@ -58,18 +58,22 @@ def update_cart(request, pk):
             send_order_customer(order)
             return HttpResponseRedirect(reverse('customer-profile', kwargs={'pk': cart.customer.pk}))
     return render(
-        request, 'store/list_items.html', {'cart': cart, 'pk': pk, 'customers': customers, 'domain': domain})
+        request, 'store/list_items.html', {'cart': cart, 'pk': pk, 'customer': customer, 'domain': domain})
 
 
 def history(request):
     id_cart = request.session['cart_selected']
     cart = Cart.objects.get(pk=id_cart)
     customer = cart.customer
-    products = cart.get_products()
-    history_data = []
     domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+    orders = DetailOrder.objects.filter(order__customer=customer)
+    products = list()
+    for order in orders:
+        if order.product not in products:
+            products.append(order.product)
+    history = []
     for product in products:
-        history_product = DetailOrder.objects.filter(product=product, order__customer=customer).order_by('-created')
-        history_data.append({'code': product.code, 'history': history_product})
+        data_history = DetailOrder.objects.filter(product=product, order__customer=customer).order_by('-created')
+        history.append({'code': product.code_eyamex, 'history': data_history})
     return render(
-        request, 'store/history.html', {'domain': domain, 'history': history_data, 'customer': customer })
+        request, 'store/history.html', {'domain': domain, 'history': history, 'customer': customer })
