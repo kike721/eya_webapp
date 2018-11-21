@@ -96,6 +96,14 @@
 			display: block;
 		}
 	}
+
+	& .link_results{
+		margin: 0;
+		padding: 1em;
+		&:hover{
+			background: #d8d0d0;
+		}
+	}
 }
 
 @media (min-width: 1200px){
