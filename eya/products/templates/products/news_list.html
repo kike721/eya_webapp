@@ -29,30 +29,13 @@
     {% endif %}
   </div>
 
-  <!-- PAGINADOR -->
+  <!-- Paginador -->
+  {% include "products/parts/paged.html" %}
+  <!-- /Paginador -->
 
-  <div class="pagination">
-    <div>
-      {% if page_obj.has_previous %}
-        <a href="?page=1&q={{q}}" class="button-paged">1</a>
-        <a href="?page={{ page_obj.previous_page_number }}&q={{q}}" class="button-paged">&#60;</a>
-      {% endif %}
-    </div>
-    
-    <div class="total-pages">
-      {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
-    </div>
-    
-    <div>
-    {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}&q={{q}}" class="button-paged">&#62;</a>
-      <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}" class="button-paged">{{ page_obj.paginator.num_pages }}</a>
-    {% endif %}
-    </div>
-    
-  </div>
-
-  <!-- /PGINADORS -->
+  <!-- Pop up detalle de prodcuto -->
+  {% include "products/parts/popup_detail.html" %}
+  <!-- /Pop up detalle de prodcuto -->
 
 </div>
 {% endblock %}
