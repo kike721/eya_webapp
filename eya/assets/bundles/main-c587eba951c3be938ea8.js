@@ -176,7 +176,6 @@ var popUpDetail = function(){
 		var text = parent.find('#code_eyamex').clone();
 		var desc = parent.find('#description__eyamex').clone();
 		var id_product = parent.find('#id_product').val();
-		console.log(id_product);
 		var img = parent.find('#image_eyamex').attr('style');
 
 		$('body').css('overflow', 'hidden');
