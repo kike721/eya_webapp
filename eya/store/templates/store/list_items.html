@@ -10,9 +10,11 @@
 	<div>
 		<div class="content-store">
 			<h2>Lista de pedido</h2>
+			{% if customer %}
+		  	  <h2>{{ customer }}</h2>
+			{% endif %}
 			<div class="note">Los productos estan sujetos a inventario.</div>
 		</div>
-
 		<form action="{% url 'cart' pk=pk %}" method="POST" class="content-store">
 			{% csrf_token %}
 			<div class="content-list">
