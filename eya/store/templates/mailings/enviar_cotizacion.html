@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet"> 
-    <title>Nuevo pedido</title>
+    <title>Solicitud de pedido recibido</title>
     
     <style>
       html{
@@ -47,9 +47,6 @@
       .inner-table{
         width: 500px;
       }
-      .left{
-      	text-align: left;
-      }
       .button{
         color: #313131;
         text-decoration: none;
@@ -81,7 +78,7 @@
                           
                         </td>
                         <td>
-                          <p style="font-size:10px; text-align:right;">{{ order.created }}</p>
+                          <p style="font-size:10px; text-align:right;"></p>
                         </td>
                       </tr>
                     </table>
@@ -94,59 +91,61 @@
               <tbody>
                 <tr>
                   <td>
-                    <table border="0" cellpadding="0" cellspacing="0" width="600">
+                    <table border="0" cellpadding="0" cellspacing="0" width="500">
                       <thead>
                         <tr>
                           <td>
-                            <img src="https://s-media-cache-ak0.pinimg.com/originals/3a/ef/8e/3aef8e019cc0c67e2c28309431df8e4f.jpg" alt="Ensambles y Adornos" width="600" height="210">
+                            <img src="https://s-media-cache-ak0.pinimg.com/originals/3a/ef/8e/3aef8e019cc0c67e2c28309431df8e4f.jpg" alt="Ensambles y Adornos" width="500" height="170">
                           </td>
                         </tr>
-                      </thead>  
+                      </thead>
 
                       <tbody>
-
                         <tr style="background-color:#ffffff;">
-                          <td style="padding: 30px 15px;">
+                          <td style="padding:50px;">
                             <table border="0" cellpadding="0" cellspacing="0">
                               <tbody>
                                 <tr>
-                                  <td class="left"> 
-                                    <p><strong>Nombre:</strong> <span>{{order.customer.name}}</span></p>
-                                    <p><strong>Dirección:</strong> <span>{{order.customer.address}}</span></p>
-                                    <p><strong>RFC:</strong> <span>{{order.customer.rfc}}</span></p>
-                                    <p><strong>Telefono:</strong> <span>{{order.customer.phone}}</span></p>
+                                  <td>
+                                    <h1>Cotización de orden # {{ order.pk }}</h1>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
-                                  	<table  class="inner-table">
-                                  		<thead>
-                                  			<th>Cantidad</th>
-                                  			<th>Código</th>
-                                  			<th>Descripción</th>
-                                  		</thead>
-                                  		<tbody>
-                                  			{% for detail in details %}
+                                    <table  class="inner-table">
+                                      <thead>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Descripción</th>
+                                      </thead>
+                                      <tbody>
+                                        {% for detail in details %}
                                           <tr>
-	                                  			<td>{{detail.quantity}}</td>
-	                                  			<td>{{detail.product.code_eyamex}}</td>
-	                                  			<td>{{detail.product.description}}</td>
+                                          <td>{{detail.quantity}}</td>
+                                          <td>{{detail.price}}</td>
+                                          <td>{{detail.product.description}}</td>
                                           </tr>
-                                  			{% endfor %}
-                                  		</tbody>
-                                  	</table>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td align="center" style="padding: 30px 0;">
-                                    
+                                    <a href="{{url}}" title="Aceptar cotización" target="_blank" class="button">Acepta la cotización</a>
                                   </td>
                                 </tr>
                               </tbody>
                               <tfoot>
                                 <tr>
                                   <td align="center" style="padding: 30px 0 0;">
-                                    
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                        <td style="padding: 0 5px;">
+                                          <p>Tel: 5250-9046</p>
+                                        </td>
+                                      </tr>
+                                    </table>
                                   </td>
                                 </tr>
                               </tfoot>
@@ -158,7 +157,9 @@
                       <tfoot>
                         <tr>
                           <td align="center" style="padding: 25px 0 0;">
-
+                            <a href="http://dev.ensamblesyadornos.org/" title="Ensambles y Adornos" target="_blank" style="display:block; width: 100px; text-decoration: none; color: black; font-weight: 600;">
+                              Visita nuestro sitio
+                            </a>
                           </td>
                         </tr>
                       </tfoot>
