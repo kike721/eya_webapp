@@ -7,36 +7,54 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div class="content-store">
-      <h2>Cotización</h2>
-      <h2>{{ order }}</h2>
+
+  <div class="update-quotation">
+    <div>
+      <h2 class="update-quotation__title">{{ order }}</h2>
+      <div class="update-quotation__note">Marque con la opción "ACEPTAR" los productos que desea se surtan con los precios cotizados.</div>
     </div>
     <form action="{% url 'update_quotation' pk=order.pk %}" method="POST">
     	{% csrf_token %}
-    	{{ form.management_form }}
-    	<div>
-    		<span>Producto</span>
-    		<span>Cantidad</span>
-    		<span>Precio</span>
-    		<span>Estatus</span>
-    	</div>
-    	{% for detail in form.forms %}
-    		{% for hidden in detail.hidden_fields %}
-    		  	{{hidden}}
-    		{% endfor %}
-    		{{ detail.instance.product }}
-    		{{ detail.instance.quantity }}
-    		$ {{ detail.instance.price }}
-			{% for field in detail.visible_fields %}
-				{{field.errors}}
-				{{field}}
-			{% endfor %}
-    	{% endfor %}
-    	<button class="button-act" type="submit" name="actualizar">Guardar</button>
+      {{ form.management_form }}
+      <div class="update-quotation__info-container">
+        <div class="update-quotation__info-detail">
+          <div class="item-flex">
+            <h4>Producto</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Cantidad</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Precio</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Estatus</h4>
+          </div>
+        </div>
+        {% for detail in form.forms %}
+          {% for hidden in detail.hidden_fields %}
+              {{hidden}}
+          {% endfor %}
+          <div class="update-quotation__info-detail">
+            <div class="item-flex">
+              <p>{{ detail.instance.product }}</p>
+            </div>
+            <div class="item-flex">
+              <p class="">{{ detail.instance.quantity }}</p>
+            </div>
+            <div class="item-flex">
+              <p class="">$ {{ detail.instance.price }}</p>
+            </div>
+            {% for field in detail.visible_fields %}
+              {{field.errors}}
+              {{field}}
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <div class="update-quotation__button">
+          <button class="update-quotation__button-save" type="submit" name="Guardar Cotizacion">Guardar y Aprobar</button> 
+        </div> 
     </form>
+    </div>
   </div>
 {% endblock %}
-
-
-
