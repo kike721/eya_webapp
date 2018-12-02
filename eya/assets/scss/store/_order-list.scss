@@ -7,6 +7,8 @@
 	background-color: #d9eaeaa8;
 	padding: 1em;
 	margin: 1em 0;
+	font-size: 13px;
+	color: gray;
 }
 
 .content-list{
@@ -14,10 +16,11 @@
 	padding: 0.5em;
     margin-bottom: 1em;
     overflow-y: scroll;
+    font-size: 14px;
 }
 
 .content-flex{
-	display: flex;
+	display: flex;	
 	border-bottom: 2px solid #c5c4c4;
 	width: 1200px;
 }
@@ -26,7 +29,7 @@
 	width: 100%;
 	display: flex;
     align-items: center;
-    padding: 0.5em;	
+    padding: 0.5em;
 }
 
 .item-flex-big{
@@ -41,11 +44,13 @@
 	margin-bottom: 0.5em;
 	width: 100%;
     max-width: 100px;
+    border: 1px solid black;
 }
 
 .content-buttons{
 	display: flex;
     justify-content: flex-end;
+    font-size: 14px;
 }
 
 .button-submit{
