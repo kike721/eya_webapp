@@ -6,59 +6,62 @@
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 {% block content %}
-	<div class="profile">
-		<div class="profile__container">
-			<div class="profile__flex">
-				<div>
-					<div class="profile__avatar">
-						<img class="profile__img" src="/static/img/avatar.png" alt="{{object.name}}">
-					</div>
-					<hr />
-					<div class="profile__date">
-						<h5>Nombre: <span>{{ object.name }}</span></h5>
-						<h5>Dirección: <span>{{ object.address }}</span></h5>
-						<h5>Correo: <span>{{ object.user.email }} </span></h5>
-						<h5>RFC: <span>{{ object.rfc }}</span></h5>
-						<h5>Teléfono: <span>{{ object.phone }}</span></h5>
-					</div>
-				</div>
-				<div class="profile__history">
-					<h2>Historial</h2>
-					<hr />
-					<div class="profile__history__table">
-						{% if orders.all.count > 0 %}
-							
-							{% for order in orders.all %}
-								<div class="toggleRow">
-									<button class="profile__acordion toggleBtn">
-										Orden: {{ order.pk }} Fecha: {{ order.created|date:"d-m-Y" }}
-										<img class="profile__acordion__arrow" src="/static/img/arrow-bottom.svg" alt="Eliminar">
-									</button>
-									<div class="toggleHide">
-									<div class="profile__acordion__detail">
-										<p class="quantity title">Pzas</p>
-										<p class="code title">Código</p>
-										<p class="description title">Descripción</p>
-									</div>
-									{% for detail in order.details.all %}
-										<div class="profile__acordion__detail">
-											<p class="quantity">{{ detail.quantity }}</p>
-											<p class="code">{{ detail.product }}</p>
-											<p class="description">{{ detail.product.description }}</p>
-										</div>
-									{% endfor %}
-									</div>
-								</div>
-							{% endfor %}
-							
-						{% else %}
-							<h5>Aún no tienes un historial</h5>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="profile">
+    <div class="profile__container">
+      <div class="profile__flex">
+        <div>
+          <div class="profile__avatar">
+            <img class="profile__img" src="/static/img/avatar.png" alt="{{object.name}}">
+          </div>
+          <hr />
+          <div class="profile__date">
+            <h5>Nombre: <span>{{ object.name }}</span></h5>
+            <h5>Dirección: <span>{{ object.address }}</span></h5>
+            <h5>Correo: <span>{{ object.user.email }} </span></h5>
+            <h5>RFC: <span>{{ object.rfc }}</span></h5>
+            <h5>Teléfono: <span>{{ object.phone }}</span></h5>
+          </div>
+        </div>
+        <div class="profile__history">
+          <h2>Historial</h2>
+          <hr />
+          <div class="profile__history__table">
+            {% if orders.all.count > 0 %}
+              
+              {% for order in orders.all %}
+                <div class="toggleRow">
+                  <button class="profile__acordion toggleBtn">
+                    Orden: {{ order.pk }} Fecha: {{ order.created|date:"d-m-Y" }} Estatus {{ order.get_status_display }}
+                    <img class="profile__acordion__arrow" src="/static/img/arrow-bottom.svg" alt="Eliminar">
+                  </button>
+                  <div class="toggleHide">
+                    <div class="profile__acordion__detail">
+                      <p class="quantity title">Pzas</p>
+                      <p class="code title">Código</p>
+                      <p class="description title">Descripción</p>
+                    </div>
+                    {% for detail in order.details.all %}
+                      <div class="profile__acordion__detail">
+                        <p class="quantity">{{ detail.quantity }}</p>
+                        <p class="code">{{ detail.product }}</p>
+                        <p class="description">{{ detail.product.description }}</p>
+                      </div>
+                    {% endfor %}
+                    {% if order.status == order.QUOTATION %}
+                      <a href="{% url 'update_quotation' pk=order.pk %}">Revisar Cotización</a>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+              
+            {% else %}
+              <h5>Aún no tienes un historial</h5>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block extra_scripts %}

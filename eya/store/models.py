@@ -45,10 +45,14 @@ class DetailSellerCart(models.Model):
 class Order(BaseModel):
 
     PENDING = 'P'
+    QUOTATION = 'Q'
+    SUPPLY = 'S'
     FINISHED = 'F'
 
     STATUS_ORDER = (
         (PENDING,'PENDIENTE'),
+        (QUOTATION,'COTIZACIÓN'),
+        (SUPPLY,'SURTIDO'),
         (FINISHED,'FINALIZADA'),
     )
 
@@ -75,12 +79,24 @@ class Order(BaseModel):
 
 
 class DetailOrder(BaseModel):
+
+    PENDING = 'P'
+    ACCEPT = 'A'
+    DENY = 'D'
+
+    STATUS_DETAIL = (
+        (PENDING,'PENDIENTE'),
+        (ACCEPT,'ACEPTAR'),
+        (DENY,'RECHAZAR'),
+    )
+
     order = models.ForeignKey(
         Order, verbose_name=u'Orden', related_name='details')
     product = models.ForeignKey(Product, verbose_name=u'Producto')
     quantity = models.PositiveIntegerField(verbose_name='Cantidad')
     price = models.DecimalField(verbose_name='Precio', max_digits=10, decimal_places=2, default=0)
     discount = models.PositiveIntegerField(verbose_name='Descuento', default=0)
+    status = models.CharField(verbose_name='Estatus', max_length=3, choices=STATUS_DETAIL, default=PENDING)
 
     class Meta:
         verbose_name = u'Detalle de orden'

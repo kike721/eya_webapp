@@ -154,7 +154,7 @@ class CustomerForm(forms.ModelForm):
             customer.state = data['state']
             customer.phone = data['phone']
             customer.save()
-        if 'password' in data:
+        if 'password' in data and data['password'] != '':
             user.set_password(data['password'])
         user.save()
         return customer
@@ -241,7 +241,7 @@ class CustomerAdminForm(forms.ModelForm):
             customer.phone = data['phone']
             customer.active = data['active']
             customer.save()
-        if 'password' in data:
+        if 'password' in data and data['password'] != '':
             user.set_password(data['password'])
         user.save()
         return customer
@@ -324,7 +324,7 @@ class SellerAdminForm(forms.ModelForm):
             seller.rfc = data['rfc']
             seller.address = data['address']
             seller.phone = data['phone']
-        if 'password' in data:
+        if 'password' in data and data['password'] != '':
             user.set_password(data['password'])
         user.save()
         seller.save()
