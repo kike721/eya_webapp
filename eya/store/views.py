@@ -87,6 +87,7 @@ def update_quotation(request, pk):
         with transaction.atomic():
             if form.is_valid():
                 form.save()
+        order.save()
     else:
         form = QuotationFormset(instance=order)
     return render(

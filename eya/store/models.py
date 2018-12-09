@@ -46,11 +46,13 @@ class Order(BaseModel):
 
     PENDING = 'P'
     QUOTATION = 'Q'
+    SUPPLY = 'S'
     FINISHED = 'F'
 
     STATUS_ORDER = (
         (PENDING,'PENDIENTE'),
         (QUOTATION,'COTIZACIÓN'),
+        (SUPPLY,'SURTIDO'),
         (FINISHED,'FINALIZADA'),
     )
 

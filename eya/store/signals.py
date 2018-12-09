@@ -2,8 +2,8 @@
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
-from .email import send_quotation_customer
-from .models import Order
+from .email import send_quotation_customer, send_supply_eya, send_supply_customer
+from .models import DetailOrder,Order
 
 
 @receiver(pre_save, sender=Order)
@@ -17,5 +17,15 @@ def check_status_order(sender, instance, **kwargs):
 @receiver(post_save, sender=Order)
 def send_email_quotation(sender, instance, **kwargs):
     if (instance.old_status != instance.status) and (instance.status == Order.QUOTATION):
-    	print 'Enviando cotización'
         send_quotation_customer(instance)
+    else:
+        if instance.status == Order.QUOTATION:
+            print 'Estoy aqui'
+            if len(instance.details.filter(status=DetailOrder.PENDING)) == 0:
+                print 'Cambiar estatus a surtido'
+                instance.status = Order.SUPPLY
+                instance.save()
+                print 'Enviar email eya'
+                send_supply_eya(instance)
+                print 'Enviar email a customer'
+                send_supply_customer(instance)
