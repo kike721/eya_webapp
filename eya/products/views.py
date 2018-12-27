@@ -16,16 +16,16 @@ class IndexProducts(ListView):
     paginate_by = 12
 
     def get_queryset(self):
-    	queryset = super(IndexProducts, self).get_queryset()
+    	queryset = super(IndexProducts, self).get_queryset().order_by('code_eyamex')
     	queryset = queryset.filter(spent=False, is_new=False, best_seller=False)
     	return queryset
 
     def get_context_data(self, **kwargs):
     	context = super(IndexProducts, self).get_context_data(**kwargs)
         domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
-    	context['news'] = Product.objects.filter(spent=False, is_new=True)[:20]
-    	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True)[:20]
-        context['customers'] = Customer.objects.filter(active=True)
+    	context['news'] = Product.objects.filter(spent=False, is_new=True).order_by('code_eyamex')[:20]
+    	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True).order_by('code_eyamex')[:20]
+        context['customers'] = Customer.objects.filter(active=True).order_by('code_eyamex')
         context['domain'] = domain
     	return context
 
@@ -37,7 +37,7 @@ class IndexProductsResults(ListView):
 
     def get_queryset(self):
         queryset = super(IndexProductsResults, self).get_queryset()
-        queryset = queryset.filter(spent=False)
+        queryset = queryset.filter(spent=False).order_by('code_eyamex')
         q = ''
         if self.request.GET.has_key('q'):
             q = self.request.GET['q']
@@ -62,7 +62,7 @@ class IndexNewProducts(ListView):
 
     def get_queryset(self):
     	queryset = super(IndexNewProducts, self).get_queryset()
-    	queryset = queryset.filter(spent=False, is_new=True)
+    	queryset = queryset.filter(spent=False, is_new=True).order_by('code_eyamex')
     	q = ''
     	if self.request.GET.has_key('q'):
     		q = self.request.GET['q']
@@ -87,7 +87,7 @@ class IndexBestSellerProducts(ListView):
 
     def get_queryset(self):
     	queryset = super(IndexBestSellerProducts, self).get_queryset()
-    	queryset = queryset.filter(spent=False, best_seller=True)
+    	queryset = queryset.filter(spent=False, best_seller=True).order_by('code_eyamex')
     	q = ''
     	if self.request.GET.has_key('q'):
     		q = self.request.GET['q']
