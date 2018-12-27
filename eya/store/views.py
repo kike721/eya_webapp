@@ -2,13 +2,14 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
+from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView
 
 from products.models import Product
-from store.forms import OrderForm, CartForm, DetailCartFormSet
+from store.forms import OrderForm, CartForm, DetailCartFormSet, QuotationFormset
 from store.models import Cart, DetailCart, DetailOrder, Order
 from store.email import send_order_customer, send_order_eya
 from utils.email import email_investor_confirmation
@@ -77,3 +78,23 @@ def history(request):
         history.append({'code': product.code_eyamex, 'history': data_history})
     return render(
         request, 'store/history.html', {'domain': domain, 'history': history, 'customer': customer })
+
+
+def update_quotation(request, pk):
+    order = Order.objects.get(pk=pk)
+    if request.POST:
+        form = QuotationFormset(request.POST, instance=order)
+        with transaction.atomic():
+            if form.is_valid():
+                form.save()
+        order.save()
+    else:
+        form = QuotationFormset(instance=order)
+    return render(
+        request,
+        'store/update_quotation.html',
+        {
+            'form': form,
+            'order': order,
+        }
+    )

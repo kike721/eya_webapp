@@ -4605,13 +4605,16 @@ input {
 .note {
   background-color: #d9eaeaa8;
   padding: 1em;
-  margin: 1em 0; }
+  margin: 1em 0;
+  font-size: 13px;
+  color: gray; }
 
 .content-list {
   background-color: #fff;
   padding: 0.5em;
   margin-bottom: 1em;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  font-size: 14px; }
 
 .content-flex {
   display: flex;
@@ -4634,11 +4637,13 @@ input {
   padding: 0.7em;
   margin-bottom: 0.5em;
   width: 100%;
-  max-width: 100px; }
+  max-width: 100px;
+  border: 1px solid black; }
 
 .content-buttons {
   display: flex;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+  font-size: 14px; }
 
 .button-submit {
   width: 15%;
@@ -4668,6 +4673,69 @@ input {
     width: 60%; }
   .content-list {
     padding: 2em; } }
+
+.update-quotation {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 2em; }
+  .update-quotation__title {
+    font-size: 1.5em; }
+  .update-quotation__note {
+    background-color: #b9e8f7;
+    padding: 1em;
+    margin: 1em 0;
+    font-size: 13px;
+    color: #131212; }
+  .update-quotation__info-container {
+    background-color: #fff;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    font-size: 14px;
+    overflow-y: scroll; }
+  .update-quotation__info-detail {
+    display: flex;
+    border-bottom: 2px solid #c5c4c4;
+    width: 1200px; }
+    .update-quotation__info-detail select {
+      box-sizing: border-box;
+      font-size: 14px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: auto;
+      height: 40px;
+      margin: auto 0;
+      border: 1px solid #515050;
+      padding: 0.5em 3em 0.5em 2em;
+      outline-color: none;
+      background: url(/static/img/arrow-bottom.svg) no-repeat calc(98% - 0.5em);
+      background-color: #ffffff;
+      background-size: 15px; }
+      .update-quotation__info-detail select option {
+        text-align: center;
+        color: #515050;
+        background-color: #fff; }
+  .update-quotation__button {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0; }
+    @media (min-width: 1200px) {
+      .update-quotation__button {
+        justify-content: flex-end; } }
+  .update-quotation__button-save {
+    width: auto;
+    font-size: 14px;
+    background-color: #ffffff;
+    text-transform: uppercase;
+    color: #2a6d8c;
+    margin: 0.3em;
+    border: 2px solid #2a6d8c;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around; }
 
 .profile {
   background-color: #f3f3f3; }
