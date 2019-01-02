@@ -32,9 +32,11 @@ class Command(BaseCommand):
                             except Exception as e:
                                 obj = None
                             if obj:
-                                if not obj.image:
-                                    obj.image = File(open(path_image_2, 'r'))
-                                    obj.save()
+                                obj.image = File(open(path_products, 'r'))
+                                obj.save()
+                                # if not obj.image:
+                                #     obj.image = File(open(path_image_2, 'r'))
+                                #     obj.save()
                     else:
                         path_image = '{}/{}'.format(path_products, product)
                         code_eyamex = product.split('.')[0]
@@ -43,9 +45,11 @@ class Command(BaseCommand):
                         except Exception as e:
                             obj = None
                         if obj:
-                            if not obj.image:
-                                obj.image = File(open(path_image, 'r'))
-                                obj.save()
+                            obj.image = File(open(path_products, 'r'))
+                            obj.save()
+                            # if not obj.image:
+                            #     obj.image = File(open(path_image, 'r'))
+                            #     obj.save()
             else:
                 code_eyamex = d.split('.')[0]
                 try:
@@ -53,7 +57,9 @@ class Command(BaseCommand):
                 except Exception as e:
                     obj = None
                 if obj:
-                    if not obj.image:
-                        obj.image = File(open(path_products, 'r'))
-                        obj.save()
+                    obj.image = File(open(path_products, 'r'))
+                    obj.save()
+                    # if not obj.image:
+                    #     obj.image = File(open(path_products, 'r'))
+                    #     obj.save()
         print 'Imagenes actualizadas'
