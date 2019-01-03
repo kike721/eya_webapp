@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from decimal import *
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -74,7 +76,7 @@ class Order(BaseModel):
     def total(self):
         total = Decimal(0.0)
         for detail in self.details.all():
-            total += detail.price
+            total += detail.subtotal
         return total
 
 
@@ -104,3 +106,14 @@ class DetailOrder(BaseModel):
 
     def __unicode_(self):
         return u'Order-{} {} {}'.format(self.pk, self.quantity, self.product)
+
+
+    @property
+    def calc_discount(self):
+        percentage = Decimal(self.discount / 100.00)
+        return self.price * self.quantity * percentage
+
+    @property
+    def subtotal(self):
+        return (self.price * self.quantity) - self.calc_discount
+    

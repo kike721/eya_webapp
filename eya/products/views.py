@@ -25,7 +25,8 @@ class IndexProducts(ListView):
         domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     	context['news'] = Product.objects.filter(spent=False, is_new=True).order_by('code_eyamex')[:20]
     	context['best_seller'] = Product.objects.filter(spent=False, best_seller=True).order_by('code_eyamex')[:20]
-        context['customers'] = Customer.objects.filter(active=True).order_by('code_eyamex')
+        context['customers'] = Customer.objects.filter(active=True)
+        context['current_page'] = int(self.request.GET.get('page', 1))
         context['domain'] = domain
     	return context
 
@@ -50,6 +51,7 @@ class IndexProductsResults(ListView):
         domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
         context['q'] = self.q
         context['customers'] = Customer.objects.filter(active=True)
+        context['current_page'] = int(self.request.GET.get('page', 1))
         context['domain'] = domain
         return context
 
@@ -76,6 +78,7 @@ class IndexNewProducts(ListView):
     	context['q'] = self.q
         context['customers'] = Customer.objects.filter(active=True)
         context['domain'] = domain
+        context['current_page'] = int(self.request.GET.get('page', 1))
     	return context
 
 
@@ -101,4 +104,5 @@ class IndexBestSellerProducts(ListView):
     	context['q'] = self.q
         context['customers'] = Customer.objects.filter(active=True)
         context['domain'] = domain
+        context['current_page'] = int(self.request.GET.get('page', 1))
     	return context
