@@ -16,16 +16,9 @@ def check_status_order(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Order)
 def send_email_quotation(sender, instance, **kwargs):
-    if (instance.old_status != instance.status) and (instance.status == Order.QUOTATION):
-        send_quotation_customer(instance)
-    else:
-        if instance.status == Order.QUOTATION:
-            print 'Estoy aqui'
-            if len(instance.details.filter(status=DetailOrder.PENDING)) == 0:
-                print 'Cambiar estatus a surtido'
-                instance.status = Order.SUPPLY
-                instance.save()
-                print 'Enviar email eya'
-                send_supply_eya(instance)
-                print 'Enviar email a customer'
-                send_supply_customer(instance)
+    if instance.status == Order.QUOTATION:
+        if len(instance.details.filter(status=DetailOrder.PENDING)) == 0:
+            instance.status = Order.SUPPLY
+            instance.save()
+            send_supply_eya(instance)
+            send_supply_customer(instance)

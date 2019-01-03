@@ -28,6 +28,12 @@
             <h4>Precio</h4>
           </div>
           <div class="item-flex">
+            <h4>Descuento</h4>
+          </div>
+          <div class="item-flex">
+            <h4>Subtotal</h4>
+          </div>
+          <div class="item-flex">
             <h4>Estatus</h4>
           </div>
         </div>
@@ -45,12 +51,32 @@
             <div class="item-flex">
               <p class="">$ {{ detail.instance.price }}</p>
             </div>
+            <div class="item-flex">
+              <p class="">$ {{ detail.instance.discount }}</p>
+            </div>
+            <div class="item-flex">
+              <p class="">$ {{ detail.instance.subtotal }}</p>
+            </div>
             {% for field in detail.visible_fields %}
               {{field.errors}}
               {{field}}
             {% endfor %}
           </div>
         {% endfor %}
+        <div class="update-quotation__info-detail">
+            <div class="item-flex">
+            </div>
+            <div class="item-flex">
+            </div>
+            <div class="item-flex">
+            </div>
+            <div class="item-flex">
+              <p class="">Total</p>
+            </div>
+            <div class="item-flex">
+              <p class="">$ {{ order.total }}</p>
+            </div>
+          </div>
         <div class="update-quotation__button">
           <button class="update-quotation__button-save" type="submit" name="Guardar Cotizacion">Guardar y Aprobar</button> 
         </div> 

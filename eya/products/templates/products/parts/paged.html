@@ -2,19 +2,32 @@
   <div class="pagination">
     <div>
       {% if page_obj.has_previous %}
-        <a href="?page=1&q={{q}}" class="button-paged">1</a>
+        <a href="?page=1&q={{q}}" class="button-paged">&#60;&#60;</a>
         <a href="?page={{ page_obj.previous_page_number }}&q={{q}}" class="button-paged">&#60;</a>
+        {% if current_page > 2 %}
+          <a href="?page={{ current_page|add:'-2' }}&q={{q}}" class="button-paged">{{ current_page|add:"-2" }}</a>
+        {% endif %}
+        {% if current_page > 1 %}
+          <a href="?page={{ current_page|add:'-1' }}&q={{q}}" class="button-paged">{{ current_page|add:"-1" }}</a>
+        {% endif %}
       {% endif %}
     </div>
     
     <div class="total-pages">
-      {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+      <!--Val una nueva clase para saber que estas en esta página -->
+      <a href="?page={{ current_page }}&q={{q}}" class="button-paged">{{ current_page }}</a>
     </div>
     
     <div>
     {% if page_obj.has_next %}
+      {% if current_page <= page_obj.paginator.num_pages|add:'-1' %}
+        <a href="?page={{ current_page|add:'1' }}&q={{q}}" class="button-paged">{{ current_page|add:"1" }}</a>
+      {% endif %}
+      {% if current_page <= page_obj.paginator.num_pages|add:'-2' %}
+        <a href="?page={{ current_page|add:'2' }}&q={{q}}" class="button-paged">{{ current_page|add:"2" }}</a>
+      {% endif %}
       <a href="?page={{ page_obj.next_page_number }}&q={{q}}" class="button-paged">&#62;</a>
-      <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}" class="button-paged">{{ page_obj.paginator.num_pages }}</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}" class="button-paged">&#62;&#62;</a>
     {% endif %}
     </div>
     

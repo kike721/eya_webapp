@@ -115,18 +115,29 @@
                                   <td>
                                     <table  class="inner-table">
                                       <thead>
+                                        <th>Codigo</th>
                                         <th>Cantidad</th>
                                         <th>Precio</th>
-                                        <th>Descripción</th>
+                                        <th>Descuento</th>
+                                        <th>Subtotal</th>
                                       </thead>
                                       <tbody>
                                         {% for detail in details %}
                                           <tr>
-                                          <td>{{detail.quantity}}</td>
-                                          <td>{{detail.price}}</td>
-                                          <td>{{detail.product.description}}</td>
+                                            <td>{{detail.product.code_eyamex}}</td>
+                                            <td>{{detail.quantity}}</td>
+                                            <td>${{detail.price}}</td>
+                                            <td>{{detail.discount}}%</td>
+                                            <td>${{detail.subtotal}}</td>
                                           </tr>
                                         {% endfor %}
+                                        <tr>
+                                          <td></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td>Total</td>
+                                          <td>${{order.total}}</td>
+                                        </tr>
                                       </tbody>
                                     </table>
                                   </td>
