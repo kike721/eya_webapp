@@ -81,7 +81,9 @@ class Product(BaseModel):
     description = models.CharField(verbose_name=u'Descripción', max_length=255)
     meta_description = models.TextField()
     is_new = models.BooleanField(verbose_name='¿Es nuevo?')
+    home_is_new = models.BooleanField(verbose_name='¿Es nuevo aparece en banner?', default=False)
     best_seller = models.BooleanField(verbose_name=u'¿Más vendido?')
+    home_best_seller = models.BooleanField(verbose_name=u'¿Más vendido aparece en banner?', default=False)
     spent = models.BooleanField(verbose_name='¿Agotado?')
 
     class Meta:

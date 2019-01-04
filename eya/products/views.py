@@ -24,8 +24,10 @@ class IndexProducts(ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexProducts, self).get_context_data(**kwargs)
         domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
-        context['news'] = Product.objects.filter(spent=False, is_new=True).order_by('code_eyamex')[:20]
-        context['best_seller'] = Product.objects.filter(spent=False, best_seller=True).order_by('code_eyamex')[:20]
+        context['news'] = Product.objects.filter(
+            spent=False, is_new=True, home_is_new=True).order_by('code_eyamex')[:20]
+        context['best_seller'] = Product.objects.filter(
+            spent=False, best_seller=True, home_best_seller=True).order_by('code_eyamex')[:20]
         context['customers'] = Customer.objects.filter(active=True)
         context['current_page'] = int(self.request.GET.get('page', 1))
         context['domain'] = domain
