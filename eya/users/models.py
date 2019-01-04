@@ -75,6 +75,14 @@ class Seller(models.Model):
     def __unicode__(self):
         return '{}'.format(self.name)
 
+    def save(self, *args, **kwargs):
+        group = Group.objects.get(name='Seller')
+        self.user.is_staff = True
+        self.user.groups.clear()
+        self.user.groups.add(group)
+        self.user.save()
+        super(Seller, self).save(*args, **kwargs)
+
 
 class UserToken(models.Model):
     """Save token sended by email."""
