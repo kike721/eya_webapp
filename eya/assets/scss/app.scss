@@ -1,13 +1,5 @@
-// Base files
-// ============
-@import "base/base";
-@import "base/header";
-@import "base/footer";
-
 // @import "plugins/magnific";
 @import "plugins/owl/owl.carousel";
-@import "plugins/pageflip";
-@import "plugins/trumbowyg";
 
 // Utils files
 // ============
@@ -16,6 +8,12 @@
 @import "utils/mixins";
 @import "utils/animate";
 // @import "utils/fonts";
+
+// Base files
+// ============
+@import "base/base";
+@import "base/header";
+@import "base/footer";
 
 // Elements files
 // ============
