@@ -1,50 +1,68 @@
 .paged{
-	display: flex;
-	justify-content: center;
-	color: $black;
-	margin: 2em 0;
-
-	@media (min-width: $desktop){
-		justify-content:flex-end;
-		margin: 4em 0;
-	}
-
-	&__content{
-		display: flex;
-		align-items: center;
-		justify-content:space-between;
-		min-width: 150px;
-	}
-
-	&__icon{
-		@include fontSize(21px);
-		color: $black;
-		text-decoration: none;
-		margin: 0 1em;
-	}
-
-	&__page{
-		color: $pink;
-	}
-}
-
-.pagination{
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	margin: 2em 0;
-}
 
-.button-paged{
-  background-color: black;
-  padding: 0.5em;
-  border-radius: 0;
-  border: none;
-  color: white;
-  text-decoration: none;
-  margin: 0 0.4em;
-}
+	&__content{
+		margin: 0 1em;
 
-.total-pages{
-	margin: 0 0.5em;
+		@media (min-width: $desktop){
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 400px;
+			margin: 0 3em;
+		}
+	}
+
+	&__buttons{
+		display: flex;
+	}
+
+	&__icon{
+		width: 20px;
+		padding: 0.2em;
+		transition: all .25s;
+
+		&:hover{
+			background-color: $gray-light;
+		}
+
+		@media (min-width: $desktop){
+			padding: 1em;
+		}
+	}
+
+	&__link{
+		color: $black;
+		text-decoration: none;
+		font-size: 16px;
+		transition: all .25s;
+
+		&.hide{
+			display: none;
+			@media (min-width: $desktop){
+				display: block;
+			}
+		}
+
+		&:hover{
+			font-weight: 500;
+		}
+	}
+
+	&__active{
+		color: $black;
+		text-decoration: none;
+		font-size: 18px;
+		font-weight: 600;
+		margin: 0 1em;
+	}
+
+	@media (min-width: $desktop){
+		justify-content: center;
+		margin: 4em 0;
+	}
 }
