@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'eya';
+  src:  url('fonts/eya.eot?op86ql');
+  src:  url('fonts/eya.eot?op86ql#iefix') format('embedded-opentype'),
+    url('fonts/eya.ttf?op86ql') format('truetype'),
+    url('fonts/eya.woff?op86ql') format('woff'),
+    url('fonts/eya.svg?op86ql#eya') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'eya' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cart-arrow-down:before {
+  content: "\e900";
+}
+.icon-close:before {
+  content: "\e901";
+}
+.icon-down:before {
+  content: "\e902";
+}
+.icon-left:before {
+  content: "\e903";
+}
+.icon-right:before {
+  content: "\e904";
+}
+.icon-to-first:before {
+  content: "\e905";
+}
+.icon-to-last:before {
+  content: "\e906";
+}
+.icon-trash:before {
+  content: "\e907";
+}
+.icon-trash-hover:before {
+  content: "\e908";
+}
+.icon-up:before {
+  content: "\e909";
+}
+.icon-user:before {
+  content: "\e90a";
+}
+.icon-price-tag:before {
+  content: "\e935";
+}
+.icon-price-tags:before {
+  content: "\e936";
+}
+.icon-cart:before {
+  content: "\e93a";
+}
+.icon-coin-dollar:before {
+  content: "\e93b";
+}
+
+@mixin icon($icon){
+  display: inline-block;
+  font-family: "wowbooks";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  @extend #{$icon};
+}
