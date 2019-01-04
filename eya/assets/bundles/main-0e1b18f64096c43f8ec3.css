@@ -2713,7 +2713,8 @@
 .main {
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif; }
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px; }
 
 .button-blue {
   background-color: #2b9ffb;
@@ -2843,7 +2844,7 @@
 .footer {
   background: #000000;
   color: #ffffff;
-  padding: 1em 0; }
+  padding: 1em; }
   .footer__container {
     position: relative;
     margin: 0 auto;
@@ -3687,9 +3688,11 @@ input {
 .card {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  max-height: 100%;
-  width: 250px;
+  justify-content: space-between;
+  min-width: 210px;
+  max-width: 250px;
+  min-height: 430px;
+  width: 100%;
   padding: 1em;
   margin: 1em 0;
   text-align: left;
@@ -3700,7 +3703,8 @@ input {
   background: transparent;
   border: none;
   border-bottom: 1px solid black;
-  cursor: pointer; }
+  cursor: pointer;
+  width: 100%; }
 
 .card__image {
   width: 100%;
@@ -3712,6 +3716,10 @@ input {
 
 .card__image:hover {
   background-size: 115% 115%; }
+
+.card__link {
+  text-decoration: none;
+  color: #000000; }
 
 .card__no-found {
   width: 100%;
@@ -3760,8 +3768,10 @@ input {
     padding: 1em; }
     .content__results .owl-dots {
       bottom: -3em; }
-    .content__results .owl-dot.active {
-      background: #000000; }
+    .content__results .owl-dot {
+      padding: 0.45em; }
+      .content__results .owl-dot.active {
+        background: #000000; }
 
 .detail-product {
   background-color: #f3f3f3;
@@ -3776,10 +3786,43 @@ input {
     width: 100%;
     max-width: 1200px; }
   .detail-product__product {
-    display: flex; }
+    display: flex;
+    flex-wrap: wrap; }
+    @media (min-width: 960px) {
+      .detail-product__product {
+        flex-wrap: nowrap; } }
   .detail-product__image {
     display: block;
-    width: 100%; }
+    width: 100%;
+    height: 100%; }
+  .detail-product__info {
+    width: 100%;
+    display: flex;
+    flex-direction: column; }
+    @media (min-width: 960px) {
+      .detail-product__info {
+        width: 40%;
+        padding: 1em; } }
+  .detail-product__text {
+    margin: 0.5em 0; }
+  .detail-product__subtitle {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
+    align-items: center;
+    margin-top: 4em; }
+  .detail-product__relate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1em;
+    margin-bottom: 2em; }
+    .detail-product__relate .owl-dots {
+      bottom: -3em; }
+    .detail-product__relate .owl-dot {
+      padding: 0.45em; }
+      .detail-product__relate .owl-dot.active {
+        background: #000000; }
 
 .content-store {
   background-color: #f3f3f3;
