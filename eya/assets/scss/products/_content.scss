@@ -1,7 +1,11 @@
 .content{
 	background-color: #f3f3f3;
-	padding: 2em;
+	padding: 1em;
 	min-height: calc(100vh - 220px);
+
+	@media (min-width: $desktop){
+		padding: 2em;
+	}
 
 	&__info-results{
 		display: flex;
