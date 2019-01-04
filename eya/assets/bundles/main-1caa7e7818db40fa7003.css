@@ -3710,44 +3710,42 @@ body.trumbowyg-body-fullscreen {
   animation-name: slideOutUp; }
 
 .paged {
-  display: flex;
-  justify-content: center;
-  color: #000000;
-  margin: 2em 0; }
-  @media (min-width: 960px) {
-    .paged {
-      justify-content: flex-end;
-      margin: 4em 0; } }
-  .paged__content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 150px; }
-  .paged__icon {
-    font-size: 1.5em;
-    color: #000000;
-    text-decoration: none;
-    margin: 0 1em; }
-  .paged__page {
-    color: #dc3b70; }
-
-.pagination {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 2em 0; }
-
-.button-paged {
-  background-color: black;
-  padding: 0.5em;
-  border-radius: 0;
-  border: none;
-  color: white;
-  text-decoration: none;
-  margin: 0 0.4em; }
-
-.total-pages {
-  margin: 0 0.5em; }
+  .paged__content {
+    margin: 0 3em; }
+    @media (min-width: 960px) {
+      .paged__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 400px; } }
+  .paged__icon {
+    width: 20px;
+    padding: 1em;
+    transition: all .25s; }
+    .paged__icon:hover {
+      background-color: #C4C4C4; }
+  .paged__link {
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all .25s; }
+    .paged__link:hover {
+      font-weight: 500; }
+  .paged__active {
+    color: #000000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 1em; }
+  @media (min-width: 960px) {
+    .paged {
+      justify-content: center;
+      margin: 4em 0; } }
 
 .loader-container {
   display: none; }
