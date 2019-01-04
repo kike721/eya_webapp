@@ -3665,6 +3665,8 @@ input {
 .popup-detail__img {
   display: block;
   width: 100%;
+  width: 90%;
+  height: 90%;
   margin: auto; }
 
 .popup-detail__date {

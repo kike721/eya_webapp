@@ -50,6 +50,8 @@
 
 .popup-detail__img{
 	@include setImg();
+	width: 90%;
+    height: 90%;
 	margin: auto;
 }
 
