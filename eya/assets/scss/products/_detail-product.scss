@@ -22,6 +22,7 @@
 	&__image{
 		@include setImg();
 		height: 100%;
+		cursor: pointer;
 	}
 
 	&__info{

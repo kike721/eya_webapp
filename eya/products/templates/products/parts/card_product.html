@@ -1,7 +1,7 @@
 <div class="card item">
   {% if item.image %}
     <a class="card__link" href="{% url 'product-detail' pk=item.pk%}">
-      <button class="card__button-image btnId">
+      <button class="card__button-image">
         <div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
       </button>
     </a>
