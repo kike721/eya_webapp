@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from random import randint
+
 from django.db import models
 
 from imagekit.models import ProcessedImageField
@@ -99,3 +101,17 @@ class Product(BaseModel):
     def save(self, *args, **kwargs):
         self.meta_description = self.fill_meta()
         super(Product, self).save(*args, **kwargs)
+
+    def get_products_related(self):
+        ids = list()
+        size = 0
+        related = Product.objects.filter(
+            model__family_product=self.model.family_product,
+            clasification=self.clasification).exclude(pk=self.pk)
+        while size < 5:
+            index = randint(0, len(related) - 1)
+            prd = related[index]
+            if prd.pk not in ids:
+                ids.append(prd.pk)
+            size = len(ids)
+        return related.filter(id__in=ids)
