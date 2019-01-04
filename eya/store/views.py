@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.db import transaction
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView
@@ -98,3 +98,23 @@ def update_quotation(request, pk):
             'order': order,
         }
     )
+
+
+def add_cart(request):
+    print request.user
+    print request.POST
+    id_cart = request.POST['cart']
+    cart = Cart.objects.get(pk=id_cart)
+    id_product = request.POST['product']
+    product = Product.objects.get(pk=id_product)
+    quantity = request.POST['quantity']
+    if cart.details.filter(product=product):
+        detail = cart.details.filter(product=product).first()
+        detail.quantity += int(quantity)
+        detail.save()
+    else:
+        detail = DetailCart.objects.create(cart=cart,product=product,quantity=quantity)
+    data = {
+        'items': len(cart.details.all())
+    }
+    return JsonResponse(data)
