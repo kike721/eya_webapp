@@ -12,16 +12,21 @@
 
 {% get_media_prefix as MEDIA_PREFIX %}
 
-<div class="content">
-	<div class="product">
-		<div class="product__image">
-			<div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{object.image}});" title="{{ object.code_eyamex }}" class="card__image"></div>
-		</div>
-		<div class="product__info">
-			<div class='product__title'>{{object}}</div>
-			<div class='product__title'>{{object.description}}</div>
+<div class="detail-product">
+	
+	<div class="detail-product__container">
+		<div class="detail-product__product">
+			<img src="{{MEDIA_PREFIX}}{{object.image}}" title="{{ object.code_eyamex }}"
+			class="product-detail__image"/>
+		
+			<div class="detail-product__info">
+				<div class='product__title'>{{object}}</div>
+				<div class='product__title'>{{object.description}}</div>
+			</div>
 		</div>
 	</div>
+	
+	
 	<div>
 		{% if user.pk %}
 	      {% if user.customer %}

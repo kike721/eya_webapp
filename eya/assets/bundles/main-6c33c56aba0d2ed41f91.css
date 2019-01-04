@@ -4610,6 +4610,24 @@ input {
     .content__results .owl-dot.active {
       background: #000000; }
 
+.detail-product {
+  background-color: #f3f3f3;
+  padding: 1em;
+  min-height: calc(100vh - 220px); }
+  @media (min-width: 960px) {
+    .detail-product {
+      padding: 2em; } }
+  .detail-product__container {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px; }
+  .detail-product__product {
+    display: flex; }
+  .detail-product__image {
+    display: block;
+    width: 100%; }
+
 .content-store {
   background-color: #f3f3f3;
   padding: 2em; }

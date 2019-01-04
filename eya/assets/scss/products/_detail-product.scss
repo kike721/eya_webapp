@@ -1,0 +1,25 @@
+.detail-product{
+	background-color: #f3f3f3;
+	padding: 1em;
+	min-height: calc(100vh - 220px);
+
+	@media (min-width: $desktop){
+		padding: 2em;
+	}
+
+	&__container{
+		@include container();
+	}
+
+	&__product{
+		display: flex;
+	}
+
+	&__image{
+		@include setImg();
+	}
+
+	&__info{
+
+	}
+}
