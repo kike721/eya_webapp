@@ -6,23 +6,32 @@
 	margin: 2em 0;
 
 	&__content{
-		margin: 0 3em;
+		margin: 0 1em;
 
 		@media (min-width: $desktop){
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
 			width: 400px;
+			margin: 0 3em;
 		}
+	}
+
+	&__buttons{
+		display: flex;
 	}
 
 	&__icon{
 		width: 20px;
-		padding: 1em;
+		padding: 0.2em;
 		transition: all .25s;
 
 		&:hover{
 			background-color: $gray-light;
+		}
+
+		@media (min-width: $desktop){
+			padding: 1em;
 		}
 	}
 
@@ -31,6 +40,13 @@
 		text-decoration: none;
 		font-size: 16px;
 		transition: all .25s;
+
+		&.hide{
+			display: none;
+			@media (min-width: $desktop){
+				display: block;
+			}
+		}
 
 		&:hover{
 			font-weight: 500;

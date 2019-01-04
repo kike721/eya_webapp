@@ -3716,24 +3716,35 @@ body.trumbowyg-body-fullscreen {
   align-items: center;
   margin: 2em 0; }
   .paged__content {
-    margin: 0 3em; }
+    margin: 0 1em; }
     @media (min-width: 960px) {
       .paged__content {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        width: 400px; } }
+        width: 400px;
+        margin: 0 3em; } }
+  .paged__buttons {
+    display: flex; }
   .paged__icon {
     width: 20px;
-    padding: 1em;
+    padding: 0.2em;
     transition: all .25s; }
     .paged__icon:hover {
       background-color: #C4C4C4; }
+    @media (min-width: 960px) {
+      .paged__icon {
+        padding: 1em; } }
   .paged__link {
     color: #000000;
     text-decoration: none;
     font-size: 16px;
     transition: all .25s; }
+    .paged__link.hide {
+      display: none; }
+      @media (min-width: 960px) {
+        .paged__link.hide {
+          display: block; } }
     .paged__link:hover {
       font-weight: 500; }
   .paged__active {
@@ -4576,8 +4587,11 @@ input {
 
 .content {
   background-color: #f3f3f3;
-  padding: 2em;
+  padding: 1em;
   min-height: calc(100vh - 220px); }
+  @media (min-width: 960px) {
+    .content {
+      padding: 2em; } }
   .content__info-results {
     display: flex;
     justify-content: space-between;
