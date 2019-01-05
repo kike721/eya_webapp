@@ -29,12 +29,12 @@
             {% if orders.all.count > 0 %}
               
               {% for order in orders.all %}
-                <div class="toggleRow">
+                <div class="profile__row toggleRow">
                   <button class="profile__acordion toggleBtn">
                     Orden: {{ order.pk }} Fecha: {{ order.created|date:"d-m-Y" }} Estatus {{ order.get_status_display }}
-                    <img class="profile__acordion__arrow" src="/static/img/arrow-bottom.svg" alt="Eliminar">
+                    <img class="profile__acordion__arrow toggleBtn" src="/static/img/arrow-bottom.svg" alt="Eliminar">
                   </button>
-                  <div class="toggleHide">
+                  <div class="profile__toggle-hide">
                     <div class="profile__acordion__detail">
                       <p class="quantity title">Pzas</p>
                       <p class="code title">Código</p>
