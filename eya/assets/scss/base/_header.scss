@@ -38,6 +38,11 @@
 		width: 100%;
 	    max-width: 400px;
 	    margin-bottom: 0;
+	    transition: all .25s;
+
+	    &.error{
+			border: 3px solid #FF9800;
+		}
 
 	    @media (min-width: 1200px){
 			width: 350px;

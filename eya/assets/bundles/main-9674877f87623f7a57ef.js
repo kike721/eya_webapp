@@ -177,7 +177,7 @@ var Search = function(){
 			var text = formCont.find('.searchText');
 			error.html('')
 			if(text.val().length < 3){
-				error.html('Asegúrate de ingresar al menos tres letras');
+				$('.header__search').addClass('error');
 			}
 			else{
 				var loader = $("#loader").find(".loader").clone();

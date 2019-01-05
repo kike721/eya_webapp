@@ -2775,7 +2775,10 @@
     border: none;
     width: 100%;
     max-width: 400px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    transition: all .25s; }
+    .header__search.error {
+      border: 3px solid #FF9800; }
     @media (min-width: 1200px) {
       .header__search {
         width: 350px; } }
