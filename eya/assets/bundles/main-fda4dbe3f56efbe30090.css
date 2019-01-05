@@ -3189,7 +3189,7 @@ input[type=number] {
   text-align: center; }
 
 .banner {
-  min-height: 200px;
+  min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3214,12 +3214,15 @@ input[type=number] {
     width: 100%;
     max-width: 1200px; }
   .banner__title {
+    width: 90%;
     color: #ffffff;
     text-align: center;
+    margin: auto;
     font-size: 1.78571em; }
     @media (min-width: 960px) {
       .banner__title {
-        font-size: 2.5em; } }
+        font-size: 2.5em;
+        width: 80%; } }
 
 .error {
   width: 100%; }
