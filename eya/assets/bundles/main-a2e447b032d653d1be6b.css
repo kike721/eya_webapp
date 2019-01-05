@@ -2924,7 +2924,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
   opacity: 0;
   transition: opacity 0.25s ease-in-out; }
@@ -2939,7 +2939,7 @@
   .loader__bounce {
     width: 18px;
     height: 18px;
-    background-color: #BABF44;
+    background-color: #ffffff;
     border-radius: 100%;
     display: inline-block;
     animation: sk-bouncedelay 1.4s infinite ease-in-out both; }
@@ -2948,13 +2948,13 @@
     .loader__bounce:nth-child(2) {
       animation-delay: -0.16s; }
 
-@keyframes (sk-bouncedelay) {
+@keyframes sk-bouncedelay {
   0%, 80%, 100% {
     transform: scale(0);
-    background-color: #37B2A4; }
+    background-color: #ffffff; }
   40% {
     transform: scale(1);
-    background-color: #BABF44; } }
+    background-color: #37B2A4; } }
 
 .input {
   box-sizing: border-box;

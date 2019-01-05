@@ -48,6 +48,12 @@
         {% include "header.html" %}
         {% block content %}{% endblock %}
         {% include "footer.html" %}
+
+        <!-- Loader -->
+        <div id="loader" class="loader-container">
+            {% include "parts/loader.html" %}
+        </div>
+        <!-- /Loader -->
     </main>
 
     <!-- fonts -->

@@ -1,5 +1,5 @@
 import base from './base/base';
-import search from './base/search';
+import search from './forms/search';
 import popupDetail from './products/popup_detail';
 import productCarousel from './owl-carousel/products-carousel';
 
