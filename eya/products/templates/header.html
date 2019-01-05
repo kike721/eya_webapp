@@ -12,9 +12,7 @@
 
       <form action="{% url 'products-index-results' %}" method="get" class="form-search">
         <input class="search" type="text" placeholder="¿Qué estás buscando?" name="q">
-        <button type="submit" class="button-green">
-          Buscar
-        </button>
+        <button type="submit" class="button-green btnSearch">Buscar</button>
       </form>
       {% if user.is_authenticated  %}
         {% if user.is_superuser %}
