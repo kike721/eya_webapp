@@ -101,8 +101,6 @@ def update_quotation(request, pk):
 
 
 def add_cart(request):
-    print request.user
-    print request.POST
     id_cart = request.POST['cart']
     cart = Cart.objects.get(pk=id_cart)
     id_product = request.POST['product']
@@ -114,6 +112,14 @@ def add_cart(request):
         detail.save()
     else:
         detail = DetailCart.objects.create(cart=cart,product=product,quantity=quantity)
+    data = {
+        'items': len(cart.details.all())
+    }
+    return JsonResponse(data)
+
+def get_cart(request):
+    id_cart = request.GET['cart']
+    cart = Cart.objects.get(pk=id_cart)
     data = {
         'items': len(cart.details.all())
     }

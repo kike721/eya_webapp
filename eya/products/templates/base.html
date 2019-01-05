@@ -70,6 +70,23 @@
     <!-- Script para shoppingcart -->
     <script type="text/javascript">
       $(document).ready(function() {
+        var id_cart = $($(".formCart")[0]).val();
+        $.ajax({
+          url: "{% url 'get-cart' %}",
+          data: {
+            'cart': id_cart,
+          },
+          method: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            console.log('data aqui', data);
+            var carrito = $('#car');
+            $("html").find(carrito);
+            $(".input-quantity").val(1);
+            carrito.html(data.items);
+            $('.header__carrito').addClass('see');
+          }
+        });
         
         $(".order").click(function(e){
           e.preventDefault();
