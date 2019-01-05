@@ -24,7 +24,7 @@
   <!-- TODOS LOS PRODUCTOS -->
 
   <div class="content__info-results">
-    <h2 class="content__title">Resultados</h2><a class="button-paged" href="{% url 'products-index' %}">Volver</a>
+    <h2 class="content__title">Resultados</h2><a class="content__button" href="{% url 'products-index' %}">Volver</a>
   </div>
 
   <div class="content__results">
@@ -34,7 +34,7 @@
         {% include "products/parts/card_product.html"%}
       {% endfor %}
 
-       <!-- Paginador -->
+      <!-- Paginador -->
       {% include "products/parts/paged.html" %}
       <!-- /Paginador -->
     {% else %}
@@ -44,10 +44,6 @@
   </div>
 
   <!-- /TODOS LOS PRODUCTOS -->
-
-  <!-- Pop up detalle de prodcuto -->
-  {% include "products/parts/popup_detail.html" %}
-  <!-- /Pop up detalle de prodcuto -->
 
 </div>
 {% endblock %}

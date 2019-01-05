@@ -21,7 +21,7 @@
   <!-- NUEVOS -->
   <div class="content__info-results">
     <h2 class="content__title">Nuevo</h2>
-    <a class="button-paged" href="{% url 'products-index-news' %}">Ver todo</a>
+    <a class="content__button" href="{% url 'products-index-news' %}">Ver todo</a>
   </div>
   <div class="content__results">
     <div class="productsCarousel owl-carousel">
@@ -38,15 +38,15 @@
   <!-- MAS VENDIDOS -->
   <div class="content__info-results">
     <h2 class="content__title">Más vendidos</h2>
-    <a class="button-paged" href="{% url 'products-index-best-seller' %}">Ver todo</a>
+    <a class="content__button" href="{% url 'products-index-best-seller' %}">Ver todo</a>
   </div>
   <div class="content__results">
     <div class="productsCarousel owl-carousel">
-      {% if best_seller %}
-        {% for item in best_seller %}
-            {% include "products/parts/card_product.html" %}
-        {% endfor %}
-      {% endif %}
+      {% for item in best_seller %}
+          {% include "products/parts/card_product.html" %}
+      {% empty %}
+        <h3>No se encontraron resultados</h3>
+      {% endfor %}
     </div>
   </div>
 
@@ -70,10 +70,7 @@
   <!-- Paginador -->
   {% include "products/parts/paged.html" %}
   <!-- /Paginador -->
-
-  <!-- Pop up detalle de prodcuto -->
-  {% include "products/parts/popup_detail.html" %}
-  <!-- /Pop up detalle de prodcuto -->
+ 
 </div>
 {% endblock %}
 

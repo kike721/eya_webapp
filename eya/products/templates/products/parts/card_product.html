@@ -1,17 +1,17 @@
 <div class="card item">
   {% if item.image %}
-    <a href="{% url 'product-detail' pk=item.pk%}">
-      <button class="card__button-image btnId">
+    <a class="card__link" href="{% url 'product-detail' pk=item.pk%}">
+      <button class="card__button-image">
         <div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{item.image}});" title="{{ item.code_eyamex }}" class="card__image"></div>
       </button>
     </a>
   {% else %}
-    <a href="{% url 'product-detail' pk=item.pk%}">
+    <a class="card__link" href="{% url 'product-detail' pk=item.pk%}">
       <div class="card__no-found">No hay imagen</div>
     </a>
   {% endif %}
   <div>
-    <a href="{% url 'product-detail' pk=item.pk%}">
+    <a class="card__link" href="{% url 'product-detail' pk=item.pk%}">
       <h4 id="code_eyamex">{{ item.code_eyamex }}</h4>
       <p id="description__eyamex">{{ item.description }}</p>
     </a>

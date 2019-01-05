@@ -12,50 +12,67 @@
 
 {% get_media_prefix as MEDIA_PREFIX %}
 
-<div class="content">
-	<div class="product">
-		<div class="product__image">
-			<div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{object.image}});" title="{{ object.code_eyamex }}" class="card__image"></div>
-		</div>
-		<div class="product__info">
-			<div class='product__title'>{{object}}</div>
-			<div class='product__title'>{{object.description}}</div>
-		</div>
-	</div>
-	<div>
-		{% if user.pk %}
-	      {% if user.customer %}
-	        <form action="{% url 'add-detail-cart' %}" method="POST">
-	          {% csrf_token %}
-	          <input class="formCart" type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
-	          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
-	          <input class="input-quantity" type="number" name="quantity" value="1">
-	          <input class="order" type="submit" value="Pedir">
-	        </form>
-	      {% endif %}
-	      {% if user.seller %}
-	        <form action="{% url 'add-detail-cart' %}" method="POST">
-	          {% csrf_token %}
-	          <input class="formCart" type="hidden" name="cart">
-	          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
-	          <input class="input-quantity" type="number" name="quantity" value="1">
-	          <input class="order" type="submit" value="Pedir">
-	        </form>
-	      {% endif %}
-	    {% endif %}
-	</div>
-	<div class="related">
-		<h4>Productos Relacionados</h4>
-		{% for prd in products_related %}
-			<div>
-				<a href="{% url 'product-detail' pk=prd.pk %}">
-				<div id="image_eyamex" style="background-image: url({{MEDIA_PREFIX}}{{prd.image}});" title="{{ object.code_eyamex }}" class="card__image"></div>
-				<div>{{ prd }}</div>
-				</a>
+<div class="detail-product">
+	
+	<div class="detail-product__container">
+
+		<h2>{{object}}</h2>
+		<div class="detail-product__product">
+			
+			<img id="image_eyamex" src="{{MEDIA_PREFIX}}{{object.image}}" title="{{ object.code_eyamex }}" class="detail-product__image btnId"/>
+		
+			<div class="detail-product__info">
+				<div>
+					<div id="code_eyamex" class='detail-product__text'>{{object}}</div>
+					<div id="description__eyamex" class='detail-product__text'>{{object.description}}</div>
+				</div>
+
+				<div>
+				{% if user.pk %}
+			      {% if user.customer %}
+			        <form action="{% url 'add-detail-cart' %}" method="POST">
+			          {% csrf_token %}
+			          <input class="formCart" type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+			          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
+			          <input class="input-quantity" type="number" name="quantity" value="1">
+			          <input class="order" type="submit" value="Pedir">
+			        </form>
+			      {% endif %}
+			      {% if user.seller %}
+			        <form action="{% url 'add-detail-cart' %}" method="POST">
+			          {% csrf_token %}
+			          <input class="formCart" type="hidden" name="cart">
+			          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
+			          <input class="input-quantity" type="number" name="quantity" value="1">
+			          <input class="order" type="submit" value="Pedir">
+			        </form>
+			      {% endif %}
+			    {% endif %}
+				</div>
 			</div>
-		{% endfor %}
+		</div>
+			
+		<div class="detail-product__subtitle">
+			<h2>Productos Relacionados</h2>
+		</div>
+		<div class="detail-product__relate">
+
+			<div class="productsCarousel owl-carousel">
+		      {% for item in products_related %}
+		        {% include "products/parts/card_product.html"%}
+		      {% empty %}
+		        <h3>No se encontraron resultados</h3>
+		      {% endfor %}
+		    </div>
+
+		</div>
 	</div>
 </div>
+
+<!-- Pop up detalle de prodcuto -->
+{% include "products/parts/popup_detail.html" %}
+<!-- /Pop up detalle de prodcuto -->
+
 {% endblock %}
 
 {% block extra_scripts %}
