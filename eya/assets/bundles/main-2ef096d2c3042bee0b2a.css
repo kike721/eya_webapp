@@ -2751,26 +2751,51 @@
   display: flex;
   justify-content: space-around;
   align-items: center; }
-
-.logo {
-  display: none; }
-
-.form-search {
-  display: flex;
-  width: 100%;
-  display: flex;
-  justify-content: center; }
-
-.search {
-  padding: 1em;
-  border-radius: 0;
-  border: none;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 0; }
-
-.icon-car {
-  width: 25px; }
+  @media (min-width: 960px) {
+    .header {
+      justify-content: space-between;
+      align-items: center; } }
+  .header__link {
+    color: white;
+    text-decoration: none; }
+  .header__logo {
+    display: none; }
+    @media (min-width: 768px) {
+      .header__logo {
+        max-width: 100px;
+        display: block; } }
+  .header__form-search {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: center; }
+  .header__search {
+    padding: 1em;
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 0; }
+    @media (min-width: 1200px) {
+      .header__search {
+        width: 350px; } }
+  .header__icon-car {
+    width: 25px; }
+  .header__button-car {
+    position: relative; }
+  .header__carrito {
+    position: absolute;
+    color: #ffffff;
+    background: red;
+    border-radius: 100%;
+    padding: 0.3em 0.4em;
+    top: -1em;
+    right: -1em;
+    margin: 0;
+    opacity: 0;
+    transition: all 0.25s; }
+    .header__carrito.see {
+      opacity: 1; }
 
 .header__top {
   background-color: #4e4545;
@@ -2779,11 +2804,10 @@
   justify-content: space-between;
   padding: 0.5em 4em;
   font-size: 0.85em; }
-
-.header__top__link {
-  color: white;
-  margin: 0 0.3em;
-  text-decoration: none; }
+  .header__top__link {
+    color: white;
+    margin: 0 0.3em;
+    text-decoration: none; }
 
 .search-customer {
   position: relative;
@@ -2830,16 +2854,6 @@
     padding: 1em; }
     .search-customer .link_results:hover {
       background: #d8d0d0; }
-
-@media (min-width: 1200px) {
-  .header {
-    justify-content: space-between;
-    align-items: center; }
-  .logo {
-    max-width: 100px;
-    display: block; }
-  .search {
-    width: 400px; } }
 
 .footer {
   background: #000000;

@@ -70,13 +70,17 @@
     <!-- Script para shoppingcart -->
     <script type="text/javascript">
       $(document).ready(function() {
+        
         $(".order").click(function(e){
           e.preventDefault();
-          console.log('Click en boton pagar');
+
           var form = $(this).parent('form');
           var id_cart = $(form).children(".formCart").val();
           var id_product = $(form).children("#id_product").val()
           var quantity = $(form).children(".input-quantity").val()
+          var carrito = $('#car');
+          $("html").find(carrito);
+
           $.ajax({
             url: "{% url 'add-cart' %}",
             data: {
@@ -90,7 +94,8 @@
             success: function (data) {
               console.log('respuesta', data);
               $(".input-quantity").val(1);
-              alert('Se agrego producto exitosamente');
+              carrito.html(data.items);
+              $('.header__carrito').addClass('see');
             }
           });
         });

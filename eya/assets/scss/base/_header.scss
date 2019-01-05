@@ -5,31 +5,71 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+
+	@media (min-width: $desktop){
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__link{
+		color: white;
+		text-decoration: none;
+	}
+
+	&__logo{
+		display: none;
+		@media (min-width: $tablet-min){
+			max-width: 100px;
+			display: block;
+		}
+	}
+
+	&__form-search{
+		display: flex;
+		width: 100%;
+		display: flex;
+	    justify-content: center;
+	}
+
+	&__search{
+		padding: 1em;
+		border-radius: 0;
+		border: none;
+		width: 100%;
+	    max-width: 400px;
+	    margin-bottom: 0;
+
+	    @media (min-width: 1200px){
+			width: 350px;
+		}
+	}
+
+	&__icon-car{
+		width: 25px;	
+	}
+
+	&__button-car{
+		position: relative;
+	}
+
+	&__carrito{
+		position: absolute;
+		color: $white;
+		background: red;
+		border-radius: 100%;
+	    padding: 0.3em 0.4em;
+	    top: -1em;
+	    right: -1em;
+	    margin: 0;
+	    opacity: 0;
+	    transition: all 0.25s;
+
+	    &.see{
+	    	opacity: 1;
+	    }
+	}
 }
 
-.logo {
-	display: none;
-}
-
-.form-search{
-	display: flex;
-	width: 100%;
-	display: flex;
-    justify-content: center;
-}
-
-.search{
-	padding: 1em;
-	border-radius: 0;
-	border: none;
-	width: 100%;
-    max-width: 400px;
-    margin-bottom: 0;
-}
-
-.icon-car{
-	width: 25px;	
-}
 
 .header__top{
 	background-color: #4e4545;
@@ -38,14 +78,13 @@
     justify-content: space-between;
     padding: 0.5em 4em;;
     font-size: 0.85em;
-}
 
-.header__top__link{
-	color: white;
-	margin: 0 0.3em;
-	text-decoration: none;
+    &__link{
+		color: white;
+		margin: 0 0.3em;
+		text-decoration: none;
+	}
 }
-
 
 .search-customer{
 	position: relative;
@@ -106,16 +145,3 @@
 	}
 }
 
-@media (min-width: 1200px){
-	.header{
-		justify-content: space-between;
-		align-items: center;
-	}
-	.logo {
-		max-width: 100px;
-		display: block;
-	}
-	.search{
-		width: 400px;
-	}
-}

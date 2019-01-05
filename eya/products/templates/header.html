@@ -1,7 +1,7 @@
 <!-- header -->
   <header class="header">
-    <a href="{% url 'products-index' %}" title="Ensambles y Adornos" target="_self" style="color: white; text-decoration: none;">
-      <img class="logo" src="/static/img/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
+    <a href="{% url 'products-index' %}" title="Ensambles y Adornos" target="_self" class="header__link">
+      <img class="header__logo" src="/static/img/LOGO-EYA.png" alt="Ensambles y Adornos Logo"/>
     </a>
 
     {% if seccion == 'list-order' %}
@@ -10,17 +10,19 @@
       </a>
     {% else %}
 
-      <form action="{% url 'products-index-results' %}" method="get" class="form-search">
-        <input class="search searchText" type="text" placeholder="¿Qué estás buscando?" name="q">
+      <form action="{% url 'products-index-results' %}" method="get" class="header__form-search">
+        <input class="header__search searchText" type="text" placeholder="¿Qué estás buscando?" name="q">
         <span class="search__error searchError"></span>
         <button type="submit" class="button-green btnSearch">Buscar</button>
       </form>
+
       {% if user.is_authenticated  %}
         {% if user.is_superuser %}
         {% else %}
           {% if user.customer %}
-            <a href="{% url 'cart' pk=user.customer.cart.pk %}" class="button-white" title="Carrito">
-              <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+            <a href="{% url 'cart' pk=user.customer.cart.pk %}" class="header__button-car button-white" title="Carrito">
+              <img class="header__icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+              <p class="header__carrito" id="car"></p>
             </a>
           {% endif %}
           {% if user.seller %}
@@ -32,16 +34,15 @@
             </div>
 
             <a id="linkCarrito" data-domain="{{ domain }}" data-cart="{{ request.session.cart_selected }}" class="button-white" title="Carrito">
-              <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
+              <img class="header__icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a carrito"/>
             </a>
           {% endif %}
         {% endif %}
       {% else %}
         <a href="{% url 'login' %}" class="button-white" title="Ir a order de compra">
-          <img class="icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
+          <img class="header__icon-car" src="/static/img/cart-arrow-down.svg" alt="Ir a order de compra"/>
         </a>
       {% endif%}
     {% endif %}
   </header>
 <!-- /header -->
-<span class="search__error searchError"></span>
