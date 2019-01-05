@@ -1,5 +1,5 @@
 .banner{
-	min-height: 200px;
+	min-height: 300px;
 	display: flex;
 	justify-content: center;
   align-items: center;
@@ -26,11 +26,14 @@
   }
 
   &__title{
+    width: 90%;
     color: $white;
     text-align: center;
+    margin: auto;
     @include fontSize(25px);
     @media (min-width: $desktop){
       @include fontSize(35px);
+      width: 80%;
     }
 
   }

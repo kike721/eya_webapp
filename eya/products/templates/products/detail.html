@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <meta name="description" content="Ensambles Y Adornos Mexico. Nuestros productos más vendidos.">
+  <meta name="keywords" content="Fabricantes adornos, accesorios textiles, bisuteria, joyeria, bolsas, cajas y adornos del hogar.">
+  <title>{{ object }} | Ensambles y Adornos </title>
+{% endblock %}
+
+
+{% block content %}
+
+{% get_media_prefix as MEDIA_PREFIX %}
+
+<div class="detail-product">
+	
+	<div class="detail-product__container">
+
+		<h2>{{object}}</h2>
+		<div class="detail-product__product">
+			
+			<img id="image_eyamex" src="{{MEDIA_PREFIX}}{{object.image}}" title="{{ object.code_eyamex }}" class="detail-product__image btnId"/>
+		
+			<div class="detail-product__info">
+				<div>
+					<div id="code_eyamex" class='detail-product__text'>{{object}}</div>
+					<div id="description__eyamex" class='detail-product__text'>{{object.description}}</div>
+				</div>
+
+				<div>
+				{% if user.pk %}
+			      {% if user.customer %}
+			        <form action="{% url 'add-detail-cart' %}" method="POST">
+			          {% csrf_token %}
+			          <input class="formCart" type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+			          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
+			          <input class="input-quantity" type="number" name="quantity" value="1">
+			          <input class="order" type="submit" value="Pedir">
+			        </form>
+			      {% endif %}
+			      {% if user.seller %}
+			        <form action="{% url 'add-detail-cart' %}" method="POST">
+			          {% csrf_token %}
+			          <input class="formCart" type="hidden" name="cart">
+			          <input id="id_product" type="hidden" name="product" value="{{ object.pk }}">
+			          <input class="input-quantity" type="number" name="quantity" value="1">
+			          <input class="order" type="submit" value="Pedir">
+			        </form>
+			      {% endif %}
+			    {% endif %}
+				</div>
+			</div>
+		</div>
+			
+		<div class="detail-product__subtitle">
+			<h2>Productos Relacionados</h2>
+		</div>
+		<div class="detail-product__relate">
+
+			<div class="productsCarousel owl-carousel">
+		      {% for item in products_related %}
+		        {% include "products/parts/card_product.html"%}
+		      {% empty %}
+		        <h3>No se encontraron resultados</h3>
+		      {% endfor %}
+		    </div>
+
+		</div>
+	</div>
+</div>
+
+<!-- Pop up detalle de prodcuto -->
+{% include "products/parts/popup_detail.html" %}
+<!-- /Pop up detalle de prodcuto -->
+
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

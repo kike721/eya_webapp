@@ -36,13 +36,18 @@ class ProductAdmin(admin.ModelAdmin):
     model = Product
     fields = (
         'code_eyamex', 'image', 'type', 'clasification', 'model',
-        'code', 'color', 'description', 'is_new', 'best_seller', 'spent')
-    list_display = ('code_eyamex', 'description')
-    list_filter = (ImageProductFilter,)
+        'code', 'color', 'description', 'is_new', 'home_is_new',
+        'best_seller', 'home_best_seller', 'spent')
+    list_display = ('code_eyamex', 'description', 'family')
+    list_filter = (ImageProductFilter, 'is_new', 'best_seller')
     ordering = ('code_eyamex',)
     search_fields = ('code_eyamex', 'code', 'model__code', 'description')
     actions = ['export_csv']
     
+    def family(self, obj):
+        return obj.model.family_product
+    family.short_description = 'Familia'
+
     def export_csv(modeladmin, request, queryset):
         # Create the HttpResponse object with the appropriate CSV header.
         response = HttpResponse(content_type='text/csv')

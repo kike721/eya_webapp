@@ -30,10 +30,23 @@ class Command(BaseCommand):
                 staff.permissions.remove(perm)
         except Exception:
             staff = Group.objects.create(name='Provider')
-        # Create group Provider
+        # Create group Billing
         try:
             staff = Group.objects.get(name='Billing')
             for perm in staff.permissions.all():
                 staff.permissions.remove(perm)
         except Exception:
             staff = Group.objects.create(name='Billing')
+        # Create group Seller
+        perms_order = Permission.objects.filter(content_type__model='Order').exclude(name='Can delete Orden de compra')
+        perms_detailOrder = Permission.objects.filter(content_type__model='DetailOrder').exclude(name='Can delete Detalle de orden')
+        try:
+            seller = Group.objects.get(name='Seller')
+            for perm in seller.permissions.all():
+                seller.permissions.remove(perm)
+            for perm in perms_order:
+                seller.permissions.add(perm)
+            for perm in perms_detailOrder:
+                seller.permissions.add(perm)
+        except Exception:
+            seller = Group.objects.create(name='Seller')

@@ -1,0 +1,44 @@
+<!-- PAGINADOR -->
+  <div class="paged">
+    <div class="paged__buttons">
+      {% if page_obj.has_previous %}
+        <a href="?page=1&q={{q}}" class="paged__link">
+          <img class="paged__icon" src="/static/img/to-first.svg" alt="Primera Página" title="Primera Página" />
+        </a>
+        <a href="?page={{ page_obj.previous_page_number }}&q={{q}}" class="paged__link">
+          <img class="paged__icon" src="/static/img/left.svg" alt="Atras" title="Atras" />
+        </a>
+      {% endif %}
+    </div>
+    
+    <div class="paged__content">
+      {% if current_page > 2 %}
+        <a href="?page={{ current_page|add:'-2' }}&q={{q}}" class="paged__link hide">{{ current_page|add:"-2" }}</a>
+      {% endif %}
+      {% if current_page > 1 %}
+        <a href="?page={{ current_page|add:'-1' }}&q={{q}}" class="paged__link">{{ current_page|add:"-1" }}</a>
+      {% endif %}
+
+      <a href="?page={{ current_page }}&q={{q}}" class="paged__active">{{ current_page }}</a>
+      
+      {% if current_page <= page_obj.paginator.num_pages|add:'-1' %}
+        <a href="?page={{ current_page|add:'1' }}&q={{q}}" class="paged__link">{{ current_page|add:"1" }}</a>
+      {% endif %}
+      {% if current_page <= page_obj.paginator.num_pages|add:'-2' %}
+        <a href="?page={{ current_page|add:'2' }}&q={{q}}" class="paged__link hide">{{ current_page|add:"2" }}</a>
+      {% endif %}
+    </div>
+    
+    <div class="paged__buttons">
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}&q={{q}}" class="paged__link">
+        <img class="paged__icon" src="/static/img/right.svg" alt="Siguiente" title="Siguiente">
+      </a>
+      <a href="?page={{ page_obj.paginator.num_pages }}&q={{q}}" class="paged__link">
+        <img class="paged__icon" src="/static/img/to-last.svg" alt="Ultima Página" title="Ultima Página">
+      </a>
+    {% endif %}
+    </div>
+    
+  </div>
+<!-- /PGINADOR -->

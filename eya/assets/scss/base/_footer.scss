@@ -1,19 +1,29 @@
 .footer{
-	background-color: black;
-	color: white;
-	padding: 1em 3em;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
+	background: $black;
+	color: $white;
+	padding: 1em;
 
-.tel{
-	text-decoration: none;
-	color: white;
-}
+	&__container{
+		@include container();
+	}
 
-@media (min-width: 1200px){
-	.footer{
-		flex-direction: row;
+	&__row{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		&.center{
+			justify-content: center;
+		}
+
+		@media (min-width: $desktop){
+			flex-direction: row;
+		}
+	}
+
+	&__link{
+		text-decoration: none;
+		color: $white;
 	}
 }
+

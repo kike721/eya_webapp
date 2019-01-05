@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from random import randint
+
 from django.db import models
 
 from imagekit.models import ProcessedImageField
@@ -79,7 +81,9 @@ class Product(BaseModel):
     description = models.CharField(verbose_name=u'Descripción', max_length=255)
     meta_description = models.TextField()
     is_new = models.BooleanField(verbose_name='¿Es nuevo?')
+    home_is_new = models.BooleanField(verbose_name='¿Es nuevo aparece en banner?', default=False)
     best_seller = models.BooleanField(verbose_name=u'¿Más vendido?')
+    home_best_seller = models.BooleanField(verbose_name=u'¿Más vendido aparece en banner?', default=False)
     spent = models.BooleanField(verbose_name='¿Agotado?')
 
     class Meta:
@@ -99,3 +103,17 @@ class Product(BaseModel):
     def save(self, *args, **kwargs):
         self.meta_description = self.fill_meta()
         super(Product, self).save(*args, **kwargs)
+
+    def get_products_related(self):
+        ids = list()
+        size = 0
+        related = Product.objects.filter(
+            model__family_product=self.model.family_product,
+            clasification=self.clasification).exclude(pk=self.pk)
+        while size < 5:
+            index = randint(0, len(related) - 1)
+            prd = related[index]
+            if prd.pk not in ids:
+                ids.append(prd.pk)
+            size = len(ids)
+        return related.filter(id__in=ids)

@@ -48,6 +48,12 @@
         {% include "header.html" %}
         {% block content %}{% endblock %}
         {% include "footer.html" %}
+
+        <!-- Loader -->
+        <div id="loader" class="loader-container">
+            {% include "parts/loader.html" %}
+        </div>
+        <!-- /Loader -->
     </main>
 
     <!-- fonts -->
@@ -61,6 +67,40 @@
     {% render_bundle 'main' 'js' %}
 
     {% block extra_scripts %}{% endblock %}
+    <!-- Script para shoppingcart -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+        $(".order").click(function(e){
+          e.preventDefault();
+
+          var form = $(this).parent('form');
+          var id_cart = $(form).children(".formCart").val();
+          var id_product = $(form).children("#id_product").val()
+          var quantity = $(form).children(".input-quantity").val()
+          var carrito = $('#car');
+          $("html").find(carrito);
+
+          $.ajax({
+            url: "{% url 'add-cart' %}",
+            data: {
+              'product': id_product,
+              'cart': id_cart,
+              'quantity': quantity,
+              'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            method: 'POST',
+            dataType: 'json',
+            success: function (data) {
+              console.log('respuesta', data);
+              $(".input-quantity").val(1);
+              carrito.html(data.items);
+              $('.header__carrito').addClass('see');
+            }
+          });
+        });
+      });
+    </script>
     {% if user.seller %}
         <script type="text/javascript">
 
