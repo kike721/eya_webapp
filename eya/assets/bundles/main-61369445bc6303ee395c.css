@@ -3197,7 +3197,7 @@ input[type=number] {
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: 100% 100%;
   background-size: cover;
   box-sizing: border-box;
   padding: 2em 0;
@@ -3658,13 +3658,17 @@ input {
     flex-direction: column;
     background-color: white;
     position: relative;
-    padding: 2em;
+    padding: 1em;
     text-align: center;
     width: 100%;
-    height: 100%;
-    max-width: 60%;
-    max-height: 80%;
-    margin: 2em; }
+    margin: 1em; }
+    @media (min-width: 960px) {
+      .popup-detail__block {
+        padding: 2em;
+        margin: 2em;
+        height: 100%;
+        max-width: 60%;
+        max-height: 80%; } }
   .popup-detail__head {
     width: 100%;
     text-align: right; }
@@ -3680,14 +3684,16 @@ input {
   .popup-detail__img {
     display: block;
     width: 100%;
-    width: 90%;
-    height: 90%;
+    width: 100%;
     margin: auto; }
   .popup-detail__date {
     display: flex; }
   .popup-detail__info {
-    width: 50%;
+    width: 100%;
     text-align: left; }
+    @media (min-width: 960px) {
+      .popup-detail__info {
+        width: 80%; } }
   .popup-detail__button {
     width: 50%;
     display: flex;

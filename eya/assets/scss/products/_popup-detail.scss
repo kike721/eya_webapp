@@ -20,13 +20,18 @@
 		flex-direction: column;
 		background-color: white;
 		position: relative;
-		padding: 2em;
+		padding: 1em;
 		text-align: center;
 		width: 100%;
-		height: 100%;
-		max-width: 60%;
-		max-height: 80%;
-		margin: 2em;
+		margin: 1em;
+
+		@media (min-width: $desktop){
+			padding: 2em;
+			margin: 2em;
+			height: 100%;
+			max-width: 60%;
+			max-height: 80%;
+		}
 	}
 
 	&__head{
@@ -49,8 +54,7 @@
 
 	&__img{
 		@include setImg();
-		width: 90%;
-	    height: 90%;
+		width: 100%;
 		margin: auto;
 	}
 
@@ -59,8 +63,12 @@
 	}
 
 	&__info{
-		width: 50%;
+		width: 100%;
 		text-align: left;
+
+		@media (min-width: $desktop){
+			width: 80%;
+		}
 	}
 
 	&__button{
