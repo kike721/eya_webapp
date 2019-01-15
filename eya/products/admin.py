@@ -99,6 +99,7 @@ class ModelInlineAdmin(admin.TabularInline):
 
 class FamilyAdmin(admin.ModelAdmin):
     model = Family
+    list_display = ('code', 'description')
     fields = ('code',)
     ordering = ('code',)
     search_fields = ('code',)

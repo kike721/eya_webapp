@@ -85,6 +85,9 @@ class Product(BaseModel):
     best_seller = models.BooleanField(verbose_name=u'¿Más vendido?')
     home_best_seller = models.BooleanField(verbose_name=u'¿Más vendido aparece en banner?', default=False)
     spent = models.BooleanField(verbose_name='¿Agotado?')
+    quantity = models.DecimalField(verbose_name='Cantidad', max_digits=10, decimal_places=2, default=0)
+    quantity_descr = models.CharField(verbose_name=u'Cantidad descripción', max_length=200)
+    category = models.CharField(verbose_name=u'Categoria', max_length=200)
 
     class Meta:
         verbose_name = 'Producto'
@@ -94,10 +97,10 @@ class Product(BaseModel):
         return u'{}'.format(self.code_eyamex)
 
     def fill_meta(self):
-        meta_description = u'{} {} {} {} {} {} {} {}'.format(
+        meta_description = u'{} {} {} {} {} {} {}'.format(
             self.code_eyamex, self.clasification.name, self.model.code,
             self.model.family_product.code, self.code, self.color.name,
-            self.description, self.model.family_product.description)
+            self.description, self.quantity_descr, self.category)
         return meta_description.lower()
 
     def save(self, *args, **kwargs):
@@ -110,10 +113,12 @@ class Product(BaseModel):
         related = Product.objects.filter(
             model__family_product=self.model.family_product,
             clasification=self.clasification).exclude(pk=self.pk)
-        while size < 5:
-            index = randint(0, len(related) - 1)
-            prd = related[index]
-            if prd.pk not in ids:
-                ids.append(prd.pk)
-            size = len(ids)
-        return related.filter(id__in=ids)
+        if len(related) >= 4 :
+            while size < 4:
+                index = randint(0, len(related) - 1)
+                prd = related[index]
+                if prd.pk not in ids:
+                    ids.append(prd.pk)
+                size = len(ids)
+            return related.filter(id__in=ids)
+        return related
