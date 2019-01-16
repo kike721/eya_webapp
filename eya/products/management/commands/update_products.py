@@ -3,7 +3,7 @@ import csv
 
 from django.core.management.base import BaseCommand
 
-from products.models import Product
+from products.models import Product, Family
 
 def u8_decode(text_input):
     return text_input.decode('utf-8')
@@ -26,6 +26,12 @@ class Command(BaseCommand):
                         quantity = row[6]
                         quantity_descr = row[7]
                         category = row[8]
+                        family_desc = row[9]
+                        try:
+                            family = Family.objects.get(description=u8_decode(family_desc).lower())
+                            product.family = family
+                        except Exception as e:
+                            pass
                         product.description = u8_decode(description)
                         product.quantity = u8_decode(quantity)
                         product.quantity_descr = u8_decode(quantity_descr)

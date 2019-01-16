@@ -4,7 +4,7 @@ import csv
 from django.contrib import admin
 from django.http import HttpResponseRedirect, HttpResponse
 
-from products.models import (Clasification, Color, Family, ModelProduct, Product, Type)
+from products.models import (Clasification, Color, Family, Product, Type)
 
 
 class ImageProductFilter(admin.SimpleListFilter):
@@ -35,18 +35,19 @@ class ImageProductFilter(admin.SimpleListFilter):
 class ProductAdmin(admin.ModelAdmin):
     model = Product
     fields = (
-        'code_eyamex', 'image', 'type', 'clasification', 'model',
-        'code', 'color', 'description', 'is_new', 'home_is_new',
+        'code_eyamex', 'image', 'type', 'clasification', 'family',
+        'code', 'color', 'quantity', 'quantity_descr', 'category',
+        'description', 'is_new', 'home_is_new',
         'best_seller', 'home_best_seller', 'spent')
-    list_display = ('code_eyamex', 'description', 'family')
+    list_display = ('code_eyamex', 'description', 'family', 'category')
     list_filter = (ImageProductFilter, 'is_new', 'best_seller')
     ordering = ('code_eyamex',)
-    search_fields = ('code_eyamex', 'code', 'model__code', 'description')
+    search_fields = ('code_eyamex', 'code', 'description', 'family__description', 'category')
     actions = ['export_csv']
     
-    def family(self, obj):
-        return obj.model.family_product
-    family.short_description = 'Familia'
+    # def family(self, obj):
+    #     return obj.model.family_product
+    # family.short_description = 'Familia'
 
     def export_csv(modeladmin, request, queryset):
         # Create the HttpResponse object with the appropriate CSV header.
@@ -67,12 +68,12 @@ class ProductAdmin(admin.ModelAdmin):
     export_csv.short_description = 'Exportar a Csv'
 
 
-class ModelProductAdmin(admin.ModelAdmin):
-    model = ModelProduct
-    fields = ('code', 'family_product')
-    ordering = ('code',)
-    list_display = ('code', 'family_product')
-    search_fields = ('code',)
+# class ModelProductAdmin(admin.ModelAdmin):
+#     model = ModelProduct
+#     fields = ('code', 'family_product')
+#     ordering = ('code',)
+#     list_display = ('code', 'family_product')
+#     search_fields = ('code',)
 
 
 class ClasificationAdmin(admin.ModelAdmin):
@@ -91,19 +92,18 @@ class ColorAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-class ModelInlineAdmin(admin.TabularInline):
-    model = ModelProduct
-    readonly_fields = ('code',)
-    can_delete = False
+# class ModelInlineAdmin(admin.TabularInline):
+#     model = ModelProduct
+#     readonly_fields = ('code',)
+#     can_delete = False
 
 
 class FamilyAdmin(admin.ModelAdmin):
     model = Family
-    list_display = ('code', 'description')
-    fields = ('code',)
-    ordering = ('code',)
-    search_fields = ('code',)
-    inlines = [ModelInlineAdmin]
+    list_display = ('description',)
+    fields = ('description',)
+    ordering = ('description',)
+    search_fields = ('description',)
 
 
 class TypeAdmin(admin.ModelAdmin):
@@ -115,7 +115,7 @@ class TypeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ModelProduct, ModelProductAdmin)
+# admin.site.register(ModelProduct, ModelProductAdmin)
 admin.site.register(Clasification, ClasificationAdmin)
 admin.site.register(Color, ColorAdmin)
 admin.site.register(Family, FamilyAdmin)
