@@ -2744,6 +2744,13 @@
   color: #000;
   text-decoration: none; }
 
+.button-submit {
+  cursor: pointer;
+  transition: all .2s; }
+  .button-submit:hover {
+    background-color: white;
+    color: #1d941d; }
+
 .header {
   background-color: black;
   color: white;
@@ -3554,6 +3561,80 @@ input {
     padding: 0.5em;
     cursor: pointer; }
 
+.popup-simple {
+  background-color: rgba(15, 15, 15, 0.75);
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: 11;
+  display: none; }
+  .popup-simple.active {
+    display: flex; }
+  .popup-simple__content {
+    max-width: 1200px;
+    width: 90%;
+    position: relative;
+    background: white;
+    text-align: center; }
+    @media (min-width: 960px) {
+      .popup-simple__content {
+        width: 40%; } }
+  .popup-simple__message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em; }
+    .popup-simple__message p {
+      font-size: 1.14286em; }
+    .popup-simple__message img {
+      margin: 2em 0 1em; }
+    @media (min-width: 960px) {
+      .popup-simple__message {
+        padding: 4em; } }
+  .popup-simple__close {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.42857em;
+    color: gray;
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    width: 20px;
+    height: 20px; }
+    @media (min-width: 960px) {
+      .popup-simple__close {
+        top: 1.5em;
+        right: 1.5em; } }
+  .popup-simple__title {
+    font-size: 1.5em;
+    color: black;
+    line-height: 1;
+    text-align: center;
+    margin: 1.5em 0 0.5em; }
+    @media (min-width: 768px) {
+      .popup-simple__title {
+        font-size: 2.14286em;
+        margin: 0.5em 0; } }
+    @media (min-width: 960px) {
+      .popup-simple__title {
+        font-size: 2.14286em;
+        margin: 0.5em 0; } }
+  .popup-simple__btn {
+    margin: 2em 0 0; }
+    .popup-simple__btn--fixed {
+      padding: 1.5em 3.5em;
+      width: 260px; }
+
 .popup-login {
   display: flex;
   justify-content: center;
@@ -3661,7 +3742,8 @@ input {
     padding: 1em;
     text-align: center;
     width: 100%;
-    margin: 1em; }
+    margin: 1em;
+    overflow-y: scroll; }
     @media (min-width: 960px) {
       .popup-detail__block {
         padding: 2em;

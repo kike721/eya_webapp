@@ -23,6 +23,7 @@
 		text-align: center;
 		width: 100%;
 		margin: 1em;
+		overflow-y: scroll;
 
 		@media (min-width: $desktop){
 			padding: 2em;
