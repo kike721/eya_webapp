@@ -173,7 +173,7 @@ $(function(){
 var senOrder = function(){
 
 	function send() {
-		$(".btnSendOrder").click(function (e) {
+		$(".btn").click(function (e) {
 			e.preventDefault();
 			var btnSend = $(this);
 			if(!btnSend.hasClass('disable')){
@@ -193,13 +193,13 @@ var senOrder = function(){
 				})
 				.done(function(data,textStatus,jqXHR){
 					if(jqXHR.status==200){
-						loader.show();
 						if(data.success){
 							console.log(data.success);
-							console.log('succes<s')
                         }
                         else{
-                        	console.log('error');
+                            //popup error
+                            $('#popupNotification').addClass('active');
+                            $('body').css('overflow', 'hidden');
                         }
 					}
 				})

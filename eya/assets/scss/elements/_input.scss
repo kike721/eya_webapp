@@ -109,7 +109,7 @@ $error: #dc0000;
 	}
 
 	&__submit{
-		@include button($black, $black, $black, $white, $green-button);
+		@include button(black, black, black, black, white, green);
         width: 215px;
         margin: 1.5em auto 0;
         display: block;
