@@ -31,7 +31,11 @@
               {% for order in orders.all %}
                 <div class="profile__row toggleRow">
                   <button class="profile__acordion toggleBtn">
-                    Orden: {{ order.pk }} Fecha: {{ order.created|date:"d-m-Y" }} Estatus {{ order.get_status_display }}
+                    <span>
+                      <span>Orden: {{ order.pk }}</span>
+                      <span>Fecha: {{ order.created|date:"d-m-Y" }}</span>
+                      <strong>Estatus {{ order.get_status_display }}</strong>
+                    </span>
                     <img class="profile__acordion__arrow toggleBtn" src="/static/img/arrow-bottom.svg" alt="Eliminar">
                   </button>
                   <div class="profile__toggle-hide">
@@ -48,7 +52,7 @@
                       </div>
                     {% endfor %}
                     {% if order.status == order.QUOTATION %}
-                      <a href="{% url 'update_quotation' pk=order.pk %}">Revisar Cotización</a>
+                      <a class="profile__history__link" href="{% url 'update_quotation' pk=order.pk %}">Revisar Cotización</a>
                     {% endif %}
                   </div>
                 </div>
