@@ -32,7 +32,8 @@ class CustomerAdmin(NestedModelAdmin):
 
     model = Customer
     form = CustomerAdminForm
-    inlines = [OrderUserInline]
+    # inlines = [OrderUserInline]
+    search_fields = ('name', 'code', 'rfc')
 
 
 class SellerAdmin(admin.ModelAdmin):
