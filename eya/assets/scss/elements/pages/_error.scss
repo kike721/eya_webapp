@@ -42,7 +42,7 @@
     }
 
     &__content{
-    	display: flex;
+    	display: flex; 
     	align-items: center;
     	justify-content: space-around;
     	flex-direction:column;
@@ -63,7 +63,7 @@
         margin: 3em 0;
     }
     &__button{
-    	@include button($black, $black, $black, $white, $green-button);
+    	@include button(black, $black, $black, $black, $white, $green-button);
     }
 
 }
