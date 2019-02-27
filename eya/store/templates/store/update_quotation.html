@@ -25,6 +25,9 @@
             <h4>Cantidad</h4>
           </div>
           <div class="item-flex">
+            <h4>Unidad de empaque</h4>
+          </div>
+          <div class="item-flex">
             <h4>Precio</h4>
           </div>
           <div class="item-flex">
@@ -49,6 +52,9 @@
               <p class="">{{ detail.instance.quantity }}</p>
             </div>
             <div class="item-flex">
+              <p class="">{{ detail.instance.product.quantity }} {{ detail.instance.product.quantity_descr }}</p>
+            </div>
+            <div class="item-flex">
               <p class="">$ {{ detail.instance.price }}</p>
             </div>
             <div class="item-flex">
@@ -64,6 +70,8 @@
           </div>
         {% endfor %}
         <div class="update-quotation__info-detail">
+            <div class="item-flex">
+            </div>
             <div class="item-flex">
             </div>
             <div class="item-flex">

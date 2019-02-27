@@ -41,12 +41,14 @@
                   <div class="profile__toggle-hide">
                     <div class="profile__acordion__detail">
                       <p class="quantity title">Pzas</p>
+                      <p class="code title">Unidad de empaque</p>
                       <p class="code title">Código</p>
                       <p class="description title">Descripción</p>
                     </div>
                     {% for detail in order.details.all %}
                       <div class="profile__acordion__detail">
                         <p class="quantity">{{ detail.quantity }}</p>
+                        <p class="p_quantity">{{ detail.product.quantity }} {{ detail.product.quantity_descr }}</p>
                         <p class="code">{{ detail.product }}</p>
                         <p class="description">{{ detail.product.description }}</p>
                       </div>
