@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = "Fill catalog products"
 
     def handle(self, *args, **options):
-        path_final = 'products/management/commands/final.csv'
+        path_final = 'products/management/commands/products.csv'
         with open(path_final, 'rb') as data:
             rows = csv.reader(data, delimiter=',')
             i = 0

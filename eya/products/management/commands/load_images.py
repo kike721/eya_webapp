@@ -52,6 +52,7 @@ class Command(BaseCommand):
                             #     obj.save()
             else:
                 code_eyamex = d.split('.')[0]
+                print code_eyamex
                 try:
                     obj = Product.objects.get(code_eyamex=code_eyamex)
                 except Exception as e:
@@ -59,6 +60,7 @@ class Command(BaseCommand):
                 if obj:
                     obj.image = File(open(path_products, 'r'))
                     obj.save()
+                    os.remove(path_products)
                     # if not obj.image:
                     #     obj.image = File(open(path_products, 'r'))
                     #     obj.save()
