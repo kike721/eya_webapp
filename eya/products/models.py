@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from random import randint
 
 from django.db import models
+from django.db.models import Q
 
 from imagekit.models import ProcessedImageField
 from imagekit.processors import SmartResize
@@ -61,13 +62,13 @@ class Product(BaseModel):
         processors=[SmartResize(994, 660)], options={'quality': 100},
         verbose_name=u"Imagen", null=True)
     family = models.ForeignKey(Family, verbose_name='Familia', related_name='f_products', null=True)
-    type = models.ForeignKey(Type, verbose_name='Tipo', related_name='t_products')
+    type = models.ForeignKey(Type, verbose_name='Tipo', related_name='t_products', null=True)
     clasification = models.ForeignKey(Clasification, verbose_name=u'Clasificación', related_name='c_products')
     code = models.CharField(verbose_name=u'Código', max_length=15)
     color = models.ForeignKey(Color, verbose_name='Color', related_name='cl_products')
     description = models.CharField(verbose_name=u'Descripción', max_length=255)
     meta_description = models.TextField()
-    is_new = models.BooleanField(verbose_name='¿Es nuevo?')
+    is_new = models.BooleanField(verbose_name='¿Es nuevo?', default=False)
     home_is_new = models.BooleanField(verbose_name='¿Es nuevo aparece en banner?', default=False)
     best_seller = models.BooleanField(verbose_name=u'¿Más vendido?')
     home_best_seller = models.BooleanField(verbose_name=u'¿Más vendido aparece en banner?', default=False)
@@ -99,7 +100,7 @@ class Product(BaseModel):
         size = 0
         related = Product.objects.filter(
             family=self.family,
-            clasification=self.clasification).exclude(pk=self.pk)
+            clasification=self.clasification).exclude(Q(pk=self.pk) | Q(spent=True))
         if len(related) >= 4 :
             while size < 4:
                 index = randint(0, len(related) - 1)
