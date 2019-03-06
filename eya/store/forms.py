@@ -29,4 +29,4 @@ DetailCartFormSet = forms.inlineformset_factory(
     Cart, DetailCart, fields=('quantity',), extra=0)
 
 QuotationFormset = forms.inlineformset_factory(
-    Order, DetailOrder, fields=('status',), extra=0, can_delete=False)
+    Order, DetailOrder, fields=('quantity', 'status',), extra=0, can_delete=False)

@@ -49,7 +49,8 @@
               <p>{{ detail.instance.product }}</p>
             </div>
             <div class="item-flex">
-              <p class="">{{ detail.instance.quantity }}</p>
+              {{ detail.quantity.errors }}
+              {{ detail.quantity }}
             </div>
             <div class="item-flex">
               <p class="">{{ detail.instance.product.quantity }} {{ detail.instance.product.quantity_descr }}</p>
@@ -63,10 +64,8 @@
             <div class="item-flex">
               <p class="">$ {{ detail.instance.subtotal }}</p>
             </div>
-            {% for field in detail.visible_fields %}
-              {{field.errors}}
-              {{field}}
-            {% endfor %}
+            {{ detail.status.errors }}
+            {{ detail.status }}
           </div>
         {% endfor %}
         <div class="update-quotation__info-detail">

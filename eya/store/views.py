@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.db import transaction
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView
+from django_xhtml2pdf.utils import generate_pdf
 
 from products.models import Product
 from store.forms import OrderForm, CartForm, DetailCartFormSet, QuotationFormset
@@ -124,3 +125,8 @@ def get_cart(request):
         'items': len(cart.details.all())
     }
     return JsonResponse(data)
+
+def download_pdf(response):
+    resp = HttpResponse(content_type='application/pdf')
+    result = generate_pdf('store/quotation_pdf.html', file_object=resp)
+    return result
