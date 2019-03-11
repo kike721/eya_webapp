@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -11,10 +12,10 @@ from users.models import Customer
 
 
 # Home View
-class IndexProducts(ListView):
-
+class IndexProducts(LoginRequiredMixin, ListView):
     model = Product
     paginate_by = 12
+    login_url = '/'
 
     def get_queryset(self):
         queryset = super(IndexProducts, self).get_queryset().order_by('code_eyamex')
@@ -33,12 +34,14 @@ class IndexProducts(ListView):
         context['domain'] = domain
         return context
 
+
 # Results search View
-class IndexProductsResults(ListView):
+class IndexProductsResults(LoginRequiredMixin, ListView):
 
     model = Product
     paginate_by = 12
     template_name = 'products/results.html'
+    login_url = '/'
 
     def get_queryset(self):
         queryset = super(IndexProductsResults, self).get_queryset()
@@ -60,11 +63,12 @@ class IndexProductsResults(ListView):
         return context
 
 # List new products
-class IndexNewProducts(ListView):
+class IndexNewProducts(LoginRequiredMixin, ListView):
 
     model = Product
     paginate_by = 12
     template_name = 'products/news_list.html'
+    login_url = '/'
 
     def get_queryset(self):
         queryset = super(IndexNewProducts, self).get_queryset()
@@ -86,11 +90,12 @@ class IndexNewProducts(ListView):
         return context
 
 # List bestSeller products
-class IndexBestSellerProducts(ListView):
+class IndexBestSellerProducts(LoginRequiredMixin, ListView):
 
     model = Product
     paginate_by = 12
     template_name = 'products/best_seller_list.html'
+    login_url = '/'
 
     def get_queryset(self):
         queryset = super(IndexBestSellerProducts, self).get_queryset()
@@ -113,9 +118,10 @@ class IndexBestSellerProducts(ListView):
 
 
 # Detail View products
-class DetailProduct(DetailView):
+class DetailProduct(LoginRequiredMixin, DetailView):
     model = Product
     template_name = 'products/detail.html'
+    login_url = '/'
 
     def get_context_data(self, **kwargs):
         context = super(DetailProduct, self).get_context_data(**kwargs)
