@@ -20,10 +20,7 @@
 	}
 
 	&__button{
-		background: $black;
-		color: $white;
-		text-decoration: none;
-		padding: 1em;
+		@include button($black, white, $black, $black, $black, $white);
 	}
 
 	&__results{
