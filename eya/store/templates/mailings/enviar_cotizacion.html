@@ -117,8 +117,8 @@
                                       <thead>
                                         <th>Codigo</th>
                                         <th>Cantidad</th>
+                                        <th>Unidad de empaque</th>
                                         <th>Precio</th>
-                                        <th>Descuento</th>
                                         <th>Subtotal</th>
                                       </thead>
                                       <tbody>
@@ -126,8 +126,8 @@
                                           <tr>
                                             <td>{{detail.product.code_eyamex}}</td>
                                             <td>{{detail.quantity}}</td>
+                                            <td>{{detail.product.quantity}} {{detail.product.quantity_descr}}</td>
                                             <td>${{detail.price}}</td>
-                                            <td>{{detail.discount}}%</td>
                                             <td>${{detail.subtotal}}</td>
                                           </tr>
                                         {% endfor %}
