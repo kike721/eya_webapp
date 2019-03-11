@@ -9,13 +9,10 @@
 {% endblock %}
 
 {% block content %}
-
-
   <div class="login">
-    
-    {% include "parts/banner.html" with title="Iniciar Sesión" %}
-
+    <h1 class="login__logo">Iniciar Sesión</h1>
     <div class="login__container">
+
       {% if form.errors %}
           <p class="login__message-error">Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
         {% endif %}
@@ -30,7 +27,7 @@
 
         {% endif %}
 
-        <form method="post" action="{% url 'login' %}" class="form-login">
+        <form method="post" action="{% url 'login' %}" class="login__form">
         {% csrf_token %}
           <div class="form-input">
             {{ form.username.label_tag }}
@@ -40,13 +37,12 @@
             {{ form.password.label_tag }}
             {{ form.password }}
           </div>
-          <input class="button-login" type="submit" value="Iniciar Sesión" />
+          <input class="login__button" type="submit" value="Acceder" />
           <input type="hidden" name="next" value="{{ next }}" />
         </form>
 
-        {# Assumes you setup the password_reset view in your URLconf #}
-        <div style="text-align: center;">
-          {#<p><a class="login__link" href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>#}
+        <div>
+          <!-- {#<p><a class="login__link" href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>#} -->
           <!-- <a class="login__link" href="{% url 'register-customer' %}">¿No tienes cuenta?</a> -->
         </div>
 
