@@ -52,13 +52,14 @@
 	background-color: #9dc3c3a8;
 	font-weight: 500; 
 }
+
 .order{
-	@include button(#1d941d, white, #1d941d, #1d941d, #1d941d, white);
+	@include button($green-button, $white, $green-button, $green-button, $green-button, $white);
 }
 
 .input-quantity{
 	padding: 0.7em;
 	margin-bottom: 0.5em;
 	width: 100%;
-  max-width: 100px;
+	max-width: 100px;
 }

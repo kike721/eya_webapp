@@ -7,7 +7,6 @@
 }
 
 @mixin container(){
-	
 	position: relative;
 	margin: 0 auto;
 	width: 100%;
@@ -79,10 +78,10 @@
 }
 
 @mixin fullContainer(){
-	
-		position: relative;
-		width: 100%;
-		height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
+
 	@media (min-width: ($tablet + 1)) {
 		min-height: 610px;
 	}

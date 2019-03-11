@@ -3036,7 +3036,7 @@
     background-color: #ffffff; }
   40% {
     transform: scale(1);
-    background-color: #37B2A4; } }
+    background-color: #1d941d; } }
 
 .input {
   box-sizing: border-box;
@@ -3332,7 +3332,7 @@ input[type=number] {
     .error__button:hover {
       color: #ffffff;
       border: 1px solid #000000;
-      background: #37B2A4; }
+      background: #1d941d; }
 
 .login {
   background-color: #f3f3f3; }
@@ -3475,7 +3475,7 @@ input {
     .popup__btn:hover {
       color: #ffffff;
       border: 1px solid #000000;
-      background: #37B2A4; }
+      background: #1d941d; }
 
 .popup-search {
   display: flex;
@@ -3810,7 +3810,7 @@ input {
   border: 1px solid #1d941d;
   text-transform: uppercase;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   position: relative;
   z-index: 1;
   padding: 0.8em 1.4em;
@@ -3820,7 +3820,7 @@ input {
   .order:hover {
     color: #1d941d;
     border: 1px solid #1d941d;
-    background: white; }
+    background: #ffffff; }
 
 .input-quantity {
   padding: 0.7em;
@@ -3844,10 +3844,24 @@ input {
   .content__title {
     margin-bottom: 0.3em; }
   .content__button {
+    font-size: 1em;
+    outline: none;
+    cursor: pointer;
     background: #000000;
-    color: #ffffff;
+    border: 1px solid #000000;
+    text-transform: uppercase;
     text-decoration: none;
-    padding: 1em; }
+    color: white;
+    position: relative;
+    z-index: 1;
+    padding: 0.8em 1.4em;
+    line-height: 1;
+    text-align: center;
+    transition: all 0.2s ease-in-out; }
+    .content__button:hover {
+      color: #000000;
+      border: 1px solid #000000;
+      background: #ffffff; }
   .content__results {
     display: flex;
     flex-wrap: wrap;
