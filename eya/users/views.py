@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
@@ -117,3 +118,8 @@ def get_customers(request):
         'customers': customers_data
     }
     return JsonResponse(data)
+
+
+class LoginEya(LoginView):
+    template_name = 'registration/login.html'
+    extra_content = {'section': 'login'}
