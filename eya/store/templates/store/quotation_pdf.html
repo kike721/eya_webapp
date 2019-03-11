@@ -1,1 +1,79 @@
-quotation_pdf.html
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <title>Lista de Pedido | Ensambles y Adornos </title>
+  <link rel="stylesheet" href="{% static 'css/order-list.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="update-quotation">
+    <div>
+      <h2 class="update-quotation__title">{{ order }}</h2>
+    </div>
+    <div class="update-quotation__info-container">
+      <div class="update-quotation__info-detail">
+        <div class="item-flex">
+          <h4>Producto</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Cantidad</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Unidad de empaque</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Precio</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Descuento</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Subtotal</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Estatus</h4>
+        </div>
+      </div>
+      {% for detail in details %}
+        <div class="update-quotation__info-detail">
+          <div class="item-flex">
+            <p>{{ detail.product }}</p>
+          </div>
+          <div class="item-flex">
+            {{ detail.quantity }}
+          </div>
+          <div class="item-flex">
+            <p class="">{{ detailproduct.quantity }} {{ detail.product.quantity_descr }}</p>
+          </div>
+          <div class="item-flex">
+            <p class="">$ {{ detail.price }}</p>
+          </div>
+          <div class="item-flex">
+            <p class="">$ {{ detail.discount }}</p>
+          </div>
+          <div class="item-flex">
+            <p class="">$ {{ detail.subtotal }}</p>
+          </div>
+          {{ detail.status }}
+        </div>
+      {% endfor %}
+      <div class="update-quotation__info-detail">
+        <div class="item-flex">
+        </div>
+        <div class="item-flex">
+        </div>
+        <div class="item-flex">
+        </div>
+        <div class="item-flex">
+        </div>
+        <div class="item-flex">
+          <p class="">Total</p>
+        </div>
+        <div class="item-flex">
+          <p class="">$ {{ order.total }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
