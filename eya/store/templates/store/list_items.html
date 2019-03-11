@@ -28,6 +28,9 @@
 					<div class="item-flex-big">
 						<h4>Descripción</h4>
 					</div>
+					<div class="item-flex-big">
+						<h4>Unidad de empaque</h4>
+					</div>
 					<div class="item-flex">
 						<h4>Eliminar</h4>
 					</div>
@@ -45,6 +48,9 @@
 						</div>
 						<div class="item-flex-big">
 							<p>{{ detail.product.description }}</p>
+						</div>
+						<div class="item-flex-big">
+							<p>{{ detail.product.quantity }} {{ detail.product.quantity_descr }}</p>
 						</div>
 						<div class="item-flex">
 							<img src="/static/img/trash.svg" alt="Eliminar" style="width: 20px;height: 20px;">
