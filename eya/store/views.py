@@ -130,6 +130,7 @@ def download_pdf(request, pk):
     print pk
     print '--------------'
     resp = HttpResponse(content_type='application/pdf')
-    context = {'obj': 'es un objeto'}
+    order = Order.objects.get(pk=pk)
+    context = {'order': order}
     result = generate_pdf('store/quotation_pdf.html', file_object=resp, context=context)
     return result

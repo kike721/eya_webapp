@@ -160,7 +160,7 @@ EMAIL_ADMIN = 'email'
 EMAIL_REV_COPY = 'email'
 DEFAULT_FROM_EMAIL = 'email'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/productos/lista/'
 LOGOUT_REDIRECT_URL = '/'
 
 HTTP_PROTOCOL = 'http://'
