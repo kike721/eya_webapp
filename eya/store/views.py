@@ -126,7 +126,11 @@ def get_cart(request):
     }
     return JsonResponse(data)
 
-def download_pdf(response):
+def download_pdf(request, pk):
+    print pk
+    print '--------------'
     resp = HttpResponse(content_type='application/pdf')
-    result = generate_pdf('store/quotation_pdf.html', file_object=resp)
+    order = Order.objects.get(pk=pk)
+    context = {'order': order}
+    result = generate_pdf('store/quotation_pdf.html', file_object=resp, context=context)
     return result

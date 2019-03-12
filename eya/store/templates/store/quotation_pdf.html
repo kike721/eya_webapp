@@ -1,1 +1,39 @@
-quotation_pdf.html
+{% block content %}
+  <div class="update-quotation">
+    <div>
+      <h2 class="update-quotation__title">{{ order }}</h2>
+    </div>
+    <div class="update-quotation__info-container">
+      <div class="update-quotation__info-detail">
+        <div class="item-flex">
+          <h4>Número</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Producto</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Cantidad</h4>
+        </div>
+        <div class="item-flex">
+          <h4>Unidad de empaque</h4>
+        </div>
+      </div>
+      {% for detail in order.details.all %}
+        <div class="update-quotation__info-detail">
+          <div class="item-flex">
+            <p>{{ forloop.counter }}</p>
+          </div>
+          <div class="item-flex">
+            <p>{{ detail.product }}</p>
+          </div>
+          <div class="item-flex">
+            {{ detail.quantity }}
+          </div>
+          <div class="item-flex">
+            <p class="">{{ detail.product.quantity }} {{ detail.product.quantity_descr }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -122,4 +122,3 @@ def get_customers(request):
 
 class LoginEya(LoginView):
     template_name = 'registration/login.html'
-    extra_content = {'section': 'login'}
