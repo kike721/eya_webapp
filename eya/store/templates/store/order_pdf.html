@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <title>Lista de Pedido | Ensambles y Adornos S.A. de C.V.</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+  <style>
+  html{
+    text-align: left;
+  }
+  body{
+    font-family: 'Montserrat', Tahoma;
+    color: #313131;
+    display: inline-block;
+    margin: 0px auto;
+    max-width: 100%;
+    font-size: 14px;
+  }
+  h1{
+    font-size: 28px;
+    text-align: center;
+    font-weight: lighter;
+    margin: 1em 0;
+  }
+  p{
+    font-size: 14px;
+  }
+  strong{
+    font-weight: 600;
+    text-align: right;
+    font-size: 18px;
+  }
+  table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+  }
+  th {
+    border-bottom: 2px solid black;
+    padding: 10px 10px 5px 10px;
+    background-color: #ebebec;
+  }
+  td {
+    padding: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <h1>Ensambles y Adornos S.A. de C.V.</h1>
+    </div>
+    <div>
+      <h3>Cotizacion de Pedido</h3>
+      <h5>Cliente <span>Maria Eugenia</span></h5>
+      <h5>Fecha <span>22 Enero 2019</span></h5>
+    </div>
+    <table>
+      <tr>
+        <th>No.</th>
+        <th>Cantidad</th>
+        <th>Codigo</th>
+        <th style="width: 50%;">Descripcion</th>
+        <th>Precio</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2 pzas</td>
+        <td>AC-1017-NQ</td>
+        <td style="width: 50%;">Descripcion del producto</td>
+        <td>$100</td>
+      </tr>
+    </table>
+    <div style="border-top: 2px solid black; text-align: right; padding: 10px;">
+      <strong>Total: $100</strong>
+    </div>
+  </div>
+
+{% endblock %}
