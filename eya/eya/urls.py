@@ -21,10 +21,10 @@ from django.contrib import admin
 from users.views import LoginEya
 
 urlpatterns = [
+    url(r'^$', LoginEya.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^productos/', include('products.urls')),
     url(r'^carrito/', include('store.urls')),
     url(r'^usuarios/', include('users.urls')),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^$', LoginEya.as_view(), name='home'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
