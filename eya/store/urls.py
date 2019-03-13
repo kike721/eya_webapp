@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from store.views import add_detail_cart, history, update_cart, update_quotation, add_cart, get_cart, download_pdf
+from store.views import add_detail_cart, history, update_cart, update_quotation, add_cart, get_cart, order_pdf, quotation_pdf
 
 urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', update_cart, name='cart' ),
@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^cotizacion/(?P<pk>[0-9]+)/$', update_quotation, name='update_quotation'),
     url(r'^add/$', add_cart, name='add-cart'),
     url(r'^get/$', get_cart, name='get-cart'),
-    url(r'^get/pdf/(?P<pk>[0-9]+)/$', download_pdf, name='download-pdf'),
+    url(r'^order/(?P<pk>[0-9]+)/pdf$', order_pdf, name='order-pdf'),
+    url(r'^quotation/(?P<pk>[0-9]+)/pdf$', quotation_pdf, name='quotation-pdf'),
 ]
