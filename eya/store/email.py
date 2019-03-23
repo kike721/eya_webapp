@@ -14,10 +14,12 @@ from utils.email import generate_send_email, handle_send_email
 logger = logging.getLogger('eya')
 
 def send_order_eya(order):
+    domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+    url = '{}{}'.format(domain, reverse('order-pdf', kwargs={'pk': order.pk}))
     """Send Order Data Email."""
     template = render_to_string(
     	'emails/send_data_order.html',
-    	{'order': order, 'details': order.details.all()})
+    	{'order': order, 'details': order.details.all(), 'url': url })
     email = generate_send_email(
         ['cotizaciones@ensamblesyadornos.org', 'ensamblesyadornos2007mexico@gmail.com'],
         # ['jose.enrique.duran.garcia@gmail.com', 'valeria.pjaimes@gmail.com'],
@@ -42,9 +44,10 @@ def send_quotation_customer(order):
     """Send Order Data Email."""
     domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
     url = '{}{}'.format(domain, reverse('update_quotation', kwargs={'pk': order.pk}))
+    url_pdf = '{}{}'.format(domain, reverse('quotation-pdf', kwargs={'pk': order.pk}))
     template = render_to_string(
         'mailings/enviar_cotizacion.html',
-        {'order': order, 'details': order.details.all(), 'url': url})
+        {'order': order, 'details': order.details.all(), 'url': url, 'url_pdf': url_pdf})
     email = generate_send_email(
         [order.customer.user.email],
         "Cotización de orden #{}".format(order.pk),

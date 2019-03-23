@@ -126,11 +126,18 @@ def get_cart(request):
     }
     return JsonResponse(data)
 
-def download_pdf(request, pk):
-    print pk
-    print '--------------'
-    resp = HttpResponse(content_type='application/pdf')
+def order_pdf(request, pk):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="pedido.pdf"'
     order = Order.objects.get(pk=pk)
     context = {'order': order}
-    result = generate_pdf('store/quotation_pdf.html', file_object=resp, context=context)
+    result = generate_pdf('store/order_pdf.html', file_object=response, context=context)
+    return result
+
+def quotation_pdf(request, pk):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="cotizacion.pdf"'
+    order = Order.objects.get(pk=pk)
+    context = {'order': order}
+    result = generate_pdf('store/quotation_pdf.html', file_object=response, context=context)
     return result
