@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import csv
+
 from django.conf import settings
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -141,3 +143,14 @@ def quotation_pdf(request, pk):
     context = {'order': order}
     result = generate_pdf('store/quotation_pdf.html', file_object=response, context=context)
     return result
+
+def quotation_csv(request, pk):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="cotizacion.csv"'
+    order = Order.objects.get(pk=pk)
+    writer = csv.writer(response)
+    writer.writerow(['Codigo', 'Cantidad', 'Precio', 'Descuento'])
+    for detail in order.details.all():
+        writer.writerow([detail.product.code_eyamex, detail.quantity, detail.price, detail.discount])
+    writer.writerow([])
+    return response

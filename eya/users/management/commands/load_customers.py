@@ -42,7 +42,7 @@ class Command(BaseCommand):
     help = 'Load customers from catallog ./clientes.csv'
 
     def handle(self, *args, **options):
-        path_catalog = 'users/management/commands/clientes.csv'
+        path_catalog = 'users/management/commands/clientes_2.csv'
         with open(path_catalog, 'rb') as catalog:
             rows = csv.reader(catalog, delimiter=',')
             i = 0
@@ -50,31 +50,71 @@ class Command(BaseCommand):
             for row in rows:
                 data = dict()
                 if i > 0:
-                    if row[7] in STATES_MX:
-                        data['code'] = row[1]
-                        data['name'] = u8_decode(row[2])
-                        data['balance'] = str_to_decimal(row[3])
-                        data['name_foreign'] = u8_decode(row[4])
-                        data['street'] = u8_decode(row[5])
-                        data['zip_code'] = row[6] if len(row[6]) <= 5 else ''
-                        data['state'] = StateMx.objects.get(pk=STATES_MX[row[7]])
-                        data['city'] = u8_decode(row[8])
-                        data['phone'] = row[9] if len(row[9]) <= 15 else row[9][:10]
-                        data['code_employee'] = int(row[10])
-                        data['phone_2'] = row[11] if len(row[11]) <= 15 else row[11][:10]
-                        data['fax'] = row[12] if '@' not in row[12] else ''
-                        data['mobile'] = row[13]
-                        data['contact'] = u8_decode(row[14])
-                        data['code_conditions_payment'] = int(row[15])
-                        data['limit_credit'] = str_to_decimal(row[16])
-                        data['limit_debt'] = str_to_decimal(row[17])
-                        user, created = User.objects.get_or_create(
-                            username=data['code'],
-                            is_active=False)
-                        data['user'] = user
+                    if row[6] != '':
+                        data['code'] = row[0]
+                        data['name'] = u8_decode(row[1])
+                        data['rfc'] = row[2]
+                        data['city'] = u8_decode(row[3])
+                        data['phone'] = row[4]
+                        data['phone_2'] = row[5]
+                        email = row[6]
+                        # user, created = User.objects.get_or_create(
+                        #     username=u8_decode(row[6]),
+                        #     is_active=False)
+                        created = False
+                        user = User.objects.filter(username=u8_decode(row[6]))
+                        print user
+                        if len(user) > 0:
+                            user[0].set_password(row[9])
+                            data['user'] = user
                         # print data
                         if created:
-                            created, customer = Customer.objects.get_or_create(**data)
+                            print 'Se creo'
+                            print user
+                            customer, created = Customer.objects.get_or_create(**data)
                             Cart.objects.create(customer=customer)
+                            print customer.pk
+                            print customer.code
+                            print customer
+                # if i == 5:
+                #     break
                 i += 1
             print 'End fill customers'
+
+    # def handle(self, *args, **options):
+    #     path_catalog = 'users/management/commands/clientes.csv'
+    #     with open(path_catalog, 'rb') as catalog:
+    #         rows = csv.reader(catalog, delimiter=',')
+    #         i = 0
+    #         print 'Begin fill customers'
+    #         for row in rows:
+    #             data = dict()
+    #             if i > 0:
+    #                 if row[7] in STATES_MX:
+    #                     data['code'] = row[1]
+    #                     data['name'] = u8_decode(row[2])
+    #                     data['balance'] = str_to_decimal(row[3])
+    #                     data['name_foreign'] = u8_decode(row[4])
+    #                     data['street'] = u8_decode(row[5])
+    #                     data['zip_code'] = row[6] if len(row[6]) <= 5 else ''
+    #                     data['state'] = StateMx.objects.get(pk=STATES_MX[row[7]])
+    #                     data['city'] = u8_decode(row[8])
+    #                     data['phone'] = row[9] if len(row[9]) <= 15 else row[9][:10]
+    #                     data['code_employee'] = int(row[10])
+    #                     data['phone_2'] = row[11] if len(row[11]) <= 15 else row[11][:10]
+    #                     data['fax'] = row[12] if '@' not in row[12] else ''
+    #                     data['mobile'] = row[13]
+    #                     data['contact'] = u8_decode(row[14])
+    #                     data['code_conditions_payment'] = int(row[15])
+    #                     data['limit_credit'] = str_to_decimal(row[16])
+    #                     data['limit_debt'] = str_to_decimal(row[17])
+    #                     user, created = User.objects.get_or_create(
+    #                         username=data['code'],
+    #                         is_active=False)
+    #                     data['user'] = user
+    #                     # print data
+    #                     if created:
+    #                         created, customer = Customer.objects.get_or_create(**data)
+    #                         Cart.objects.create(customer=customer)
+    #             i += 1
+    #         print 'End fill customers'
