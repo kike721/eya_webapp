@@ -26,7 +26,7 @@ class Customer(models.Model):
     # Dirección facturación
     street = models.CharField(verbose_name='Calle', max_length=255, blank=True)
     zip_code = models.CharField(verbose_name=u'Código postal', max_length=5, blank=True)
-    state = models.ForeignKey(StateMx, verbose_name='Estado')
+    state = models.ForeignKey(StateMx, verbose_name='Estado', null=True)
     city = models.CharField(verbose_name='Ciudad', max_length=255, blank=True)
     # Contacto
     phone = models.CharField(verbose_name=u'Teléfono 1', max_length=15, blank=True)
