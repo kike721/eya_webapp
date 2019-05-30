@@ -3246,7 +3246,7 @@ input[type=number] {
     right: 0;
     display: block;
     content: '';
-    background-color: rgba(0, 0, 0, 0.61); }
+    background-color: rgba(0, 0, 0, 0.1); }
   .banner__container {
     position: relative;
     margin: 0 auto;
@@ -3335,7 +3335,9 @@ input[type=number] {
       background: #1d941d; }
 
 .login {
-  background: linear-gradient(to top, #5bb237 0%, #367782 100%);
+  background-image: url("https://files.ensamblesyadornos.org/mailings/login-1.jpg");
+  background-position: center center;
+  background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
