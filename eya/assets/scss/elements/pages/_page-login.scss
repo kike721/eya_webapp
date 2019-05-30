@@ -1,5 +1,7 @@
 .login {
-	background: linear-gradient(to top, #5bb237 0%, #367782 100%);
+	background-image: url('https://files.ensamblesyadornos.org/mailings/login-1.jpg');
+  background-position: center center;
+  background-size: cover; 
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -72,6 +74,6 @@
   }
 
   &__button {
-  	@include button($green-button, $white, $green-button, $green-button, $green-button, $white);
+    @include button($green-button, $white, $green-button, $green-button, $green-button, $white);
   }
 }
