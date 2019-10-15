@@ -1,0 +1,83 @@
+{% load static %}
+
+{% block extra_head %}
+  <meta charset="UTF-8">
+  <title>Lista de Pedido | Ensambles y Adornos S.A. de C.V.</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+  <style>
+  html{
+    text-align: left;
+  }
+  body{
+    font-family: 'Montserrat', Tahoma;
+    color: #313131;
+    display: inline-block;
+    margin: 0px auto;
+    max-width: 100%;
+    font-size: 14px;
+  }
+  h1{
+    font-size: 28px;
+    text-align: center;
+    font-weight: lighter;
+    margin: 1em 0;
+  }
+  p{
+    font-size: 14px;
+  }
+  strong{
+    font-weight: 600;
+    text-align: right;
+    font-size: 18px;
+  }
+  table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+  }
+  th {
+    border-bottom: 2px solid black;
+    padding: 10px 10px 5px 10px;
+    background-color: #ebebec;
+  }
+  td {
+    padding: 10px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <h1>Ensambles y Adornos S.A. de C.V.</h1>
+    </div>
+    <div>
+      <h3>No. Orden {{ order.pk }}</h3>
+      <h5>Cliente <span>{{ order.customer }}</span></h5>
+      <h5>Fecha <span>{{ order.created|date:"d-m-Y"}}</span></h5>
+    </div>
+    <table>
+      <tr>
+        <th style="width: 15%;">No.</th>
+        <th style="width: 25%;">Cantidad</th>
+        <th style="width: 25%;">Codigo</th>
+        <th style="width: 50%;">Unidad de empaque</th>
+        <th style="width: 50%;">Descripción</th>
+      </tr>
+      {% for detail in order.details.all %}
+        <tr>
+          <td style="width: 15%;">{{ forloop.counter }}</td>
+          <td style="width: 25%;">{{ detail.quantity }}</td>
+          <td style="width: 25%;">{{ detail.product }}</td>
+          <td style="width: 50%;">{{ detail.product.quantity }} {{ detail.product.quantity_descr }}</td>
+          <td style="width: 50%;">{{ detail.product.description }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+{% endblock %}

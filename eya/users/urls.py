@@ -2,7 +2,7 @@
 from django.conf.urls import url
 from users.views import (
     RegisterCustomerForm, CustomerDetailView, CustomerRequestRegister, SellerDetailView,
-    user_confirm, set_customer)
+    get_customers, user_confirm, set_customer)
 
 urlpatterns = [
     url(r'^registro/$', RegisterCustomerForm.as_view(),
@@ -15,4 +15,5 @@ urlpatterns = [
         name='seller-profile'),
     url(r'confirmacion/(?P<token>\w+)/$', user_confirm, name='customer-confirm'),
     url(r'customer/selected/$', set_customer, name='customer-selected'),
+    url(r'customer/search/$', get_customers, name='customer-search'),
 ]

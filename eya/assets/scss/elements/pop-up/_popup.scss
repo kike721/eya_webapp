@@ -29,7 +29,7 @@
         cursor: pointer;
     }
     &__btn{
-        @include button($black, $black, $black, $white, $green-button);
+        @include button(black, $black, $black, $black, $white, $green-button);
         margin: 2em 0 0;
     }
 }

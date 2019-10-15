@@ -1,11 +1,11 @@
 .banner{
-	min-height: 200px;
+	min-height: 300px;
 	display: flex;
 	justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
+  background-position: 100% 100%;
+  background-size: cover; 
   box-sizing: border-box;
   padding: 2em 0;
   position: relative;
@@ -18,7 +18,7 @@
     right: 0;
     display: block;
     content: '';
-    background-color: rgba(0,0,0,0.61);
+    background-color: rgba(0,0,0,0.1);
   }
 
   &__container{
@@ -26,11 +26,14 @@
   }
 
   &__title{
+    width: 90%;
     color: $white;
     text-align: center;
+    margin: auto;
     @include fontSize(25px);
     @media (min-width: $desktop){
       @include fontSize(35px);
+      width: 80%;
     }
 
   }

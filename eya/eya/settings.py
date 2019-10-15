@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -160,8 +160,8 @@ EMAIL_ADMIN = 'email'
 EMAIL_REV_COPY = 'email'
 DEFAULT_FROM_EMAIL = 'email'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/productos/lista/'
 LOGOUT_REDIRECT_URL = '/'
 
 HTTP_PROTOCOL = 'http://'
-CURRENT_DOMAIN = 'localhost:8000'
+CURRENT_DOMAIN = 'dev.ensamblesyadornos.org'

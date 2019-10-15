@@ -1,13 +1,5 @@
-// Base files
-// ============
-@import "base/base";
-@import "base/header";
-@import "base/footer";
-
 // @import "plugins/magnific";
 @import "plugins/owl/owl.carousel";
-@import "plugins/pageflip";
-@import "plugins/trumbowyg";
 
 // Utils files
 // ============
@@ -15,6 +7,13 @@
 @import "utils/variables";
 @import "utils/mixins";
 @import "utils/animate";
+// @import "utils/fonts";
+
+// Base files
+// ============
+@import "base/base";
+@import "base/header";
+@import "base/footer";
 
 // Elements files
 // ============
@@ -31,18 +30,20 @@
 
 @import "elements/pop-up/popup";
 @import "elements/pop-up/popup-search";
-@import "elements/pop-up/popup-login";
+@import "elements/pop-up/popup-simple";
 
 // Products files
 // ============
 @import "products/popup-detail";
 @import "products/product-block";
 @import "products/content";
+@import "products/detail-product";
 
 // Store files
 // ============
 @import "store/order-list";
+@import "store/update-quotation";
 
-// User files
+// User
 // ============
 @import "users/profile";

@@ -20,20 +20,26 @@ class Customer(models.Model):
     code = models.CharField(
         verbose_name=u'Código', max_length=10, blank=True, null=True, unique=True)
     name = models.CharField(verbose_name='Nombre completo', max_length=255)
-    rfc = models.CharField(verbose_name='RFC', max_length=15)
+    rfc = models.CharField(verbose_name='RFC', max_length=15, blank=True)
+    balance = models.DecimalField(verbose_name='Saldo', max_digits=10, decimal_places=2, default=0)
+    name_foreign = models.CharField(verbose_name='Nombre extranjero', max_length=255, blank=True, null=True)
     # Dirección facturación
     street = models.CharField(verbose_name='Calle', max_length=255, blank=True)
     zip_code = models.CharField(verbose_name=u'Código postal', max_length=5, blank=True)
-    state = models.ForeignKey(StateMx, verbose_name='Estado')
+    state = models.ForeignKey(StateMx, verbose_name='Estado', null=True)
     city = models.CharField(verbose_name='Ciudad', max_length=255, blank=True)
     # Contacto
-    phone = models.CharField(verbose_name=u'Teléfono 1', max_length=10)
-    phone_2 = models.CharField(verbose_name=u'Teléfono 2', max_length=10, null=True, blank=True)
-    fax = models.CharField(verbose_name=u'Teléfono 2', max_length=10, null=True, blank=True)
-    mobile = models.CharField(verbose_name=u'Celular', max_length=10, null=True, blank=True)
+    phone = models.CharField(verbose_name=u'Teléfono 1', max_length=15, blank=True)
+    phone_2 = models.CharField(verbose_name=u'Teléfono 2', max_length=15, null=True, blank=True)
+    fax = models.CharField(verbose_name=u'Teléfono 2', max_length=15, null=True, blank=True)
+    mobile = models.CharField(verbose_name=u'Celular', max_length=15, null=True, blank=True)
     contact = models.CharField(verbose_name=u'Persona de contacto', max_length=255, null=True, blank=True)
     active = models.BooleanField(verbose_name='¿Es activo?', default=0)
-
+    # Balance
+    code_employee = models.IntegerField(verbose_name='Codigo de empleado de venta', null=True)
+    code_conditions_payment = models.IntegerField(verbose_name='Codigo condiciones de pago', null=True)
+    limit_credit = models.DecimalField(verbose_name='Limite de crédito', max_digits=10, decimal_places=2, default=0)
+    limit_debt = models.DecimalField(verbose_name='Limite de deuda',max_digits=10, decimal_places=2, default=0)
     
     class Meta:
         verbose_name = 'Cliente'
@@ -68,6 +74,14 @@ class Seller(models.Model):
 
     def __unicode__(self):
         return '{}'.format(self.name)
+
+    def save(self, *args, **kwargs):
+        group = Group.objects.get(name='Seller')
+        self.user.is_staff = True
+        self.user.groups.clear()
+        self.user.groups.add(group)
+        self.user.save()
+        super(Seller, self).save(*args, **kwargs)
 
 
 class UserToken(models.Model):

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
@@ -102,3 +103,22 @@ def set_customer(request):
         'cart_id': cart_id
     }
     return JsonResponse(data)
+
+
+def get_customers(request):
+    q = request.GET.get('q', None)
+    customers = Customer.objects.filter(name__icontains=q)[:5]
+    customers_data = list()
+    for customer in customers:
+        customer_data = dict()
+        customer_data['id'] = customer.cart.pk if hasattr(customer, 'cart') else 0
+        customer_data['name'] = customer.name
+        customers_data.append(customer_data)
+    data = {
+        'customers': customers_data
+    }
+    return JsonResponse(data)
+
+
+class LoginEya(LoginView):
+    template_name = 'registration/login.html'

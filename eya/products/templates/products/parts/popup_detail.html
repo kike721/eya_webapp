@@ -3,28 +3,32 @@
   <div class="popup-detail__block">
 
     <div class="popup-detail__head">
-
       <img src="/static/img/close.svg" alt="Cerrar" class="popup-detail__close closeDetail">
     </div>
     
     <div class="popup-detail__body">
-      <div id="image" style="" class="popup-detail__img" alt="Imagen del producto" ></div>
+      <img id="image" class="popup-detail__img" alt="Imagen del producto"/>
       <div class="popup-detail__date">
         <div class="popup-detail__info">
           <h2 id="code" class="popup-detail__code"></h2>
           <p id="description" class="popup-detail__description"></p>
         </div>
-        <div class="popup-detail__button">
+        <!--<div class="popup-detail__button">
           {% if user.pk %}
             <form action="{% url 'add-detail-cart' %}" method="POST">
               {% csrf_token %}
-              <input type="hidden" name="cart" value="{{ user.customer.cart.pk }}">
+              {% if request.session.cart_selected %}
+                <input type="hidden" name="cart" class="formCart" value="{{ request.session.cart_selected }}">
+              {% endif %}
+              {% if user.customer.cart.pk %}
+                <input type="hidden" name="cart" class="formCart" value="{{ user.customer.cart.pk }}">
+              {% endif %}
               <input id="popup_id_product" type="hidden" name="product" value="{{ item.pk }}">
               <input class="input-quantity" type="number" name="quantity" value="1">
               <input class="order" type="submit" value="Pedir">
             </form>
           {% endif %}
-        </div>
+        </div>-->
       </div>
     </div>
 

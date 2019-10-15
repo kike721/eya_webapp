@@ -9,10 +9,9 @@
 {% block content %}
 	<div>
 		<div class="content-store">
-			<h2>Lista de pedido</h2>
+			<h3>Su pedido <span>{% if customer %}{{ customer }}{% endif %}</span></h3>
 			<div class="note">Los productos estan sujetos a inventario.</div>
 		</div>
-
 		<form action="{% url 'cart' pk=pk %}" method="POST" class="content-store">
 			{% csrf_token %}
 			<div class="content-list">
@@ -28,6 +27,9 @@
 					</div>
 					<div class="item-flex-big">
 						<h4>Descripción</h4>
+					</div>
+					<div class="item-flex-big">
+						<h4>Unidad de empaque</h4>
 					</div>
 					<div class="item-flex">
 						<h4>Eliminar</h4>
@@ -47,6 +49,9 @@
 						<div class="item-flex-big">
 							<p>{{ detail.product.description }}</p>
 						</div>
+						<div class="item-flex-big">
+							<p>{{ detail.product.quantity }} {{ detail.product.quantity_descr }}</p>
+						</div>
 						<div class="item-flex">
 							<img src="/static/img/trash.svg" alt="Eliminar" style="width: 20px;height: 20px;">
 							<input type="checkbox" name="{{ detail.pk }}-delete" style="width: 40px;">
@@ -56,6 +61,9 @@
 			</div>
 
 			<div class="content-buttons">
+				{% if user.seller %}
+					<a target='blank' class="button-act" name="historico" href="{% url 'history' %}">Historico</a>
+				{% endif %}
 				<button class="button-act" type="submit" name="actualizar">
 					Actualizar
 					<img src="/static/img/refresh.svg" alt="Eliminar" style="color: white;width: 20px;height: 20px;">

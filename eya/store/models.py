@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from decimal import *
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,6 +15,12 @@ from users.models import Customer, Seller
 class Cart(BaseModel):
     customer = models.OneToOneField(
         Customer, verbose_name='Usuario', related_name='cart')
+
+    def get_products(self):
+        products = list()
+        for detail in self.details.all():
+            products.append(detail.product)
+        return products
 
 class DetailCart(models.Model):
     cart = models.ForeignKey(
@@ -39,10 +47,14 @@ class DetailSellerCart(models.Model):
 class Order(BaseModel):
 
     PENDING = 'P'
+    QUOTATION = 'Q'
+    SUPPLY = 'S'
     FINISHED = 'F'
 
     STATUS_ORDER = (
         (PENDING,'PENDIENTE'),
+        (QUOTATION,'COTIZACIÓN'),
+        (SUPPLY,'SURTIDO'),
         (FINISHED,'FINALIZADA'),
     )
 
@@ -64,16 +76,29 @@ class Order(BaseModel):
     def total(self):
         total = Decimal(0.0)
         for detail in self.details.all():
-            total += detail.price
+            total += detail.subtotal
         return total
 
 
 class DetailOrder(BaseModel):
+
+    PENDING = 'P'
+    ACCEPT = 'A'
+    DENY = 'D'
+
+    STATUS_DETAIL = (
+        (PENDING,'PENDIENTE'),
+        (ACCEPT,'ACEPTAR'),
+        (DENY,'RECHAZAR'),
+    )
+
     order = models.ForeignKey(
         Order, verbose_name=u'Orden', related_name='details')
     product = models.ForeignKey(Product, verbose_name=u'Producto')
     quantity = models.PositiveIntegerField(verbose_name='Cantidad')
-    price = models.DecimalField(verbose_name='Precio', max_digits=8, decimal_places=2, default=0)
+    price = models.DecimalField(verbose_name='Precio', max_digits=10, decimal_places=2, default=0)
+    discount = models.PositiveIntegerField(verbose_name='Descuento', default=0)
+    status = models.CharField(verbose_name='Estatus', max_length=3, choices=STATUS_DETAIL, default=PENDING)
 
     class Meta:
         verbose_name = u'Detalle de orden'
@@ -81,3 +106,14 @@ class DetailOrder(BaseModel):
 
     def __unicode_(self):
         return u'Order-{} {} {}'.format(self.pk, self.quantity, self.product)
+
+
+    @property
+    def calc_discount(self):
+        percentage = Decimal(self.discount / 100.00)
+        return self.price * self.quantity * percentage
+
+    @property
+    def subtotal(self):
+        return (self.price * self.quantity) - self.calc_discount
+    

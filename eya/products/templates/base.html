@@ -48,6 +48,12 @@
         {% include "header.html" %}
         {% block content %}{% endblock %}
         {% include "footer.html" %}
+        <!-- Loader -->
+        <div id="loader" class="loader-container">
+            {% include "parts/loader.html" %}
+        </div>
+        <!-- /Loader -->
+        {% include "parts/popup-notification.html" %}
     </main>
 
     <!-- fonts -->
@@ -55,45 +61,152 @@
     <!-- /fonts -->
 
     <!-- Load base scripts (for all pages)-->      
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- /Load base scripts (for all pages) -->
 
     {% render_bundle 'main' 'js' %}
 
     {% block extra_scripts %}{% endblock %}
+    <!-- Script para shoppingcart -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var id_cart = $($(".formCart")[0]).val();
+        $.ajax({
+          url: "{% url 'get-cart' %}",
+          data: {
+            'cart': id_cart,
+          },
+          method: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            console.log('data aqui', data);
+            var carrito = $('#car');
+            $("html").find(carrito);
+            $(".input-quantity").val(1);
+            carrito.html(data.items);
+            $('.header__carrito').addClass('see');
+          }
+        });
+        
+        $(".order").click(function(e){
+          e.preventDefault();
+
+          var form = $(this).parent('form');
+          var id_cart = $(form).children(".formCart").val();
+          var id_product = $(form).children("#id_product").val()
+          var quantity = $(form).children(".input-quantity").val()
+          var carrito = $('#car');
+          $("html").find(carrito);
+
+          $.ajax({
+            url: "{% url 'add-cart' %}",
+            data: {
+              'product': id_product,
+              'cart': id_cart,
+              'quantity': quantity,
+              'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            method: 'POST',
+            dataType: 'json',
+            success: function (data) {
+              console.log('respuesta', data);
+              $(".input-quantity").val(1);
+              carrito.html(data.items);
+              $('.header__carrito').addClass('see');
+            }
+          });
+        });
+      });
+    </script>
     {% if user.seller %}
         <script type="text/javascript">
 
-          function setDomain(idCustomer) {
-            var linkCarrito = $("#linkCarrito").data("domain");
-            linkCarrito += 'carrito/' + idCustomer;
-            $("#linkCarrito").attr('href', linkCarrito);
-          };
-
           $(document).ready(function() {
-            var idCustomer = $("#selectCustomer").val();
+
+            $(".label-customer").click(function(){
+              if( $('#search-customer').hasClass('open') ) {
+                  $('#search-customer').removeClass('open');
+                  var label = $('.label-customer').html('Buscar cliente');
+                }
+                else {
+                  var label = $('.label-customer').html('Cerrar');
+                  $('#search-customer').addClass('open');
+
+                  $('#search-customer').keyup(function() {     
+                    var name = $(this).val()
+                    var customers = []
+                    var customer_element = $('.results');
+                    customer_element.html('')
+                    htmlResults = ''
+
+                    if (name.length > 2) {
+                      $.ajax({
+                        url: "{% url 'customer-search' %}",
+                        data: {
+                          'q': name
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                          customers = data.customers
+                          if (customers.length > 0) {
+                            $('.results').show();
+                            customers.map(function(customer, index) {
+                              htmlResults += '<p class="link_results" data-name="'+customer.name+'" data-id="'+customer.id+'">' + customer.name + '</p>' 
+                            });
+                            customer_element.html(htmlResults)
+                          } else {
+                            $('.results').hide();
+                          }
+                        }
+                      });
+                    }
+                    if (name.length <= 2) {
+                      $('.results').hide();  
+                    }
+                  });
+
+                  $('.results').on('click', '.link_results', function() {
+                    var idCart = $(this).data('id');
+                    console.log(idCart)
+                    var link = $(this).data('name');
+                    console.log(link);
+                    label.html(link);
+                    setDomain(idCart);
+                    $('#search-customer').val('');
+                    $('.results').hide();
+                    $('#search-customer').removeClass('open');
+                  });
+                }
+                
+            });
+
+            $('.results').hide();
+
+            var idCustomer = $("#linkCarrito").data('cart');
             $(".formCart").val(idCustomer);
             setDomain(idCustomer);
 
-            $("#selectCustomer").change(function() {
-              var idCustomer = $(this).val();
-              $(".formCart").val(idCustomer);
-              setDomain(idCustomer);
-
-              $.ajax({
-                url: "{% url 'customer-selected' %}",
-                data: {
-                  'cart_id': idCustomer
-                },
-                dataType: 'json',
-                success: function (data) {
-                  console.log('Seteo el carrito ' + data.cart_id);
-                }
-              });
-
-            });
-
           });
+
+
+
+          function setDomain(idCustomer) {
+            var linkCarrito = $("#linkCarrito").data("domain");
+            linkCarrito += '/carrito/' + idCustomer;
+            $(".formCart").val(idCustomer);
+            $("#linkCarrito").attr('href', linkCarrito);
+            $.ajax({
+              url: "{% url 'customer-selected' %}",
+              data: {
+                'cart_id': idCustomer
+              },
+              dataType: 'json',
+              success: function (data) {
+                console.log('Succes');
+              }
+            });
+          };
+
         </script>
     {% endif %}
 

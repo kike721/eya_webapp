@@ -8,12 +8,11 @@ var popUpDetail = function(){
 	function openDetail(e) {
 		e.preventDefault();
 		var btn = $(this);
-		var parent = btn.parent('.card');
+		var parent = btn.parent('.detail-product__product');
 		var text = parent.find('#code_eyamex').clone();
 		var desc = parent.find('#description__eyamex').clone();
 		var id_product = parent.find('#id_product').val();
-		console.log(id_product);
-		var img = parent.find('#image_eyamex').attr('style');
+		var img = parent.find('#image_eyamex').attr('src');
 
 		$('body').css('overflow', 'hidden');
 		$("#popupDetail").css('display', 'flex');
@@ -21,7 +20,7 @@ var popUpDetail = function(){
 		$("#code").html(text);
 		$("#description").html(desc);
 		$("#popup_id_product").val(id_product);
-		$("#image").attr("style", img);
+		$("#image").attr("src", img);
 	}	
 
 	function start(){

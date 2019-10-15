@@ -1,54 +1,79 @@
-.login{
-	background-color: #f3f3f3;
-}
-
-.login__container{
+.login {
+	background-image: url('https://files.ensamblesyadornos.org/mailings/login-1.jpg');
+  background-position: center center;
+  background-size: cover; 
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	padding: 2em 0;
-}
+	z-index: 99;
 
-.login__message-error{
-	color: #d02a2a;
+	&__logo {
+		width: 100%;
+    position: absolute;
+    top: 1em;
+    font-size: 2.14286em;
+    font-weight: 800;
+    font-weight: bolder;
+    color: $white;
+    -webkit-text-stroke: 1.2px #fff;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.15em;
+	}
+
+	&__container{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+    padding: 2em;
+	}
+
+	&__form {
+		width: 100%;
+		background: $white;
+		padding: 1em;
+		text-align: center;
+
+		& label {
+			font-size: 16px;
+			font-weight: 500;
+			text-align: left;
+			margin: 0 0 0.5em 0;
+		}
+
+		& input {
+			padding: 0.75em;
+		}
+
+		@media (min-width: 959px){
+			width: 30%;
+			padding: 2em 1em;
+		}
+	}
+
+	&__message-error{
+		color: #d02a2a;
     font-weight: 700;
-}
+  }
 
-.login__link{
-	border: 1px solid black;
-    padding: 0.5em;
-    color: black;
+  &__link{
+  	border: 1px solid black;
+  	padding: 0.5em;
+  	color: $black;
     font-weight: 700;
     text-decoration: none;
     margin: 1em 0;
     font-size: 13px;
-}
+  }
 
-.form-login{
-	width: 100%;
-	max-width: 300px;
-}
-
-.form-input{
-	display: flex;
-	flex-direction: column;
-	margin: 0.5em;
-}
-
-input{
-	padding: 0.7em;
-	margin-bottom: 0.5em;
-	width: 100%;
-	max-width: 700px;
-	border: none;
-}
-
-.button-login{
-	text-decoration: none;
-    color: white;
-    border: none;
-    margin: 1em 0;
-    background-color: #1d941d;
-    padding: 1em;
+  &__button {
+    @include button($green-button, $white, $green-button, $green-button, $green-button, $white);
+  }
 }

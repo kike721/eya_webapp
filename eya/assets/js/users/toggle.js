@@ -4,12 +4,13 @@ var ToggleRow = function(){
     e.preventDefault();
     var button = $(e.target);
     var parent = button.parent('.toggleRow');
-    parent.children(".toggleHide").toggleClass('active');
+    parent.toggleClass('active');
   }
 
   function start(){
     $('.toggleBtn').on('click', toggleStatus);
   }
+
 
   return{
     start:start
