@@ -80,3 +80,16 @@ def send_supply_customer(order):
         template)
 
     return handle_send_email([email])
+
+def send_password_customer(email, password):
+    """Send Order Data Email."""
+    domain = '{}{}'.format(settings.HTTP_PROTOCOL, settings.CURRENT_DOMAIN)
+    template = render_to_string(
+        'mailings/send_password_customer.html',
+        {'email': email, 'password': password})
+    email = generate_send_email(
+        [email],
+        u'Actualización de catalogo',
+        template)
+
+    return handle_send_email([email])
