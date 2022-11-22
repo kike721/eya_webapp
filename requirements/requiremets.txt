@@ -10,7 +10,7 @@ django-webpack-loader==0.6.0
 django-xhtml2pdf==0.0.4
 MySQL-python==1.2.5
 pilkit==2.0
-Pillow==5.1.0
+Pillow==9.3.0
 pytz==2018.4
 six==1.11.0
 typing==3.6.4
